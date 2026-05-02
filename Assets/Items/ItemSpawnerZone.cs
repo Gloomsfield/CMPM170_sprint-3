@@ -9,7 +9,7 @@ public class ItemCategoryGroup
     public List<GameObject> prefabs = new List<GameObject>(); 
 }
 
-public class ItemSpawner : MonoBehaviour {
+public class ItemSpawnerZone : MonoBehaviour {
 
     // List of all categories. Each containing prefabs and weight
     [SerializeField] private List<ItemCategoryGroup> categoryGroups;
