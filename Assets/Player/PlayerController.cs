@@ -1,11 +1,14 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    enum States {
+    enum states {
+        IDLE,
         WALKING,
         GRABBING,
         // ADD STATES HERE
     }
+
 
 }
