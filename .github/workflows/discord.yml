@@ -20,8 +20,8 @@ jobs:
           COMMIT_LIST=$(jq -rn --argjson data "$COMMITS_JSON" \
             '$data | [.[] | "• `\(.id[:7])` \(.message | split("\n")[0]) — \(.author.name)"] | join("\n")')
 
-          CONTENT=$(printf '**%s** pushed to **%s**\nBranch: `%s`\nCommits:\n%s\nCompare: <%s>' \
-            "$ACTOR" "$REPO" "$BRANCH" "$COMMIT_LIST" "$COMPARE")
+          CONTENT=$(printf '**%s** pushed to **%s**\nCommits:\n%s\nCompare: <%s>' \
+            "$ACTOR" "$BRANCH" "$COMMIT_LIST" "$COMPARE")
 
           PAYLOAD=$(jq -n --arg content "$CONTENT" '{content: $content}')
 
