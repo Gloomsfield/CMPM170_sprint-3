@@ -13,16 +13,13 @@ namespace Items
 
     public class WeightedItemSpawnZone : MonoBehaviour {
 
-        // List of all categories. Each containing prefabs and weight
-        [SerializeField] [Header("List of categories for this spawner to instantiate. Can be influenced by weights")] private List<ItemCategoryGroup> categoryGroups;
-
         // Spawning height
-        private const int spawnHeight = 10; 
-        // Bounds of spawning area
-        private const int xMin = -5;
-        private const int xMax = 5;
-        private const int zMin = -5;
-        private const int zMax = 5;
+        [Header("Boundaries of spawning zone.")]
+        [SerializeField] private Vector3 minBounds = new(-5, -1, -5);
+        [SerializeField] private Vector3 maxBounds = new(5, 1, 5);
+
+        // List of all categories. Each containing prefabs and weight
+        [SerializeField] [Header("List of categories for this spawner to instantiate. Can be influenced by weights.")] private List<ItemCategoryGroup> categoryGroups;
 
         // Increase the weight for a certain category
         // Idea is when player does x action with prefab from y category its weight gets increased (More likely to spawn similar prefab again)
@@ -58,7 +55,7 @@ namespace Items
             // Grabs a random prefab from that category
             int index = Random.Range(0, group.prefabs.Count);
 
-            Instantiate(group.prefabs[index], MakeSpawnPosition(), Quaternion.identity, transform);
+            Instantiate(group.prefabs[index], MakeSpawnPosition() + transform.position, Quaternion.identity, transform);
         }
 
         // Picks a category based on weighted randomness
@@ -126,7 +123,17 @@ namespace Items
         //Helper function to random get x and z coordinates for spawning
         private Vector3 MakeSpawnPosition()
         {
-            return new Vector3(Random.Range(xMin, xMax), spawnHeight, Random.Range(zMin, zMax));
+            return new Vector3(Random.Range(minBounds.x, maxBounds.x), Random.Range(minBounds.y, maxBounds.y), Random.Range(minBounds.z, maxBounds.z));
+        }
+
+        public Vector3 GetCenterOffset()
+        {
+            return (minBounds + maxBounds) * 0.5f;
+        }
+
+        public Vector3 GetSize()
+        {
+            return maxBounds - minBounds;
         }
     }
 }
