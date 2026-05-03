@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update() {
-        /* Sends a raycast from the camera to grabRange on mouse click, calling Grab()
+        /* Sends a raycast from the camera to grabRange on mouse click, calling ToggleGrab()
          * on the hit object. IMPORTANT: grabbable objects must implement IsGrabbable and
          * be in the grabbable layer */
         // TODO Do we want to use both buttons? change to FixedUpdate?
@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour {
             Debug.DrawLine(ray.origin, ray.direction * grabRange, Color.red, 10f, false);
             if (Physics.Raycast(ray.origin, ray.direction, out hit, grabRange, grabbableMask)) {
                 GameObject target = hit.collider.gameObject;
-                target.GetComponent<GrabController>().Grab();
+                target.GetComponent<GrabController>().ToggleGrab();
             }
         }
     }

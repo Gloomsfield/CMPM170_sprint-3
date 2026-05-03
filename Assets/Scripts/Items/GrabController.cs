@@ -2,7 +2,15 @@ using UnityEngine;
 
 public class GrabController : MonoBehaviour, IsGrabbable
 {
-    public void Grab() {
-        Debug.Log("Test object was grabbed");
+    private bool grabbed = false;
+
+    public void ToggleGrab() {
+        grabbed = !grabbed;
+        if (grabbed) {
+            transform.SetParent(Camera.main.transform);
+        } else {
+            transform.SetParent(null);
+        }
+
     }
 }
