@@ -2,8 +2,8 @@ using UnityEngine.InputSystem;
 using UnityEngine;
 
 public class PlayerCamController : MonoBehaviour {
-    [SerializeField] float xSens = 0.6f;
-    [SerializeField] float ySens = 0.6f;
+    [SerializeField] float xSens = 0.1f;
+    [SerializeField] float ySens = 0.1f;
 
     private float xRotation = 0;
     private float yRotation = 0;
