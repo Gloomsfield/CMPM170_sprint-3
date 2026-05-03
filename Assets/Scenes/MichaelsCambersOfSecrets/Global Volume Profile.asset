@@ -1,0 +1,147 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-2729221466691842290
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25792a1c800b6f5498b76a67b3c5b765, type: 3}
+  m_Name: CRTSettings
+  m_EditorClassIdentifier: Assembly-CSharp::RetroShadersPro.URP.CRTSettings
+  active: 1
+  showInSceneView:
+    m_OverrideState: 1
+    m_Value: 1
+  enabled:
+    m_OverrideState: 1
+    m_Value: 1
+  renderPassEvent:
+    m_OverrideState: 1
+    m_Value: 1
+  useBarrelDistortion:
+    m_OverrideState: 1
+    m_Value: 1
+  distortionStrength:
+    m_OverrideState: 1
+    m_Value: 0.048
+  distortionSmoothing:
+    m_OverrideState: 1
+    m_Value: 0.013
+  colorRampMode:
+    m_OverrideState: 1
+    m_Value: 3
+  colorRampTex:
+    m_OverrideState: 1
+    m_Value: {fileID: 2800000, guid: 8cf593a7915aede42934043cefe1607a, type: 3}
+    dimension: 1
+  redValues:
+    m_OverrideState: 1
+    m_Value: 256
+  greenValues:
+    m_OverrideState: 1
+    m_Value: 256
+  blueValues:
+    m_OverrideState: 1
+    m_Value: 256
+  useDithering:
+    m_OverrideState: 1
+    m_Value: 0
+  tintColor:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  backgroundColor:
+    m_OverrideState: 1
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
+  scaleParameters:
+    m_OverrideState: 1
+    m_Value: 0
+  verticalReferenceResolution:
+    m_OverrideState: 1
+    m_Value: 1080
+  forcePointFiltering:
+    m_OverrideState: 1
+    m_Value: 0
+  rgbTex:
+    m_OverrideState: 1
+    m_Value: {fileID: 2800000, guid: 2c4a9024477c8a6428e15c48254f94e4, type: 3}
+    dimension: 1
+  rgbStrength:
+    m_OverrideState: 1
+    m_Value: 0.701
+  scanlineTex:
+    m_OverrideState: 1
+    m_Value: {fileID: 0}
+    dimension: 1
+  scanlineStrength:
+    m_OverrideState: 1
+    m_Value: 0.159
+  scanlineSize:
+    m_OverrideState: 1
+    m_Value: 8
+  scrollSpeed:
+    m_OverrideState: 1
+    m_Value: 0
+  pixelSize:
+    m_OverrideState: 1
+    m_Value: 1
+  randomWear:
+    m_OverrideState: 1
+    m_Value: 0
+  aberrationStrength:
+    m_OverrideState: 1
+    m_Value: 0
+  useTracking:
+    m_OverrideState: 1
+    m_Value: 0
+  trackingTexture:
+    m_OverrideState: 1
+    m_Value: {fileID: 0}
+    dimension: 1
+  trackingSize:
+    m_OverrideState: 1
+    m_Value: 1
+  trackingStrength:
+    m_OverrideState: 1
+    m_Value: 0.1
+  trackingSpeed:
+    m_OverrideState: 1
+    m_Value: 0.1
+  trackingJitter:
+    m_OverrideState: 1
+    m_Value: 0.01
+  trackingColorDamage:
+    m_OverrideState: 1
+    m_Value: 0.05
+  trackingLinesThreshold:
+    m_OverrideState: 1
+    m_Value: 0.9
+  trackingLinesColor:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 1, b: 1, a: 0.5}
+  brightness:
+    m_OverrideState: 1
+    m_Value: 1
+  contrast:
+    m_OverrideState: 1
+    m_Value: 1
+  enableInterlacing:
+    m_OverrideState: 1
+    m_Value: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
+  m_Name: Global Volume Profile
+  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.VolumeProfile
+  components:
+  - {fileID: -2729221466691842290}
