@@ -7,19 +7,19 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Green Material
-  m_Shader: {fileID: 4800000, guid: 71a090e9b5b488349913abe716bb7bc6, type: 3}
+  m_Name: TestSkybox
+  m_Shader: {fileID: 4800000, guid: 61c206751217e09449cc610091e935c6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - _BACKGROUNDMODE_GRADIENT
+  - _COMBINEMODE_MULTIPLY
   - _DITHERMODE_SCREEN
-  - _FILTERMODE_POINT
-  - _LIGHTMODE_TEXELLIT
-  - _RECEIVESHADOWSMODE_ON
-  - _SNAPMODE_VIEW
-  - _WRAPMODE_REPEAT
+  - _USE_CLOUDS
+  - _USE_POINT_FILTER_ON
   m_InvalidKeywords:
-  - _USE_VERTEX_COLORS_OFF
+  - _USE_CLOUDS_ON
+  - _USE_POINT_FILTER
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -31,6 +31,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BaseCubemap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -63,19 +67,11 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _NormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ReflectionCubemap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -96,28 +92,23 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints:
-    - _ColorBitDepth: 64
+    - _BackgroundMode: 0
+    - _ColorBitDepth: 16
+    - _CombineMode: 1
     - _DitherMode: 0
-    - _FilterMode: 1
-    - _LightMode: 1
-    - _ReceiveShadowsMode: 0
-    - _ResolutionLimit: 64
-    - _SnapMode: 2
-    - _SnapsPerUnit: 29
-    - _WrapMode: 1
+    - _ResolutionLimit: 128
     m_Floats:
     - _AddPrecomputedVelocity: 0
-    - _AffineTextureStrength: 1
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _AmbientLight: 0.02
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _ColorBitDepthOffset: 0
-    - _CubemapRotation: 0
+    - _ColorMixPower: 1
+    - _Color_Mix_Power: 1
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
@@ -129,34 +120,46 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _NormalStrength: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.005
+    - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _Resolution_Limit: 64
+    - _Rotation: 0
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _USE_AMBIENT_OVERRIDE: 0
-    - _USE_FLAT_SHADING: 0
-    - _USE_REFLECTION_CUBEMAP: 0
-    - _USE_SPECULAR_LIGHT: 0
-    - _USE_VERTEX_COLORS: 0
+    - _USE_CLOUDS: 1
+    - _USE_POINT_FILTER: 1
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.2179601, g: 0.5849056, b: 0.23378986, a: 1}
-    - _Color: {r: 0.21796006, g: 0.5849056, b: 0.23378983, a: 1}
-    - _CubemapColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _CloudColor: {r: 0, g: 0, b: 0, a: 1}
+    - _CloudDensityThresholds: {r: 0, g: 1, b: 0, a: 0}
+    - _CloudHeightThresholds: {r: 0, g: 0.09, b: 0, a: 0}
+    - _CloudSizes: {r: 5, g: 25, b: 0, a: 0}
+    - _CloudVelocity: {r: 2.23, g: 0.61, b: 0, a: 0}
+    - _Cloud_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Cloud_Height_Thresholds: {r: 0, g: 1, b: 0, a: 0}
+    - _Cloud_Sizes: {r: 5, g: 25, b: 0, a: 0}
+    - _Cloud_Velocity: {r: 0, g: 0, b: 0, a: 0}
+    - _Cloud_Visibility_Thresholds: {r: 0, g: 1, b: 0, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _GroundColor: {r: 1, g: 0.4631136, b: 0, a: 0.5}
+    - _Ground_Color: {r: 0, g: 0, b: 0, a: 1}
+    - _SkyColor: {r: 1, g: 0.0107850125, b: 0, a: 1}
+    - _Sky_Color: {r: 0, g: 0.91210127, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &4840089494028057333
+--- !u!114 &3712677320182176371
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
