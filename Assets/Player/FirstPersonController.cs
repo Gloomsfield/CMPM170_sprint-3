@@ -3,7 +3,7 @@ using UnityEngine;
 public class FirstPersonController : MonoBehaviour
 {
     [Header("Movement Speeds")]
-    [SerializeField] private float walkSpeed = 3.0f;
+    [SerializeField] private float walkSpeed = 3.0f;            
     [SerializeField] private float sprintMultiplier = 2.0f;
 
     [Header("Jump Parameters")]
@@ -12,21 +12,24 @@ public class FirstPersonController : MonoBehaviour
 
     [Header("Look Parameters")]
     [SerializeField] private float mouseSensitivity = 0.01f;
-    [SerializeField] private float upDownLookRange = 80f;
+    [SerializeField] private float upDownLookRange = 80f;               // Clamp for vertical camera rotation
 
     [Header("References")]
-    [SerializeField] private CharacterController characterController;
-    [SerializeField] private Camera mainCamera;
-    [SerializeField] private PlayerInputHandler playerInputHandler;
+    [SerializeField] private CharacterController characterController;   // Handling collision and movement
+    [SerializeField] private Camera mainCamera;                         // PLayer camera (child of player)
+    [SerializeField] private PlayerInputHandler playerInputHandler;     // Handles input system values
 
-    private Vector3 currentMovement;
-    private float verticalRotation;
+    private Vector3 currentMovement;                                    // Stores x, y, z movement velocity
+    private float verticalRotation;                                     // Tracks camera up and down rotation
+    // Calculates current movement speed with sprinting active or not
     private float CurrentSpeed => walkSpeed * (playerInputHandler.SprintTriggered ? sprintMultiplier : 1);
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // CURSOR
+        // Locks cursor to center of screen and hides it
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -34,13 +37,19 @@ public class FirstPersonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HandleMovement();
+        HandleMovement(); 
         HandleRotation();
     }
 
+    /*
+    Converts WASD input into a world direction based on the rotation of the player
+    This makes movement relative to where the player is facing. 
+    */
     private Vector3 CalculateWorldDirection()
     {
+        // Converting 2D input into 3D direction (Left/Right = x, forward/backwards = z)
         Vector3 inputDirection = new Vector3(playerInputHandler.MovementInput.x, 0f, playerInputHandler.MovementInput.y);
+        // Transforming the local input into the world space based on player rotation
         Vector3 worldDirection = transform.TransformDirection(inputDirection);
         return worldDirection.normalized;
     }
@@ -49,13 +58,12 @@ public class FirstPersonController : MonoBehaviour
     {
         if (characterController.isGrounded)
         {
-            currentMovement.y = -0.5f;
+            currentMovement.y = -0.5f; // Small downward gravity force to keep player grounded
 
             if (playerInputHandler.JumpTriggered)
             {
                 currentMovement.y = jumpForce;
             }
-        
         }
         else
         {
@@ -70,20 +78,28 @@ public class FirstPersonController : MonoBehaviour
         currentMovement.z = worldDirection.z * CurrentSpeed;
 
         HandleJumping();
+
+        // Move the player using CharacterController
         characterController.Move(currentMovement * Time.deltaTime);
     }
 
+    // This controls the players left/right movement direction
     private void ApplyHorizontalRotation(float rotationAmount)
     {
         transform.Rotate(0, rotationAmount, 0);
     }
 
+    // Rotates the camera up/down and is clamped to prevent over-rotation
     private void ApplyVerticalRotation(float rotationAmount)
     {
         verticalRotation = Mathf.Clamp(verticalRotation - rotationAmount, -upDownLookRange, upDownLookRange);
+
+        //MICHAEL
+        // Apply rotation only to camera (not player body)
         mainCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
     }
 
+    // Handles mouse input and then applies rotation to player and camera
     private void HandleRotation()
     {
         float mouseXRotation = playerInputHandler.RotationInput.x * mouseSensitivity;
