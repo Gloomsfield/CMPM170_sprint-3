@@ -24,9 +24,12 @@ public class PlayerController : MonoBehaviour {
         if (Mouse.current.leftButton.wasPressedThisFrame) {
             Vector2 mousePos = Mouse.current.position.ReadValue();
             Ray ray = Camera.main.ScreenPointToRay(mousePos);
+            RaycastHit hit;
             // TO REMOVE Show raycast in scene
             Debug.DrawLine(ray.origin, ray.direction * grabRange, Color.red, 10f, false);
-            Debug.Log(Physics.Raycast(ray.origin, ray.direction, grabRange, grabbableMask));
+            if (Physics.Raycast(ray.origin, ray.direction, out hit, grabRange, grabbableMask)) {
+                Debug.Log(hit.collider.gameObject);
+            }
         }
     }
 
