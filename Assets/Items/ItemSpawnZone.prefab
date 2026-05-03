@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9053778471661389325}
   - component: {fileID: 5083368768447747961}
-  - component: {fileID: 618625857965773774}
   m_Layer: 0
   m_Name: ItemSpawnZone
   m_TagString: Untagged
@@ -45,17 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a219a8ca11f15496fa7d4a1d4c6505c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemSpawnerZone
-  categoryGroups: []
---- !u!114 &618625857965773774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2832479792260433464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a219a8ca11f15496fa7d4a1d4c6505c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ItemSpawnerZone
-  categoryGroups: []
+  categoryGroups:
+  - category: 0
+    weight: 1
+    prefabs:
+    - {fileID: 7372285923208925779, guid: c0dd1ff56cda3b84992a4d5dce75d626, type: 3}
+  - category: 1
+    weight: 1
+    prefabs:
+    - {fileID: 6840671286975987398, guid: 148e03ce4da06c941ba6a74a8416ba1c, type: 3}
+  - category: 2
+    weight: 1
+    prefabs:
+    - {fileID: 1877922244525915381, guid: 86805c776c7274946b1c8599571c290b, type: 3}
