@@ -540,6 +540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d2e63bf90a448b49860fb6e8e0e190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  head: {fileID: 236494873}
   grabRange: 2
 --- !u!1 &1292549058
 GameObject:
@@ -816,8 +817,8 @@ GameObject:
   - component: {fileID: 1977030166}
   - component: {fileID: 1977030165}
   - component: {fileID: 1977030164}
-  - component: {fileID: 1977030169}
   - component: {fileID: 1977030168}
+  - component: {fileID: 1977030169}
   m_Layer: 3
   m_Name: TestObject
   m_TagString: Untagged
@@ -954,7 +955,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!1660057539 &9223372036854775807

@@ -34,8 +34,11 @@ public class GrabController : MonoBehaviour, IsGrabbable
 
     void Update() {
         if (grabbed) {
+            grabberHead.transform.position = grabberHead.transform.position + new Vector3 (0f, 0f, 0.01f);
             camDelta = grabberHead.transform.position - lastCamPosition;
+            Debug.Log("cam " + camDelta);
             rb.transform.position = rb.transform.position + camDelta;
+            Debug.Log("rb " + rb.transform.position);
             lastCamPosition = grabberHead.transform.position;
         }
     }
