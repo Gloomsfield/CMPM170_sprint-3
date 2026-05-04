@@ -37,10 +37,9 @@ public class PlayerController : MonoBehaviour {
                     grabbing = !grabbing;
                     GameObject target = hit.collider.gameObject;
                     grabController = target.GetComponent<GrabController>();
-                    grabController.ToggleGrab();
                 }
             }
-            grabController.ToggleGrab();
+                grabController.ToggleGrab();
         }
     }
 }
