@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class GrabController : MonoBehaviour, IsGrabbable
@@ -6,22 +7,27 @@ public class GrabController : MonoBehaviour, IsGrabbable
     private Rigidbody rb;
     private FixedJoint grabJoint;
 
-    private Camera grabberHead;
+    private CinemachineCamera grabberHead;
 
     void Start() {
         rb = GetComponent<Rigidbody>();
     }
 
-    public void ToggleGrab(Camera head) {
+    public void ToggleGrab(CinemachineCamera head) {
         grabbed = !grabbed;
         if (grabbed) {
-            grabberHead = head;
-            rb.isKinematic = true;
-            rb.transform.SetParent(grabberHead.transform);
+            grabJoint = gameObject.AddComponent<FixedJoint>();
+            grabJoint.connectedBody = head.GetComponent<Rigidbody>();
+            grabJoint.breakForce = 100f;
+            grabJoint.breakTorque = 100f;
         } else {
-            rb.transform.SetParent(null);
-            rb.isKinematic = false;
+            Destroy(grabJoint);
             grabberHead = null;
         }
     }
+
+    void OnJointBreak() {
+        grabbed = false;
+    }
+
 }
