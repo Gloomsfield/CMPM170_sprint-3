@@ -1,5 +1,7 @@
 using UnityEngine;
 
+
+using Unity.Cinemachine;
 public class FirstPersonController : MonoBehaviour
 {
     [Header("Movement Speeds")]
@@ -16,7 +18,7 @@ public class FirstPersonController : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private CharacterController characterController;   // Handling collision and movement
-    [SerializeField] private Camera mainCamera;                         // PLayer camera (child of player)
+    [SerializeField] private CinemachineCamera playerCam;               // PLayer camera (child of player)
     [SerializeField] private PlayerInputHandler playerInputHandler;     // Handles input system values
 
     private Vector3 currentMovement;                                    // Stores x, y, z movement velocity
@@ -96,7 +98,7 @@ public class FirstPersonController : MonoBehaviour
 
         //MICHAEL
         // Apply rotation only to camera (not player body)
-        mainCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
+        playerCam.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
     }
 
     // Handles mouse input and then applies rotation to player and camera
