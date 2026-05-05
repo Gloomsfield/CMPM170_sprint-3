@@ -35,7 +35,7 @@ public class NounRestriction {
 
 }
 
-public class NounRestrictionBluerint {
+public class NounRestrictionBlueprint {
 	
 	[JsonProperty("identifier")]
 	public readonly string identifier;
