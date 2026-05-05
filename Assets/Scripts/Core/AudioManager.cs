@@ -13,7 +13,7 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private AudioSource uiSource;
     [SerializeField] private float musicVolume;
-    [SerializeField] private float sfxVolume;
+    [SerializeField] private float uiVolume;
 
 
     private void Awake()
@@ -67,6 +67,12 @@ public class AudioManager : MonoBehaviour
         // we honestly might not need this musicVolume var, but I thought it might come in handy later?
         musicVolume = volume;
         musicSource.volume=volume;
+    }
+    public void SetUIVolume(float volume)
+    {
+        // we honestly might not need this musicVolume var, but I thought it might come in handy later?
+        uiVolume = volume;
+        uiSource.volume = volume;
     }
 
 
