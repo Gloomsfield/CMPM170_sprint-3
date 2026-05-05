@@ -1,7 +1,6 @@
 using UnityEngine;
-
-
 using Unity.Cinemachine;
+
 public class FirstPersonController : MonoBehaviour
 {
     [Header("Movement Speeds")]
@@ -18,6 +17,11 @@ public class FirstPersonController : MonoBehaviour
 
     [Header("Crouch Parameters")]
     [SerializeField] private float crouchHeight = 1.0f;
+    [SerializeField] float standHeight = 2.0f;
+    [SerializeField] private float crouchSpeed = 10.0f;
+
+    float crouchCamPos = -1.4f;
+    float camHeight = 0.4f;
 
     [Header("References")]
     [SerializeField] private CharacterController characterController;   // Handling collision and movement
@@ -83,7 +87,14 @@ public class FirstPersonController : MonoBehaviour
         currentMovement.z = worldDirection.z * CurrentSpeed;
 
         HandleJumping();
-        HandleCrouching();
+        if(playerInputHandler.CrouchTriggered)
+        {
+            HandleCrouch();
+        } 
+        else
+        {
+            HandleStand();
+        }
 
         // Move the player using CharacterController
         characterController.Move(currentMovement * Time.deltaTime);
@@ -115,20 +126,52 @@ public class FirstPersonController : MonoBehaviour
         ApplyVerticalRotation(mouseYRotation);
     }
 
-    private void HandleCrouching()
+    private void HandleCrouch()
     {
-        if (playerInputHandler.CrouchTriggered)
+        if(characterController.height > crouchHeight)
         {
-            //this.GetComponent(BoxCollider).size -= Vector3(0, crouchHeight, 0);
-            //this.GetComponetn(BoxCollider).center -= Vector3(0, crouchHeight, 0);
-            Debug.Log("Crouch pressed");
-            Debug.Log(characterController.height);
-            characterController.height = crouchHeight;
-            
-        } 
-        else
-        {
-            characterController.height = 2.0f;
+            UpdateCharacterHeight(crouchHeight);
+
+            if(characterController.height - 0.05f <= crouchHeight)
+            {
+                characterController.height = crouchHeight;
+            }
         }
+
+        //float targetHeight = playerInputHandler.CrouchTriggered ? crouchHeight : standHeight;
+        //Vector3 targetCamPos = playerInputHandler.CrouchTriggered ? crouchCamPos : standCamPos;
+
+        //characterController.height = Mathf.MoveTowards(characterController.height, targetHeight, crouchSpeed * Time.deltaTime);
+
+        //playerCam.localPosition = Vector3.Lerp(playerCam.localPosition, targetCamPos, crouchSpeed * Time.deltaTime);
+    }
+
+    void HandleStand()
+    {
+        if(characterController.height < standHeight)
+        {
+
+            float lastHeight = characterController.height;
+
+            UpdateCharacterHeight(standHeight);
+            //UpdateCameraPos(camHeight);
+
+            if(characterController.height + 0.05f >= standHeight)
+            {
+                characterController.height = standHeight;    
+            }
+
+            transform.position += new Vector3(0, (characterController.height - lastHeight) / 2, 0);
+        }
+    }
+
+    void UpdateCharacterHeight(float newHeight)
+    {
+        characterController.height = Mathf.Lerp(characterController.height, newHeight, crouchSpeed * Time.deltaTime);
+    }
+
+    void UpdateCameraPos(float newHeight)
+    {
+        //playerCam.position = Vector3.Lerp(playerCam.height, newHeight, crouchSpeed * Time.deltaTime);
     }
 }
