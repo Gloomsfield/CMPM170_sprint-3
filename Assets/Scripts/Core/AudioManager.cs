@@ -86,7 +86,7 @@ public class AudioManager : MonoBehaviour
         AudioSource itemSource = item.AddComponent<AudioSource>();
         itemSource.clip = sound;
         itemSource.spatialBlend = 1;
-        itemSource.maxDistance = 10;
+        itemSource.maxDistance = 100;
         itemSource.Play();
         Destroy(itemSource, sound.length);
     }
