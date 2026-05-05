@@ -16,6 +16,9 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private float mouseSensitivity = 0.01f;
     [SerializeField] private float upDownLookRange = 80f;               // Clamp for vertical camera rotation
 
+    [Header("Crouch Parameters")]
+    [SerializeField] private float crouchHeight = 1.0f;
+
     [Header("References")]
     [SerializeField] private CharacterController characterController;   // Handling collision and movement
     [SerializeField] private CinemachineCamera playerCam;               // PLayer camera (child of player)
@@ -80,6 +83,7 @@ public class FirstPersonController : MonoBehaviour
         currentMovement.z = worldDirection.z * CurrentSpeed;
 
         HandleJumping();
+        HandleCrouching();
 
         // Move the player using CharacterController
         characterController.Move(currentMovement * Time.deltaTime);
@@ -109,5 +113,22 @@ public class FirstPersonController : MonoBehaviour
 
         ApplyHorizontalRotation(mouseXRotation);
         ApplyVerticalRotation(mouseYRotation);
+    }
+
+    private void HandleCrouching()
+    {
+        if (playerInputHandler.CrouchTriggered)
+        {
+            //this.GetComponent(BoxCollider).size -= Vector3(0, crouchHeight, 0);
+            //this.GetComponetn(BoxCollider).center -= Vector3(0, crouchHeight, 0);
+            Debug.Log("Crouch pressed");
+            Debug.Log(characterController.height);
+            characterController.height = crouchHeight;
+            
+        } 
+        else
+        {
+            characterController.height = 2.0f;
+        }
     }
 }
