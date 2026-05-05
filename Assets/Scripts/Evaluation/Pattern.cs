@@ -34,6 +34,14 @@ public class Behavior {
 
 }
 
+public class PatternClassification {
+	
+	public readonly string verbPast;
+	public readonly string verbPresent;
+	public readonly string verbFuture;
+
+}
+
 public class Pattern {
 
 	private readonly List<List<Condition>> _continueConditions;
@@ -41,10 +49,14 @@ public class Pattern {
 
 	private readonly Dictionary<int, List<Condition>> _cancelConditionMap;
 
+	public readonly PatternClassification patternClassification;
+
 	public Pattern(
+		PatternClassification patternClassification,
 		List<List<Condition>> continueConditions,
 		List<(int, int, Condition)> cancelConditionBounds
 	) {
+		this.patternClassification = patternClassification;
 		_continueConditions = continueConditions;
 
 		// we need to be able to get cancellation Conditions quickly,
@@ -62,9 +74,11 @@ public class Pattern {
 	}
 
 	public Pattern(
+		PatternClassification patternClassification,
 		List<List<Condition>> continueConditions,
 		Dictionary<int, List<Condition>> cancelConditionMap
 	) {
+		this.patternClassification = patternClassification;
 		_continueConditions = continueConditions;
 		_cancelConditionMap = cancelConditionMap;
 	}
@@ -78,6 +92,7 @@ public class Pattern {
 			if(!condition.Check(behavior)) { continue; }
 
 			clonedPattern = new Pattern(
+				patternClassification,
 				_continueConditions,
 				_cancelConditionMap
 			);
