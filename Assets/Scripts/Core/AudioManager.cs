@@ -83,6 +83,7 @@ public class AudioManager : MonoBehaviour
         {
             return;
         }
+        //Might be a better way to pack all this up, as there are even more audioSource variables we might want to tune.
         AudioSource itemSource = item.AddComponent<AudioSource>();
         itemSource.clip = sound;
         itemSource.spatialBlend = 1;
