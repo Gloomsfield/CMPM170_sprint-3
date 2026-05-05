@@ -14,19 +14,21 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField] private string movement = "Movement";
     [SerializeField] private string rotation = "Rotation";
     [SerializeField] private string jump = "Jump";
-    [SerializeField] private string  sprint = "Sprint";
-
+    [SerializeField] private string sprint = "Sprint";
+    [SerializeField] private string grab = "Grab";
     // Interal references to the actual InputAction objects retrieved from the asset
     private InputAction movementAction;
     private InputAction rotationAction;
     private InputAction jumpAction;
     private InputAction sprintAction;
+    private InputAction grabAction;
 
     // Public read only so FirstPersonController can read them but not change them
     public Vector2 MovementInput { get; private set; }
     public Vector2 RotationInput { get; private set; }
     public bool JumpTriggered { get; private set; }
     public bool SprintTriggered { get; private set; }
+    public bool GrabTriggered { get; private set; }
 
     private void Awake()
     {
@@ -38,6 +40,7 @@ public class PlayerInputHandler : MonoBehaviour
         rotationAction = mapReference.FindAction(rotation);
         jumpAction = mapReference.FindAction(jump);
         sprintAction = mapReference.FindAction(sprint);
+        grabAction = mapReference.FindAction(grab);
 
         SubscribeActionValuesToInputEvents();
     }
@@ -69,6 +72,9 @@ public class PlayerInputHandler : MonoBehaviour
         sprintAction.performed += inputInfo => SprintTriggered = true;
         // Sprint becomes false when sprint is released
         sprintAction.canceled += inputInfo => SprintTriggered = false;
+
+        grabAction.performed += inputInfo => Debug.Log("The key was pressed");
+        grabAction.canceled += inputInfo => Debug.Log("The key was released");
     }
 
     private void OnEnable()

@@ -5,13 +5,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    enum states {
-        IDLE,
-        WALKING,
-        GRABBING,
-        // ADD STATES HERE
-    }
-
     private LayerMask grabbableMask;
     private bool grabbing = false;
     private GrabController grabController;
@@ -44,13 +37,10 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update() {
-        // TODO Do we want to use both buttons? change to FixedUpdate?
         if (Mouse.current.leftButton.wasPressedThisFrame) {
-            Debug.Log("press received");
             if (grabbing) {
                 grabController.ToggleGrab(playerCam);
                 grabbing = false;
-                Debug.Log("Dropped item");
             } else {
                 TryGrab();
             }
