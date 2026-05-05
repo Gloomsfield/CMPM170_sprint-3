@@ -14,6 +14,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource uiSource;
     [SerializeField] private float musicVolume;
     [SerializeField] private float uiVolume;
+    [SerializeField] private float sfxVolume;
 
 
     private void Awake()
@@ -75,6 +76,20 @@ public class AudioManager : MonoBehaviour
         uiSource.volume = volume;
     }
 
-
+    //Parameters: Sound - the soundclip that will play, item - the gameobject the source will get added to.
+    public void PlaySoundOnObject(AudioClip sound, GameObject item)
+    {
+        if (sound == null)
+        {
+            return;
+        }
+        //Might be a better way to pack all this up, as there are even more audioSource variables we might want to tune.
+        AudioSource itemSource = item.AddComponent<AudioSource>();
+        itemSource.clip = sound;
+        itemSource.spatialBlend = 1;
+        itemSource.maxDistance = 100;
+        itemSource.Play();
+        Destroy(itemSource, sound.length);
+    }
 }
 

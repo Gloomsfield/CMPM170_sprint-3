@@ -5,6 +5,7 @@ public class RadiotestScript : MonoBehaviour
 {
     [SerializeField] private AudioClip BGM;
     [SerializeField] private AudioClip BGM2;
+    [SerializeField] private AudioClip crashSound;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,4 +22,5 @@ public class RadiotestScript : MonoBehaviour
             AudioManager.Instance.PlayMusic(BGM2,true);
         }
     }
+
 }
