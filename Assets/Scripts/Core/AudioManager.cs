@@ -33,11 +33,14 @@ public class AudioManager : MonoBehaviour
     // This method checks if the clip is null, and if it's already playing to avoid restarting it unnecessarily. If not, it sets the clip, loop setting, and plays the music.
     public void PlayMusic(AudioClip clip, bool loop = true)
     {
-        if (clip == null) return;
-
-        if (musicSource.clip == clip && musicSource.isPlaying)
+        if (clip == null)
+        {
             return;
-
+        }
+        if (musicSource.clip == clip && musicSource.isPlaying)
+        {
+            return;
+        }
         musicSource.clip = clip;
         musicSource.loop = loop;
         musicSource.volume = musicVolume;

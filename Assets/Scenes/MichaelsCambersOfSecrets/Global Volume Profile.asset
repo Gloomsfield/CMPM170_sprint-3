@@ -33,10 +33,10 @@ MonoBehaviour:
     m_Value: 0.013
   colorRampMode:
     m_OverrideState: 1
-    m_Value: 3
+    m_Value: 0
   colorRampTex:
-    m_OverrideState: 1
-    m_Value: {fileID: 2800000, guid: 8cf593a7915aede42934043cefe1607a, type: 3}
+    m_OverrideState: 0
+    m_Value: {fileID: 2800000, guid: 802c411310783d341b01c0b61f1e2b24, type: 3}
     dimension: 1
   redValues:
     m_OverrideState: 1
