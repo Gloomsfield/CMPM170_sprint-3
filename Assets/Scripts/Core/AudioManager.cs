@@ -76,7 +76,7 @@ public class AudioManager : MonoBehaviour
         uiSource.volume = volume;
     }
 
-    //let the object pass in the location of the soundsource that will spawn. The clip that will go with it, and what volume to set it at.
+    //Parameters: Sound - the soundclip that will play, item - the gameobject the source will get added to.
     public void PlaySoundOnObject(AudioClip sound, GameObject item)
     {
         if (sound == null)

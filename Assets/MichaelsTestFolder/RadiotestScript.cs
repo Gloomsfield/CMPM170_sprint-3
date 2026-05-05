@@ -23,8 +23,4 @@ public class RadiotestScript : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        AudioManager.Instance.PlaySoundOnObject(crashSound, this.gameObject);
-    }
 }
