@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 public enum VerbType {
 	GRABS,
@@ -41,7 +43,7 @@ public class VerbRestriction {
 	private readonly VerbType _type;
 	private readonly List<(string, (float, float))> _parameterRanges;
 
-	VerbRestriction(VerbType type, List<(string, (float, float))> parameterRanges) {
+	public VerbRestriction(VerbType type, List<(string, (float, float))> parameterRanges) {
 		_type = type;
 		_parameterRanges = parameterRanges;
 	}
@@ -54,6 +56,38 @@ public class VerbRestriction {
 		}
 
 		return true;
+	}
+
+}
+
+public class VerbParameterRestrictionBlueprint {
+	
+	[JsonProperty("name")]
+	public readonly string name;
+
+	[JsonProperty("min")]
+	public readonly float min;
+
+	[JsonProperty("max")]
+	public readonly float max;
+
+}
+
+public class VerbRestrictionBlueprint {
+	
+	[JsonProperty("verb")]
+	private readonly VerbType _type;
+
+	[JsonProperty("parameters")]
+	private readonly List<VerbParameterRestrictionBlueprint> _parameters;
+
+	public VerbRestriction Build() {
+		List<(string, (float, float))> ranges = new();
+		foreach(VerbParameterRestrictionBlueprint parameter in _parameters) {
+			ranges.Add((parameter.name, (parameter.min, parameter.max)));
+		}
+
+		return new VerbRestriction(_type, ranges);
 	}
 
 }
