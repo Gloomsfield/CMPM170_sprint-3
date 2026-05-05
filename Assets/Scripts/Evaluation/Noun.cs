@@ -44,7 +44,7 @@ public class NounRestrictionBlueprint {
 	[JsonConverter(typeof(StringEnumConverter))]
 	private readonly List<NounTag> _validTags;
 
-	NounRestriction Build() {
+	public NounRestriction Build() {
 		return new NounRestriction(_validTags);
 	}
 
