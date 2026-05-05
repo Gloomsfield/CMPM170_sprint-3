@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 public enum NounTag {
 	DIRT,
@@ -29,6 +31,21 @@ public class NounRestriction {
 
 	public bool CheckConformity(NounInstance noun) {
 		return noun.IsSubsetOf(_validTags);
+	}
+
+}
+
+public class NounRestrictionBluerint {
+	
+	[JsonProperty("identifier")]
+	public readonly string identifier;
+
+	[JsonProperty("validTags")]
+	[JsonConverter(typeof(StringEnumConverter))]
+	private readonly List<NounTag> _validTags;
+
+	NounRestriction Build() {
+		return new NounRestriction(_validTags);
 	}
 
 }
