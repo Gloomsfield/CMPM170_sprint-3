@@ -407,10 +407,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8462730173370250811, guid: d635af34bbd76460b992a16c4ae98f18, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2067941647}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d635af34bbd76460b992a16c4ae98f18, type: 3}
 --- !u!1 &632735352
 GameObject:
@@ -659,7 +656,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8177590495805763049, guid: 96ea8ad014b3945b683d6638d7ce5a7e, type: 3}
   m_PrefabInstance: {fileID: 1109558565}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1048618552
+--- !u!114 &1048618559
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -668,9 +665,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1048618545}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4e9c0c981f041542845a94df21e9139, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a2336b7b29266cb695a5969e11f51b8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ObjectAudio
+  m_EditorClassIdentifier: Assembly-CSharp::ItemCollisionManager
   dropSFX: {fileID: 8300000, guid: e359be4c8aae97946b6ad55887094791, type: 3}
 --- !u!1001 &1109558565
 PrefabInstance:
@@ -730,7 +727,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8177590495805763049, guid: 96ea8ad014b3945b683d6638d7ce5a7e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1048618552}
+      addedObject: {fileID: 1048618559}
   m_SourcePrefab: {fileID: 100100000, guid: 96ea8ad014b3945b683d6638d7ce5a7e, type: 3}
 --- !u!1 &1666964063
 GameObject:
@@ -1046,26 +1043,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2067941646 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8462730173370250811, guid: d635af34bbd76460b992a16c4ae98f18, type: 3}
-  m_PrefabInstance: {fileID: 554347858}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2067941647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2067941646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cf99b02e4d9a4b43b7671d1970ec51f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RadiotestScript
-  BGM: {fileID: 8300000, guid: acb150ca8ad16ba4ab7b1d9553b740d1, type: 3}
-  BGM2: {fileID: 8300000, guid: 6eacda7f0646edc4b9f04ca720d3cc57, type: 3}
-  crashSound: {fileID: 8300000, guid: e359be4c8aae97946b6ad55887094791, type: 3}
 --- !u!1001 &5201448407538476979
 PrefabInstance:
   m_ObjectHideFlags: 0

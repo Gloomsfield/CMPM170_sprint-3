@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8177590495805763049
+--- !u!1 &7584436643378884298
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,50 +8,50 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7708129408638167229}
-  - component: {fileID: 31433282043673126}
-  - component: {fileID: 7364691239176643730}
-  - component: {fileID: 8862992326222511779}
-  - component: {fileID: 3542938454228143904}
-  - component: {fileID: 479130932530929645}
-  - component: {fileID: 412162954375706745}
-  m_Layer: 3
-  m_Name: TestObject
+  - component: {fileID: 3377888246192286660}
+  - component: {fileID: 7946320348557723901}
+  - component: {fileID: 4948723130952415789}
+  - component: {fileID: 1026306560475096955}
+  - component: {fileID: 2336309555469997851}
+  - component: {fileID: 7782708591736905854}
+  - component: {fileID: 657254211104902158}
+  m_Layer: 0
+  m_Name: RadioTEst
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7708129408638167229
+--- !u!4 &3377888246192286660
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8177590495805763049}
+  m_GameObject: {fileID: 7584436643378884298}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.832, y: 4.5, z: -3.9}
+  m_LocalPosition: {x: 3.48, y: 2.93, z: -5.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &31433282043673126
+--- !u!33 &7946320348557723901
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8177590495805763049}
+  m_GameObject: {fileID: 7584436643378884298}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &7364691239176643730
+--- !u!23 &4948723130952415789
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8177590495805763049}
+  m_GameObject: {fileID: 7584436643378884298}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -94,13 +94,13 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8862992326222511779
+--- !u!65 &1026306560475096955
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8177590495805763049}
+  m_GameObject: {fileID: 7584436643378884298}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -115,13 +115,28 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &3542938454228143904
+--- !u!114 &2336309555469997851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7584436643378884298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cf99b02e4d9a4b43b7671d1970ec51f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RadiotestScript
+  BGM: {fileID: 8300000, guid: acb150ca8ad16ba4ab7b1d9553b740d1, type: 3}
+  BGM2: {fileID: 8300000, guid: 6eacda7f0646edc4b9f04ca720d3cc57, type: 3}
+  crashSound: {fileID: 8300000, guid: e359be4c8aae97946b6ad55887094791, type: 3}
+--- !u!54 &7782708591736905854
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8177590495805763049}
+  m_GameObject: {fileID: 7584436643378884298}
   serializedVersion: 5
   m_Mass: 1
   m_LinearDamping: 0
@@ -139,32 +154,19 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &479130932530929645
+--- !u!114 &657254211104902158
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8177590495805763049}
+  m_GameObject: {fileID: 7584436643378884298}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42729664c3a1e4789b8ff39f6fcf72c3, type: 3}
+  m_Script: {fileID: 11500000, guid: c4e9c0c981f041542845a94df21e9139, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Grabbing::ItemGrabbee
-  breakForce: 400
---- !u!114 &412162954375706745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8177590495805763049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a2336b7b29266cb695a5969e11f51b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ItemCollisionManager
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectAudio
   dropSFX: {fileID: 8300000, guid: e359be4c8aae97946b6ad55887094791, type: 3}

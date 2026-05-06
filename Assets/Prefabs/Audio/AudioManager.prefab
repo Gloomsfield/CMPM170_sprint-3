@@ -268,6 +268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6224892976180608355}
   - component: {fileID: 3087820902813751502}
+  - component: {fileID: 4765418548732262154}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -309,3 +310,18 @@ MonoBehaviour:
   musicVolume: 1
   uiVolume: 1
   sfxVolume: 1
+--- !u!114 &4765418548732262154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8462730173370250811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cf99b02e4d9a4b43b7671d1970ec51f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RadiotestScript
+  BGM: {fileID: 8300000, guid: acb150ca8ad16ba4ab7b1d9553b740d1, type: 3}
+  BGM2: {fileID: 8300000, guid: 6eacda7f0646edc4b9f04ca720d3cc57, type: 3}
+  crashSound: {fileID: 8300000, guid: e359be4c8aae97946b6ad55887094791, type: 3}
