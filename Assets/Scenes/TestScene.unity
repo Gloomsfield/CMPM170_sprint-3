@@ -269,8 +269,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cde928ee6154b49f7bc66f3d37917c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCamController
-  xSens: 10
-  ySens: 10
+  xSens: 0.6
+  ySens: 0.6
 --- !u!1 &1237768854
 GameObject:
   m_ObjectHideFlags: 0
