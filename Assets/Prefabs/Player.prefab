@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 3049464766300049934}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.432, z: 0}
+  m_LocalPosition: {x: 0, y: 0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -154,6 +154,7 @@ MonoBehaviour:
   rotation: Rotation
   jump: Jump
   sprint: Sprint
+  crouch: Crouch
 --- !u!114 &871012318103228950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,8 +171,11 @@ MonoBehaviour:
   sprintMultiplier: 2
   jumpForce: 5
   gravityMultiplier: 1
-  mouseSensitivity: 0.1
+  mouseSensitivity: 1
   upDownLookRange: 80
+  crouchHeight: 1
+  standHeight: 2
+  crouchSpeed: 2
   characterController: {fileID: 4044539217444702977}
   playerCam: {fileID: 2848173545718053475}
   playerInputHandler: {fileID: 7035936092976061075}

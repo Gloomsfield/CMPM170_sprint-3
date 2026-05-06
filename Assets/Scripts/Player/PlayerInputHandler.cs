@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 public class PlayerInputHandler : MonoBehaviour
 {
     [Header("Input Action Asset")]
@@ -14,19 +15,22 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField] private string movement = "Movement";
     [SerializeField] private string rotation = "Rotation";
     [SerializeField] private string jump = "Jump";
-    [SerializeField] private string  sprint = "Sprint";
+    [SerializeField] private string sprint = "Sprint";
+    [SerializeField] private string crouch = "Crouch"; 
 
     // Interal references to the actual InputAction objects retrieved from the asset
     private InputAction movementAction;
     private InputAction rotationAction;
     private InputAction jumpAction;
     private InputAction sprintAction;
+    private InputAction crouchAction;
 
     // Public read only so FirstPersonController can read them but not change them
     public Vector2 MovementInput { get; private set; }
     public Vector2 RotationInput { get; private set; }
     public bool JumpTriggered { get; private set; }
     public bool SprintTriggered { get; private set; }
+    public bool CrouchTriggered { get; private set; }
 
     private void Awake()
     {
@@ -38,6 +42,7 @@ public class PlayerInputHandler : MonoBehaviour
         rotationAction = mapReference.FindAction(rotation);
         jumpAction = mapReference.FindAction(jump);
         sprintAction = mapReference.FindAction(sprint);
+        crouchAction = mapReference.FindAction(crouch);
 
         SubscribeActionValuesToInputEvents();
     }
@@ -69,6 +74,12 @@ public class PlayerInputHandler : MonoBehaviour
         sprintAction.performed += inputInfo => SprintTriggered = true;
         // Sprint becomes false when sprint is released
         sprintAction.canceled += inputInfo => SprintTriggered = false;
+
+        // Crouch becomes true when crouch is held
+        crouchAction.performed += inputInfo => CrouchTriggered = true;
+        // Crouch becomes false when crouch is released
+        crouchAction.canceled += inputInfo => CrouchTriggered = false;
+
     }
 
     private void OnEnable()
@@ -103,27 +114,3 @@ public class PlayerInputHandler : MonoBehaviour
     //TODO: Implement functions to toggle player controls on/off
     //          - For when the player is forced locked at the Therapist
 }
-
-
-/*
-HOW TO SETUP PLAYER IN SCENE
-
-1. Create empty GameObject and name it Player
-    - Add a CharacterController component
-    - Add PlayerInputHandler Script
-    - Add FirstPersonController script
-
-MICHAEL
-2. Move main camera as a child of Player
-    - Reset its local position
-    - Move y position up a little for head height
-    - Assign main camera reference in FirstPersonController
-
-3. Assign References in FirstPersonController
-    - CharacterController -> Player's CharacterController
-    - Main camera (step 2)
-    - PlayerInputHandler -> Player's PlayerInputHandler
-
-4. Add GameObject capsle called PlayerVisualize
-    - Make child of Player
-*/
