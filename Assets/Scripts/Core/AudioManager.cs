@@ -30,6 +30,10 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    void Start() {
+        EventManager.itemCollided += PlaySoundOnObject; 
+    }
+
     //Parameters: clip - the audio clip to play, loop - whether the music should loop (default is true)
     // This method checks if the clip is null, and if it's already playing to avoid restarting it unnecessarily. If not, it sets the clip, loop setting, and plays the music.
     public void PlayMusic(AudioClip clip, bool loop = true)
@@ -88,8 +92,16 @@ public class AudioManager : MonoBehaviour
         itemSource.clip = sound;
         itemSource.spatialBlend = 1;
         itemSource.maxDistance = 100;
+        itemSource.volume = sfxVolume;
         itemSource.Play();
         Destroy(itemSource, sound.length);
+    }
+
+    /* Before an item is destroyed, it must unsuscribe to all
+     * events it is subscribed to. Otherwise, the event will try
+     * to call functions that no longer exist */
+    void OnDestroy() {
+        EventManager.itemCollided -= PlaySoundOnObject; 
     }
 }
 
