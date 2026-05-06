@@ -43,9 +43,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Grab",
+                    "name": "Crouch",
                     "type": "Button",
-                    "id": "9b7efece-7282-42ff-944a-4e96152c8305",
+                    "id": "2e589cfd-abc8-45d3-9371-c3c7734d1a82",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -231,12 +231,12 @@
                 },
                 {
                     "name": "",
-                    "id": "f8dda266-8ecf-47ea-afff-8f82b2eea562",
-                    "path": "<Mouse>/leftButton",
+                    "id": "ec4943b8-f000-485f-b311-868b0d1df364",
+                    "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Grab",
+                    "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

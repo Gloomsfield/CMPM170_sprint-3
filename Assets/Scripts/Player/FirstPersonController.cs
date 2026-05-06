@@ -1,7 +1,6 @@
 using UnityEngine;
-
-
 using Unity.Cinemachine;
+
 public class FirstPersonController : MonoBehaviour
 {
     [Header("Movement Speeds")]
@@ -16,6 +15,13 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private float mouseSensitivity = 0.01f;
     [SerializeField] private float upDownLookRange = 80f;               // Clamp for vertical camera rotation
 
+    [Header("Crouch Parameters")]
+    [SerializeField] private float crouchHeight = 1.0f;
+    [SerializeField] float standHeight = 2.0f;
+    [SerializeField] private float crouchSpeed = 10.0f;
+    float camOffset = 0.4f;
+    bool isCrouching = false;
+
     [Header("References")]
     [SerializeField] private CharacterController characterController;   // Handling collision and movement
     [SerializeField] private CinemachineCamera playerCam;               // PLayer camera (child of player)
@@ -26,7 +32,6 @@ public class FirstPersonController : MonoBehaviour
     // Calculates current movement speed with sprinting active or not
     private float CurrentSpeed => walkSpeed * (playerInputHandler.SprintTriggered ? sprintMultiplier : 1);
 
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -34,6 +39,11 @@ public class FirstPersonController : MonoBehaviour
         // Locks cursor to center of screen and hides it
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        characterController.height = standHeight;
+        characterController.center = new Vector3(0, standHeight / 2f, 0);
+
+        playerCam.transform.localPosition = new Vector3(0, (standHeight / 2f) + camOffset, 0);
     }
 
     // Update is called once per frame
@@ -79,7 +89,19 @@ public class FirstPersonController : MonoBehaviour
         currentMovement.x = worldDirection.x * CurrentSpeed;
         currentMovement.z = worldDirection.z * CurrentSpeed;
 
-        HandleJumping();
+        if(playerInputHandler.CrouchTriggered)
+        {
+            HandleCrouch();
+        } 
+        else
+        {
+            HandleStand();
+        }
+
+        if (!isCrouching)
+        {
+            HandleJumping();
+        }
 
         // Move the player using CharacterController
         characterController.Move(currentMovement * Time.deltaTime);
@@ -96,7 +118,6 @@ public class FirstPersonController : MonoBehaviour
     {
         verticalRotation = Mathf.Clamp(verticalRotation - rotationAmount, -upDownLookRange, upDownLookRange);
 
-        //MICHAEL
         // Apply rotation only to camera (not player body)
         playerCam.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
     }
@@ -109,5 +130,67 @@ public class FirstPersonController : MonoBehaviour
 
         ApplyHorizontalRotation(mouseXRotation);
         ApplyVerticalRotation(mouseYRotation);
+    }
+
+    private void HandleCrouch()
+    {
+        isCrouching = true;
+        if(characterController.height > crouchHeight) // Check to see if we need to decrease height to reach crouchHeight
+        {
+            UpdateCharacterHeight(crouchHeight);
+
+            if(characterController.height - 0.05f <= crouchHeight) // Snap at the very end to stop long float calculations
+            {
+                characterController.height = crouchHeight;
+            }
+        }
+    }
+
+    void HandleStand()
+    {
+        if(characterController.height < standHeight) // Check to see if we need to increase height to reach standHeight
+        {
+
+            float lastHeight = characterController.height; // Used for moving position line 180
+
+            // Checks if an object is above the player to stop them from standing up
+            if (Physics.Raycast(transform.position + Vector3.up * characterController.height, Vector3.up, out RaycastHit hit, standHeight))
+            {
+                // Slightly adjust the height to below the object if crouch is released
+                if (hit.distance < standHeight - crouchHeight)
+                {
+                    UpdateCharacterHeight(crouchHeight + hit.distance);
+                    return;
+                }
+                else
+                {
+                    UpdateCharacterHeight(standHeight);
+                } 
+            } 
+            else
+            {
+                UpdateCharacterHeight(standHeight);
+            }            
+
+            if(characterController.height + 0.05f >= standHeight) // Snap at the very end to stop long float calculations
+            {
+                characterController.height = standHeight;
+                isCrouching = false;    
+            }
+
+            // Changes position so physics body isn't pushed up by ground collision as standing up
+            transform.position += new Vector3(0, (characterController.height - lastHeight) / 2, 0);
+        }
+    }
+
+    // Uses Mathf.Lerp to have a smooth crouching and uncrouching motion. 
+    void UpdateCharacterHeight(float newHeight)
+    {
+        characterController.height = Mathf.Lerp(characterController.height, newHeight, crouchSpeed * Time.deltaTime);
+
+        characterController.center = new Vector3(0, characterController.height / 2f, 0);
+
+        // Move the camera independently for a smoother motion
+        playerCam.transform.localPosition = new Vector3(0, (characterController.height / 2) + camOffset, 0);
     }
 }

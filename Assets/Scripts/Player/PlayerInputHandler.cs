@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 public class PlayerInputHandler : MonoBehaviour
 {
     [Header("Input Action Asset")]
@@ -16,19 +17,22 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField] private string jump = "Jump";
     [SerializeField] private string sprint = "Sprint";
     [SerializeField] private string grab = "Grab";
+    [SerializeField] private string crouch = "Crouch"; 
+
     // Interal references to the actual InputAction objects retrieved from the asset
     private InputAction movementAction;
     private InputAction rotationAction;
     private InputAction jumpAction;
     private InputAction sprintAction;
     private InputAction grabAction;
+    private InputAction crouchAction;
 
     // Public read only so FirstPersonController can read them but not change them
     public Vector2 MovementInput { get; private set; }
     public Vector2 RotationInput { get; private set; }
     public bool JumpTriggered { get; private set; }
     public bool SprintTriggered { get; private set; }
-    public bool GrabTriggered { get; private set; } = false;
+    public bool CrouchTriggered { get; private set; }
 
     private void Awake()
     {
@@ -41,6 +45,7 @@ public class PlayerInputHandler : MonoBehaviour
         jumpAction = mapReference.FindAction(jump);
         sprintAction = mapReference.FindAction(sprint);
         grabAction = mapReference.FindAction(grab);
+        crouchAction = mapReference.FindAction(crouch);
 
         SubscribeActionValuesToInputEvents();
     }
@@ -75,6 +80,11 @@ public class PlayerInputHandler : MonoBehaviour
 
         // Grab is toggled when left mouse button is pressed
         grabAction.performed += inputInfo => EventManager.invokeGrabToggled();
+        // Crouch becomes true when crouch is held
+        crouchAction.performed += inputInfo => CrouchTriggered = true;
+        // Crouch becomes false when crouch is released
+        crouchAction.canceled += inputInfo => CrouchTriggered = false;
+
     }
 
     private void OnEnable()
