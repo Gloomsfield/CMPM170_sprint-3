@@ -12,7 +12,7 @@ public class ItemGrabbee : MonoBehaviour {
     private FixedJoint grabJoint;
 
     //A public bool so that PlayerGrabber can ref this.
-    public bool IsGrabbed => grabbed;
+    public bool isGrabbed => grabbed;
 
 
     /*
