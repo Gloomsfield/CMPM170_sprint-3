@@ -28,7 +28,7 @@ public class PlayerInputHandler : MonoBehaviour
     public Vector2 RotationInput { get; private set; }
     public bool JumpTriggered { get; private set; }
     public bool SprintTriggered { get; private set; }
-    public bool GrabTriggered { get; private set; }
+    public bool GrabTriggered { get; private set; } = false;
 
     private void Awake()
     {
@@ -73,8 +73,8 @@ public class PlayerInputHandler : MonoBehaviour
         // Sprint becomes false when sprint is released
         sprintAction.canceled += inputInfo => SprintTriggered = false;
 
-        grabAction.performed += inputInfo => Debug.Log("The key was pressed");
-        grabAction.canceled += inputInfo => Debug.Log("The key was released");
+        // Grab is toggled when left mouse button is pressed
+        grabAction.performed += inputInfo => EventManager.invokeGrabToggled();
     }
 
     private void OnEnable()

@@ -10,13 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 97234168382123901}
   - component: {fileID: 2848173545718053475}
+  - component: {fileID: 6255319583197721341}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &97234168382123901
 Transform:
   m_ObjectHideFlags: 0
@@ -75,6 +76,33 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
+--- !u!54 &6255319583197721341
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3049464766300049934}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6660847347498070337
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,7 +115,7 @@ GameObject:
   - component: {fileID: 4044539217444702977}
   - component: {fileID: 7035936092976061075}
   - component: {fileID: 871012318103228950}
-  - component: {fileID: 4747295573473246569}
+  - component: {fileID: 9035420015696790571}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -104,7 +132,7 @@ Transform:
   m_GameObject: {fileID: 6660847347498070337}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.57, z: 0}
+  m_LocalPosition: {x: 0.6528289, y: 1.76, z: -2.8905447}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -155,6 +183,7 @@ MonoBehaviour:
   rotation: Rotation
   jump: Jump
   sprint: Sprint
+  grab: Grab
 --- !u!114 &871012318103228950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,12 +200,12 @@ MonoBehaviour:
   sprintMultiplier: 2
   jumpForce: 5
   gravityMultiplier: 1
-  mouseSensitivity: 0.1
+  mouseSensitivity: 0.2
   upDownLookRange: 80
   characterController: {fileID: 4044539217444702977}
   playerCam: {fileID: 2848173545718053475}
   playerInputHandler: {fileID: 7035936092976061075}
---- !u!114 &4747295573473246569
+--- !u!114 &9035420015696790571
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -185,11 +214,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6660847347498070337}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90d2e63bf90a448b49860fb6e8e0e190, type: 3}
+  m_Script: {fileID: 11500000, guid: d24e5e22244ef4563bec799a6f2031e5, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  playerCam: {fileID: 0}
+  m_EditorClassIdentifier: Grabbing::PlayerGrabber
   grabRange: 2
+  playerCam: {fileID: 2848173545718053475}
 --- !u!1 &7186852325856951930
 GameObject:
   m_ObjectHideFlags: 0
