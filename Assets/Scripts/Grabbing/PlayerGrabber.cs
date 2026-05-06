@@ -15,7 +15,7 @@ public class PlayerGrabber : MonoBehaviour {
 
     //This means isHolding item is true if we have an item and that item is currently grabbed.
     //Its just faster this way then a big if statement if we need to reuse this
-    private bool IsHoldingItem => currentItem != null && currentItem.IsGrabbed;
+    private bool isHoldingItem => currentItem != null && currentItem.isGrabbed;
 
     void Start() {
         // Select the game layer we can grab things from
@@ -32,7 +32,7 @@ public class PlayerGrabber : MonoBehaviour {
      * on the hit object. IMPORTANT: grabbable objects be in the grabbable layer */
     void TryGrab() {
         //This was changed from old system so it just calls the Drop function. (feel free to delete this comment)
-        if (IsHoldingItem)
+        if (isHoldingItem)
         {
             currentItem.Drop();
             currentItem = null;
