@@ -45,4 +45,11 @@ public class PlayerGrabber : MonoBehaviour {
             }
         }
     }
+
+    /* Before an item is destroyed, it must unsuscribe to all
+     * events it is subscribed to. Otherwise, the event will try
+     * to call functions that no longer exist */
+    void OnDestroy() {
+        EventManager.grabToggled -= TryGrab; 
+    }
 }

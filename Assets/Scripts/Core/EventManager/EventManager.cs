@@ -18,4 +18,8 @@ public class EventManager {
     public static void invokeItemCollided(AudioClip clip, GameObject obj) {
         itemCollided?.Invoke(clip, obj);
     }
+
+    public static void Testing() {
+        Debug.Log("Suscribers: " + itemCollided);
+    }
 }
