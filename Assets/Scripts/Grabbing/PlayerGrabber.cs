@@ -6,12 +6,16 @@ using UnityEngine;
 public class PlayerGrabber : MonoBehaviour {
 
     private LayerMask grabbableMask;
-    private bool grabbing = false;
-    private ItemGrabbee itemGrabbee;
+   // private bool grabbing = false;
+    private ItemGrabbee currentItem;
     private Rigidbody headRb;
 
-    [SerializeField] float grabRange;
+    [SerializeField] float grabRange =3f;
     [SerializeField] CinemachineCamera playerCam;
+
+    //This means isHolding item is true if we have an item and that item is currently grabbed.
+    //Its just faster this way then a big if statement if we need to reuse this
+    private bool IsHoldingItem => currentItem != null && currentItem.IsGrabbed;
 
     void Start() {
         // Select the game layer we can grab things from
@@ -27,22 +31,31 @@ public class PlayerGrabber : MonoBehaviour {
     /* Sends a raycast from the camera to grabRange on mouse click, calling ToggleGrab()
      * on the hit object. IMPORTANT: grabbable objects be in the grabbable layer */
     void TryGrab() {
-        if (grabbing) {
-            itemGrabbee.ToggleGrab(headRb);
-            grabbing = false;
-        } else {
-            Vector2 mousePos = Mouse.current.position.ReadValue();
-            Ray ray = new Ray(playerCam.transform.position, playerCam.transform.forward);
-            RaycastHit hit;
-            // TO REMOVE Show raycast in scene view
-            Debug.DrawLine(ray.origin, ray.direction * grabRange * 10, Color.red, 10f, false);
-            if (Physics.Raycast(ray.origin, ray.direction, out hit, grabRange, grabbableMask)) {
-                GameObject target = hit.collider.gameObject;
-                itemGrabbee = target.GetComponent<ItemGrabbee>();
-                itemGrabbee.ToggleGrab(headRb);
-                //Debug.Log("grabbed: " + target);
-                grabbing = true;
+        //This was changed from old system so it just calls the Drop function. (feel free to delete this comment)
+        if (IsHoldingItem)
+        {
+            currentItem.Drop();
+            currentItem = null;
+            return;
+
+        }
+        currentItem = null;
+
+        Ray ray = new Ray(playerCam.transform.position, playerCam.transform.forward);
+
+        Debug.DrawLine(ray.origin,ray.origin + ray.direction * grabRange,Color.red, 2f);
+
+        if (Physics.Raycast(ray.origin, ray.direction, out RaycastHit hit, grabRange, grabbableMask))
+        {
+            ItemGrabbee grabbedItem = hit.collider.GetComponent<ItemGrabbee>();
+
+            if (grabbedItem == null)
+            {
+                return;
             }
+            //This is where we call to Grab the item and set it as the current item.
+            currentItem = grabbedItem;
+            currentItem.Grab(headRb);
         }
     }
 

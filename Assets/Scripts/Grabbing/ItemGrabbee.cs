@@ -9,30 +9,49 @@ public class ItemGrabbee : MonoBehaviour {
     [SerializeField] float breakForce = 400f;
 
     private bool grabbed = false;
-    private Rigidbody rb;
     private FixedJoint grabJoint;
 
-    void Start() {
-        rb = GetComponent<Rigidbody>();
+    //A public bool so that PlayerGrabber can ref this.
+    public bool IsGrabbed => grabbed;
+
+
+    /*
+     * I split up the toggle script into 2 functions 
+     * */
+    public void Grab(Rigidbody grabberRb)
+    {
+        if (grabbed)
+        {
+            return;
+        }
+
+        grabbed = true;
+
+        grabJoint = gameObject.AddComponent<FixedJoint>();
+        grabJoint.connectedBody = grabberRb;
+        grabJoint.breakForce = breakForce;
+        grabJoint.breakTorque = breakForce;
     }
 
-    /* Creates a joint between the grabber's body and this item's body to keep them
-     * attached to one another */
-    public void ToggleGrab(Rigidbody grabberRb) {
-        grabbed = !grabbed;
-        if (grabbed) {
-            Debug.Log("created joint" + grabberRb);
-            grabJoint = gameObject.AddComponent<FixedJoint>();
-            grabJoint.connectedBody = grabberRb; 
-            grabJoint.breakForce = breakForce;
-            grabJoint.breakTorque = breakForce;
-        } else {
+    public void Drop()
+    {
+        if (!grabbed)
+        {
+            return;
+        }
+
+        grabbed = false;
+
+        if (grabJoint != null)
+        {
             Destroy(grabJoint);
+            grabJoint = null;
         }
     }
 
-    void OnJointBreak() {
-        //Debug.Log("joint broke");
+    private void OnJointBreak()
+    {
         grabbed = false;
+        grabJoint = null;
     }
 }
