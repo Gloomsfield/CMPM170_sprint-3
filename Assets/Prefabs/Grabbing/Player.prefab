@@ -184,6 +184,7 @@ MonoBehaviour:
   jump: Jump
   sprint: Sprint
   grab: Grab
+  crouch: Crouch
 --- !u!114 &871012318103228950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,6 +203,9 @@ MonoBehaviour:
   gravityMultiplier: 1
   mouseSensitivity: 0.2
   upDownLookRange: 80
+  crouchHeight: 1
+  standHeight: 2
+  crouchSpeed: 10
   characterController: {fileID: 4044539217444702977}
   playerCam: {fileID: 2848173545718053475}
   playerInputHandler: {fileID: 7035936092976061075}
@@ -267,7 +271,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7186852325856951930}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
