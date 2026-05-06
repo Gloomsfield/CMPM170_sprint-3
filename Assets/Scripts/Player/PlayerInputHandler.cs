@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 public class PlayerInputHandler : MonoBehaviour
 {
     [Header("Input Action Asset")]
@@ -78,6 +79,7 @@ public class PlayerInputHandler : MonoBehaviour
         crouchAction.performed += inputInfo => CrouchTriggered = true;
         // Crouch becomes false when crouch is released
         crouchAction.canceled += inputInfo => CrouchTriggered = false;
+
     }
 
     private void OnEnable()

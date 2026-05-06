@@ -1068,7 +1068,7 @@ MonoBehaviour:
   WorldUpOverride: {fileID: 0}
   ChannelMask: -1
   UpdateMethod: 2
-  BlendUpdateMethod: 1
+  BlendUpdateMethod: 0
   LensModeOverride:
     Enabled: 0
     DefaultMode: 2
@@ -1208,18 +1208,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 97234168382123901, guid: f7b648ab09327a040aa4a959fb0dfde3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 871012318103228950, guid: f7b648ab09327a040aa4a959fb0dfde3, type: 3}
-      propertyPath: mouseSensitivity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4044539217444702977, guid: f7b648ab09327a040aa4a959fb0dfde3, type: 3}
-      propertyPath: m_Height
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 6660847347498070337, guid: f7b648ab09327a040aa4a959fb0dfde3, type: 3}
       propertyPath: m_Name
       value: Player
