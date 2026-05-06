@@ -92,6 +92,7 @@ public class AudioManager : MonoBehaviour
         itemSource.clip = sound;
         itemSource.spatialBlend = 1;
         itemSource.maxDistance = 100;
+        itemSource.volume = sfxVolume;
         itemSource.Play();
         Destroy(itemSource, sound.length);
     }
