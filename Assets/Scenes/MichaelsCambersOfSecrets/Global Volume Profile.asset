@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25792a1c800b6f5498b76a67b3c5b765, type: 3}
   m_Name: CRTSettings
   m_EditorClassIdentifier: Assembly-CSharp::RetroShadersPro.URP.CRTSettings
-  active: 1
+  active: 0
   showInSceneView:
     m_OverrideState: 1
     m_Value: 1
@@ -67,18 +67,18 @@ MonoBehaviour:
     m_Value: 0
   rgbTex:
     m_OverrideState: 1
-    m_Value: {fileID: 2800000, guid: 2c4a9024477c8a6428e15c48254f94e4, type: 3}
+    m_Value: {fileID: 2800000, guid: cf6010bd043e51a4c9ab5ba35563c2e0, type: 3}
     dimension: 1
   rgbStrength:
     m_OverrideState: 1
-    m_Value: 0.701
+    m_Value: 0.19
   scanlineTex:
     m_OverrideState: 1
     m_Value: {fileID: 0}
     dimension: 1
   scanlineStrength:
     m_OverrideState: 1
-    m_Value: 0.159
+    m_Value: 1
   scanlineSize:
     m_OverrideState: 1
     m_Value: 8
@@ -90,13 +90,13 @@ MonoBehaviour:
     m_Value: 1
   randomWear:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.34
   aberrationStrength:
     m_OverrideState: 1
     m_Value: 0
   useTracking:
-    m_OverrideState: 1
-    m_Value: 0
+    m_OverrideState: 0
+    m_Value: 1
   trackingTexture:
     m_OverrideState: 1
     m_Value: {fileID: 0}
@@ -118,16 +118,16 @@ MonoBehaviour:
     m_Value: 0.05
   trackingLinesThreshold:
     m_OverrideState: 1
-    m_Value: 0.9
+    m_Value: 0.988
   trackingLinesColor:
     m_OverrideState: 1
     m_Value: {r: 1, g: 1, b: 1, a: 0.5}
   brightness:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 1.2
   contrast:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.1
   enableInterlacing:
     m_OverrideState: 1
     m_Value: 0
