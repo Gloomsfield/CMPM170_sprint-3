@@ -1,132 +1,193 @@
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 public class Condition {
-	
-	private readonly NounRestriction _sub;
-	private readonly NounRestriction _obj;
-	private readonly VerbRestriction _verb;
 
-	public Condition(NounRestriction condSubject, NounRestriction condObject, VerbRestriction condVerb) {
-		_sub = condSubject;
-		_obj = condObject;
-		_verb = condVerb;
-	}
+	public readonly string subIdentifier;
+	public readonly string objIdentifier;
 
-	public bool Check(Behavior behavior) {
-		return _sub.CheckConformity(behavior.sub) &&
-			_obj.CheckConformity(behavior.obj) &&
-			_verb.CheckConformity(behavior.verb);
-	}
+	public readonly VerbRestriction verbRestriction;
 
-}
-
-public class Behavior {
-	
-	public NounInstance sub;
-	public NounInstance obj;
-	public VerbInstance verb;
-
-	public Behavior(NounInstance sub, NounInstance obj, VerbInstance verb) {
-		this.sub = sub;
-		this.obj = obj;
-		this.verb = verb;
+	public Condition(
+		string subIdentifier,
+		string objIdentifier,
+		VerbRestriction verbRestriction
+	) {
+		this.subIdentifier = subIdentifier;
+		this.objIdentifier = objIdentifier;
+		this.verbRestriction = verbRestriction;
 	}
 
 }
 
-public class PatternClassification {
+public class ConditionBlueprint {
 	
-	public readonly string verbPast;
-	public readonly string verbPresent;
-	public readonly string verbFuture;
+	[JsonProperty("subject")]
+	private readonly string subIdentifier;
+	[JsonProperty("object")]
+	private readonly string objIdentifier;
 
+	[JsonProperty("verb")]
+	private readonly VerbRestrictionBlueprint verbRestriction;
+
+	public Condition Build() {
+		return new(subIdentifier, objIdentifier, verbRestriction.Build());
+	}
 }
 
 public class Pattern {
 
-	private readonly List<List<Condition>> _continueConditions;
-	private int _conditionIndex;
+	public readonly string verbPast;
+	public readonly string verbPresent;
+	public readonly string verbFuture;
 
-	private readonly Dictionary<int, List<Condition>> _cancelConditionMap;
+	private readonly PatternBlueprint _blueprint;
 
-	public readonly PatternClassification patternClassification;
+	private Dictionary<string, NounRestriction> _nounDeclarations = new();
+	private Dictionary<string, NounInstance> _nounDefinitions = new();
+	private Dictionary<NounInstance, string> _inverseNounDefinitions = new();
 
-	public Pattern(
-		PatternClassification patternClassification,
-		List<List<Condition>> continueConditions,
-		List<(int, int, Condition)> cancelConditionBounds
-	) {
-		this.patternClassification = patternClassification;
-		_continueConditions = continueConditions;
+	private List<List<Condition>> _continueConditions = new();
+	private List<List<Condition>> _cancelConditions = new();
 
-		// we need to be able to get cancellation Conditions quickly,
-		// so here we fill out a Dictionary mapping ints to Conditions.
-		// the ints represent the indices at which each cancellation
-		// Condition is relevant.
-		foreach((int start, int end, Condition condition) in cancelConditionBounds) {
-			for(int i = start; i < end; i++) {
-				_cancelConditionMap.TryAdd(i, new());
-
-				_cancelConditionMap.TryGetValue(i, out List<Condition> conditionList);
-				conditionList.Add(condition);
-			}
-		}
-	}
+	private uint _conditionCounter = 0;
 
 	public Pattern(
-		PatternClassification patternClassification,
-		List<List<Condition>> continueConditions,
-		Dictionary<int, List<Condition>> cancelConditionMap
+		string verbPast, string verbPresent, string verbFuture, PatternBlueprint blueprint
 	) {
-		this.patternClassification = patternClassification;
-		_continueConditions = continueConditions;
-		_cancelConditionMap = cancelConditionMap;
+		this.verbPast = verbPast;
+		this.verbPresent = verbPresent;
+		this.verbFuture = verbFuture;
+
+		_blueprint = blueprint;
 	}
 
-	public bool TryStart(Behavior behavior, out Pattern clonedPattern) {
-		clonedPattern = null;
+	public Pattern AddNounDeclaration(string identifier, NounRestriction restriction) {
+		_nounDeclarations.Add(identifier, restriction);
 
-		bool didStart = false;
-
-		foreach(Condition condition in _continueConditions[0]) {
-			if(!condition.Check(behavior)) { continue; }
-
-			clonedPattern = new Pattern(
-				patternClassification,
-				_continueConditions,
-				_cancelConditionMap
-			);
-
-			_conditionIndex++;
-			didStart = true;
-			break;
-		}
-
-		return didStart;
+		return this;
 	}
 
-	public bool TryContinue(Behavior behavior) {
-		foreach(Condition condition in _continueConditions[0]) {
-			if(!condition.Check(behavior)) { continue; }
+	public Pattern AddContinueConditions(List<Condition> conditions) {
+		_continueConditions.Add(conditions);
 
-			_conditionIndex++;
-			_continueConditions.RemoveAt(0);
-			break;
-		}
-
-		return _continueConditions.Count == 0;
+		return this;
 	}
 
-	public bool TryCancel(Behavior behavior) {
-		if(!_cancelConditionMap.TryGetValue(
-			_conditionIndex, out List<Condition> cancelConditions
-		)) { return false; }
+	public Pattern AddCancelConditions(List<Condition> conditions) {
+		_cancelConditions.Add(conditions);
 
-		foreach(Condition condition in cancelConditions) {
-			if(condition.Check(behavior)) { return true; }
+		return this;
+	}
+
+	private bool TryDefineNoun(string identifier, NounInstance noun) {
+		if(!_nounDeclarations.TryGetValue(identifier, out NounRestriction restriction)) { return false; }
+
+		if(_nounDefinitions.ContainsKey(identifier) || _inverseNounDefinitions.ContainsKey(noun)) { return false; }
+
+		_nounDefinitions.Add(identifier, noun);
+		_inverseNounDefinitions.Add(noun, identifier);
+
+		return true;
+	}
+
+	public bool TryContinue(NounInstance sub, NounInstance obj, VerbInstance verb) {
+		if(_continueConditions.Count < 1) { return false; }
+
+		if(!MeetsCondition(sub, obj, verb, _continueConditions[0])) { return false; }
+
+		_continueConditions.RemoveAt(0);
+		_cancelConditions.RemoveAt(0);
+		_conditionCounter++;
+
+		return true;
+	}
+
+	public bool TryCancel(NounInstance sub, NounInstance obj, VerbInstance verb) {
+		if(_cancelConditions.Count < 1) { return false; }
+
+		if(!MeetsCondition(sub, obj, verb, _cancelConditions[0])) { return false; }
+
+		return true;
+	}
+
+	private bool MeetsCondition(
+		NounInstance sub,
+		NounInstance obj,
+		VerbInstance verb,
+		List<Condition> conditions
+	) {
+		bool subRegistered = _inverseNounDefinitions.TryGetValue(sub, out string subIdentifier);
+		bool objRegistered = _inverseNounDefinitions.TryGetValue(obj, out string objIdentifier);
+
+		foreach(Condition condition in conditions) {
+			if(subRegistered && condition.subIdentifier != subIdentifier) { continue; }
+			if(objRegistered && condition.objIdentifier != objIdentifier) { continue; }
+
+			if(!_nounDeclarations.TryGetValue(condition.subIdentifier, out NounRestriction subRestriction)) { continue; }
+			if(!_nounDeclarations.TryGetValue(condition.objIdentifier, out NounRestriction objRestriction)) { continue; }
+
+			bool subConforms = subRestriction.CheckConformity(sub);
+			bool objConforms = objRestriction.CheckConformity(obj);
+			bool verbConforms = condition.verbRestriction.CheckConformity(verb);
+
+			if(!subConforms || !objConforms || !verbConforms) { continue; }
+
+			if(!subRegistered) { TryDefineNoun(condition.subIdentifier, sub); }
+			if(!objRegistered) { TryDefineNoun(condition.objIdentifier, obj); }
+
+			return true;
 		}
 
 		return false;
+	}
+}
+
+public class PatternBlueprint {
+	
+	[JsonProperty("verbPast")]
+	private readonly string _verbPast;
+	[JsonProperty("verbPresent")]
+	private readonly string _verbPresent;
+	[JsonProperty("verbFuture")]
+	private readonly string _verbFuture;
+
+	[JsonProperty("nounRestrictions")]
+	private List<NounRestrictionBlueprint> _nounRestrictionBlueprints;
+
+	[JsonProperty("continueConditions")]
+	private List<List<ConditionBlueprint>> _continueConditionBlueprints;
+	[JsonProperty("cancelConditions")]
+	private List<List<ConditionBlueprint>> _cancelConditionBlueprints;
+
+	public Pattern Build() {
+		Pattern res = new(_verbPast, _verbPresent, _verbFuture, this);
+
+		foreach(NounRestrictionBlueprint restrictionBlueprint in _nounRestrictionBlueprints) {
+			res.AddNounDeclaration(restrictionBlueprint.identifier, restrictionBlueprint.Build());
+		}
+
+		foreach(List<ConditionBlueprint> conditionBlueprints in _continueConditionBlueprints) {
+			List<Condition> conditions = new();
+
+			foreach(ConditionBlueprint conditionBlueprint in conditionBlueprints) {
+				conditions.Add(conditionBlueprint.Build());
+			}
+
+			res.AddContinueConditions(conditions);
+		}
+
+		foreach(List<ConditionBlueprint> conditionBlueprints in _cancelConditionBlueprints) {
+			List<Condition> conditions = new();
+
+			foreach(ConditionBlueprint conditionBlueprint in conditionBlueprints) {
+				conditions.Add(conditionBlueprint.Build());
+			}
+
+			res.AddCancelConditions(conditions);
+		}
+
+		return res;
 	}
 
 }
