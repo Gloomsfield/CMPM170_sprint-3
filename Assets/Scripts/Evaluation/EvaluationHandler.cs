@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 public class EvaluationHandler {
 	
@@ -13,26 +14,38 @@ public class EvaluationHandler {
 		}
 	}
 
-	private List<Pattern> _unstartedPatterns = new();
+	private List<Pattern> _unstartedPatterns;
 	private List<Pattern> _activePatterns = new();
 
-	public void PropagateBehavior(Behavior behavior) {
-		for(int i = _activePatterns.Count - 1; i >= 0; i--) {
-			Pattern currentActivePattern = _activePatterns[i];
-			if(currentActivePattern.TryCancel(behavior) || currentActivePattern.TryContinue(behavior)) {
-				_activePatterns.RemoveAt(i);
-			}
-		}
+	public void MakePatternsFromJson(string json) {
+		_unstartedPatterns = JsonConvert.DeserializeObject<List<Pattern>>(json);
+	}
+
+	private void HandleEvent(NounInstance sub, NounInstance obj, VerbInstance verb) {
+		List<Pattern> newPatterns = new();
 
 		for(int i = _unstartedPatterns.Count - 1; i >= 0; i--) {
-			Pattern currentPattern = _unstartedPatterns[i];
-			
-			if(currentPattern.TryStart(behavior, out Pattern duplicate)) {
-				_activePatterns.Add(currentPattern);
-				_unstartedPatterns.RemoveAt(i);
+			if(!_unstartedPatterns[i].TryContinue(sub, obj, verb)) { continue; }
 
-				_unstartedPatterns.Add(duplicate);
+			newPatterns.Add(_unstartedPatterns[i]);
+			_unstartedPatterns.RemoveAt(i);
+		}
+
+		for(int i = _activePatterns.Count - 1; i >= 0; i--) {
+			if(_activePatterns[i].TryCancel(sub, obj, verb)) {
+				_activePatterns.RemoveAt(i);
+
+				continue;
 			}
+
+			if(!_activePatterns[i].TryContinue(sub, obj, verb)) { continue; }
+
+			// TODO - check for pattern completion
+		}
+
+		foreach(Pattern pattern in newPatterns) {
+			_activePatterns.Add(pattern);
+			_unstartedPatterns.Add(pattern.blueprint.Build());
 		}
 	}
 

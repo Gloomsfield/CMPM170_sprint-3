@@ -41,7 +41,7 @@ public class Pattern {
 	public readonly string verbPresent;
 	public readonly string verbFuture;
 
-	private readonly PatternBlueprint _blueprint;
+	public readonly PatternBlueprint blueprint;
 
 	private Dictionary<string, NounRestriction> _nounDeclarations = new();
 	private Dictionary<string, NounInstance> _nounDefinitions = new();
@@ -59,7 +59,7 @@ public class Pattern {
 		this.verbPresent = verbPresent;
 		this.verbFuture = verbFuture;
 
-		_blueprint = blueprint;
+		this.blueprint = blueprint;
 	}
 
 	public Pattern AddNounDeclaration(string identifier, NounRestriction restriction) {
