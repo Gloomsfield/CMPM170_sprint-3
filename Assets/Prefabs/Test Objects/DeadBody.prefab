@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5829788160809794685}
   - component: {fileID: 6656274416047289370}
   - component: {fileID: 5477667367257645851}
+  - component: {fileID: 278004003829570183}
   m_Layer: 0
   m_Name: DeadBody
   m_TagString: Untagged
@@ -140,3 +141,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &278004003829570183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7372285923208925779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4e9c0c981f041542845a94df21e9139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectAudio
+  dropSFX: {fileID: 8300000, guid: e359be4c8aae97946b6ad55887094791, type: 3}
