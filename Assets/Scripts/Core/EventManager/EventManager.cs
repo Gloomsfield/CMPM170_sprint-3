@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class EventManager {
     /* Event-invoke function pairs are declared here.
@@ -10,5 +11,11 @@ public class EventManager {
     public static event Action grabToggled;
     public static void invokeGrabToggled() {
         grabToggled?.Invoke();
+    }
+
+    // Triggered when an item collides with something
+    public static event Action<AudioClip, GameObject> itemCollided;
+    public static void invokeItemCollided(AudioClip clip, GameObject obj) {
+        itemCollided?.Invoke(clip, obj);
     }
 }

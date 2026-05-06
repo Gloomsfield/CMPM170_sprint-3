@@ -8,6 +8,7 @@ public class ObjectAudio : MonoBehaviour
     //plays a noice the frame this object enters/ contacts a collider
     private void OnCollisionEnter(Collision collision)
     {
-        AudioManager.Instance.PlaySoundOnObject(dropSFX, this.gameObject);
+        //AudioManager.Instance.PlaySoundOnObject(dropSFX, this.gameObject);
+        invokeItemCollided(dropSFX, this.gameObject);
     }
 }
