@@ -9,6 +9,8 @@ public class GameManager {
         /* EX This is how you suscribe a function to an event. You can use -= to unsuscribe.
          * Now, LogTherapyStartTime will get called whenever the therapyStarted event is triggered*/
         TherapyManager.therapyStarted += LogTherapyStartTime;
+
+		EvaluationHandler.Instance.MakePatternsFromJson(Resources.Load<TextAsset>("patterns").text);
     }
 
     public static GameManager Instance { get
