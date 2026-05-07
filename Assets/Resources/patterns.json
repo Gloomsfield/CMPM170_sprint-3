@@ -1,13 +1,25 @@
 [
 	{
-		"verbPast": "ate",
-		"verbPresent": "eating",
-		"verbFuture": "eat",
+		"verbOnCompletion": "EATS",
 		"nounRestrictions": [
 			{ "identifier": "player", "validTags": [ "PLAYER" ] },
 			{ "identifier": "n1", "validTags": [ "ANY" ] }
 		],
 		"continueConditions": [
+			[
+				{
+					"subject": "player",
+					"object": "n1",
+					"verbRestriction": { "verb": "GRABS" }
+				}
+			],
+			[
+				{
+					"subject": "player",
+					"object": "n1",
+					"verbRestriction": { "verb": "GRABS" }
+				}
+			],
 			[
 				{
 					"subject": "player",

@@ -181,4 +181,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7261c66a1419a3809fb8e01015ce56f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: ItemProperties::ItemNounWrapper
+  nounInstanceName: block
   nounTags: 
