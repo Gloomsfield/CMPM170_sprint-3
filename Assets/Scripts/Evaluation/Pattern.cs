@@ -121,6 +121,9 @@ public class Pattern {
 			if(subRegistered && condition.subIdentifier != subIdentifier) { continue; }
 			if(objRegistered && condition.objIdentifier != objIdentifier) { continue; }
 
+			if(!subRegistered && _nounDefinitions.ContainsKey(condition.subIdentifier)) { continue; }
+			if(!objRegistered && _nounDefinitions.ContainsKey(condition.objIdentifier)) { continue; }
+
 			if(!_nounDeclarations.TryGetValue(condition.subIdentifier, out NounRestriction subRestriction)) { continue; }
 			if(!_nounDeclarations.TryGetValue(condition.objIdentifier, out NounRestriction objRestriction)) { continue; }
 
