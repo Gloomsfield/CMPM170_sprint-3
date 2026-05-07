@@ -1,14 +1,53 @@
 using System;
+using System.Reflection;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
+public enum VerbTense {
+	PAST,
+	PRESENT,
+	FUTURE
+}
+
+[AttributeUsage(AttributeTargets.Field)]
+public class VerbTensesAttribute : Attribute {
+	
+	public string past;
+	public string present;
+	public string future;
+
+	public VerbTensesAttribute(string past, string present, string future) {
+		this.past = past;
+		this.present = present;
+		this.future = future;
+	}
+
+	public string Conjugate(VerbTense tense) {
+		if(tense == VerbTense.PAST) { return past; }
+		if(tense == VerbTense.PRESENT) { return present; }
+		if(tense == VerbTense.FUTURE) { return future; }
+
+		return "<VERB COULD NOT BE CONJUGATED>";
+	}
+
+}
+
 [JsonConverter(typeof(StringEnumConverter))]
 public enum VerbType {
+	[VerbTenses("grabbed", "grabbing", "grab")]
 	GRABS,
+
+	[VerbTenses("dropped", "dropping", "drop")]
 	DROPS,
+
+	[VerbTenses("threw", "throwing", "throw")]
 	THROWS,
+
+	[VerbTenses("entered", "entering", "enter")]
 	ENTERS_VOLUME,
+
+	[VerbTenses("exited", "exiting", "exit")]
 	EXITS_VOLUME,
 }
 
@@ -35,6 +74,14 @@ public class VerbInstance {
 		if(!_parameters.TryGetValue(name, out float value)) { return false;	}
 
 		return (min < value) && (value < max);
+	}
+
+	public string GetTense(VerbTense tense) {
+		VerbTensesAttribute attribute = typeof(VerbType).GetTypeInfo()
+			.GetField(_type.ToString())
+			.GetCustomAttribute(typeof(VerbTensesAttribute))
+			as VerbTensesAttribute;
+		return attribute.Conjugate(tense);
 	}
 
 }
