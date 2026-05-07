@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
+[JsonConverter(typeof(StringEnumConverter))]
 public enum VerbType {
 	GRABS,
 	DROPS,
@@ -83,6 +84,9 @@ public class VerbRestrictionBlueprint {
 
 	public VerbRestriction Build() {
 		List<(string, (float, float))> ranges = new();
+
+		if(_parameters == null) { return new VerbRestriction(_type, ranges); }
+
 		foreach(VerbParameterRestrictionBlueprint parameter in _parameters) {
 			ranges.Add((parameter.name, (parameter.min, parameter.max)));
 		}

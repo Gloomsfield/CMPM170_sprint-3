@@ -17,11 +17,15 @@ public class EvaluationHandler {
 		}
 	}
 
-	private List<Pattern> _unstartedPatterns;
+	private List<Pattern> _unstartedPatterns = new();
 	private List<Pattern> _activePatterns = new();
 
 	public void MakePatternsFromJson(string json) {
-		_unstartedPatterns = JsonConvert.DeserializeObject<List<Pattern>>(json);
+		List<PatternBlueprint> patternBlueprints = JsonConvert.DeserializeObject<List<PatternBlueprint>>(json);
+
+		foreach(PatternBlueprint blueprint in patternBlueprints) {
+			_unstartedPatterns.Add(blueprint.Build());
+		}
 	}
 
 	public void HandleEvent(NounInstance sub, NounInstance obj, VerbInstance verb) {
@@ -29,6 +33,17 @@ public class EvaluationHandler {
 
 		for(int i = _unstartedPatterns.Count - 1; i >= 0; i--) {
 			if(!_unstartedPatterns[i].TryContinue(sub, obj, verb)) { continue; }
+
+			if(_unstartedPatterns[i].continueConditionCount == 0) {
+				EventManager.InvokeBehaviorComplete(_unstartedPatterns[i].verbPast);
+
+				Pattern toAdd = _unstartedPatterns[i].blueprint.Build();
+
+				_unstartedPatterns.RemoveAt(i);
+				_unstartedPatterns.Add(toAdd);
+
+				continue;
+			}
 
 			newPatterns.Add(_unstartedPatterns[i]);
 			_unstartedPatterns.RemoveAt(i);

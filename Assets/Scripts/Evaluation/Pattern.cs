@@ -27,7 +27,7 @@ public class ConditionBlueprint {
 	[JsonProperty("object")]
 	private readonly string objIdentifier;
 
-	[JsonProperty("verb")]
+	[JsonProperty("verbRestriction")]
 	private readonly VerbRestrictionBlueprint verbRestriction;
 
 	public Condition Build() {
@@ -100,7 +100,7 @@ public class Pattern {
 		if(!MeetsCondition(sub, obj, verb, _continueConditions[0])) { return false; }
 
 		_continueConditions.RemoveAt(0);
-		_cancelConditions.RemoveAt(0);
+		if(_cancelConditions.Count > 0) { _cancelConditions.RemoveAt(0); }
 		_conditionCounter++;
 
 		return true;
@@ -180,14 +180,16 @@ public class PatternBlueprint {
 			res.AddContinueConditions(conditions);
 		}
 
-		foreach(List<ConditionBlueprint> conditionBlueprints in _cancelConditionBlueprints) {
-			List<Condition> conditions = new();
-
-			foreach(ConditionBlueprint conditionBlueprint in conditionBlueprints) {
-				conditions.Add(conditionBlueprint.Build());
+		if(_cancelConditionBlueprints != null) {
+			foreach(List<ConditionBlueprint> conditionBlueprints in _cancelConditionBlueprints) {
+				List<Condition> conditions = new();
+        	
+				foreach(ConditionBlueprint conditionBlueprint in conditionBlueprints) {
+					conditions.Add(conditionBlueprint.Build());
+				}
+        	
+				res.AddCancelConditions(conditions);
 			}
-
-			res.AddCancelConditions(conditions);
 		}
 
 		return res;

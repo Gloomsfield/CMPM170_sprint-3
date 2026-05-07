@@ -20,13 +20,13 @@ public class EventManager {
         itemCollided?.Invoke(clip, obj);
     }
 
-	public static void InvokeTestEvent() {
-		Debug.Log("drool");
+	public static void InvokePatternsGenerated(string p) {
+		Debug.Log(p);
 	}
 
 	public static event Action<NounInstance, NounInstance, VerbInstance> onBehavior;
 	public static void InvokeItemGrabbed(NounInstance sub, NounInstance obj) {
-		onBehavior?.Invoke(sub, obj, new(VerbType.DROPS, new()));
+		onBehavior?.Invoke(sub, obj, new(VerbType.GRABS, new()));
 		Debug.Log("who up emitting");
 	}
 
@@ -34,9 +34,13 @@ public class EventManager {
 		onBehavior.Invoke(sub, obj, new VerbInstance(VerbType.DROPS, new()));
 	}
 
+	public static void InvokeDebug(string d) {
+		Debug.Log(d);
+	}
+
 	public static event Action<string> onBehaviorComplete;
 	public static void InvokeBehaviorComplete(string pastTense) {
-		Debug.Log(pastTense);
+		Debug.Log("huh????!!!!!");
 	}
 
     public static void Testing() {

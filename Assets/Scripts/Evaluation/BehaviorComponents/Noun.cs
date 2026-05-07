@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
+[JsonConverter(typeof(StringEnumConverter))]
 public enum NounTag {
 	PLAYER,
 	DIRT,
@@ -45,7 +46,6 @@ public class NounRestrictionBlueprint {
 	public readonly string identifier;
 
 	[JsonProperty("validTags")]
-	[JsonConverter(typeof(StringEnumConverter))]
 	private readonly List<NounTag> _validTags;
 
 	public NounRestriction Build() {

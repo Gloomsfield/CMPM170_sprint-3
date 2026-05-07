@@ -12,58 +12,7 @@
 				{
 					"subject": "player",
 					"object": "n1",
-					"verb": { "verb": "GRABS" }
-				}
-			]
-		]
-	},
-	{
-		"verbPast": "cooked",
-		"verbPresent": "cooking",
-		"verbFuture": "cook",
-		"nounRestrictions": [
-			{ "identifier": "n1", "validTags": [ "COOKABLE" ] },
-			{ "identifier": "n2", "validTags": [ "FIRE" ] }
-		],
-		"continueConditions": [
-			[
-				{
-					"subject": "player",
-					"object": "n1",
-					"verb": { "verb": "GRABS" }
-				},
-				{
-					"subject": "player",
-					"object": "n1",
-					"verb": { "verb": "DROPS" }
-				},
-				{
-					"subject": "player",
-					"object": "n1",
-					"verb": { "verb": "THROWS" }
-				}
-			],
-			[
-				{
-					"subject": "n1",
-					"object": "n2",
-					"verb": { "verb": "ENTERS_COLLISION" }
-				}
-			]
-		],
-		"cancelConditions": [
-			[],
-			[],
-			[
-				{
-					"subject": "n1",
-					"object": "n2",
-					"verb": {
-						"verb": "EXITS_COLLISION",
-						"parameters": [
-							{ "name": "timeSinceEnter", "min": 0.0, "max": 3.0 }
-						]
-					}
+					"verbRestriction": { "verb": "GRABS" }
 				}
 			]
 		]
