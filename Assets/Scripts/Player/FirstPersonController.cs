@@ -88,7 +88,6 @@ public class FirstPersonController : MonoBehaviour
         Vector3 worldDirection = CalculateWorldDirection();
         currentMovement.x = worldDirection.x * CurrentSpeed;
         currentMovement.z = worldDirection.z * CurrentSpeed;
-        Debug.Log(characterController.isGrounded);
         if(playerInputHandler.CrouchTriggered && characterController.isGrounded)
         {
             HandleCrouch();
