@@ -76,7 +76,7 @@ public class VerbInstance {
 		return (min < value) && (value < max);
 	}
 
-	public string GetTense(VerbTense tense) {
+	public string Conjugate(VerbTense tense) {
 		VerbTensesAttribute attribute = typeof(VerbType).GetTypeInfo()
 			.GetField(_type.ToString())
 			.GetCustomAttribute(typeof(VerbTensesAttribute))
