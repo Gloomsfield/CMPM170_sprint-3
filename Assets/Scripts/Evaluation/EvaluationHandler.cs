@@ -35,7 +35,7 @@ public class EvaluationHandler {
 			if(!_unstartedPatterns[i].TryContinue(sub, obj, verb)) { continue; }
 
 			if(_unstartedPatterns[i].continueConditionCount == 0) {
-				EventManager.InvokeBehaviorComplete(_unstartedPatterns[i].verbPast);
+				EventManager.InvokeBehaviorComplete(sub, obj, _unstartedPatterns[i].verbOnCompletion);
 
 				Pattern toAdd = _unstartedPatterns[i].blueprint.Build();
 
@@ -60,7 +60,8 @@ public class EvaluationHandler {
 
 			if(_activePatterns[i].continueConditionCount != 0) { continue; }
 
-			EventManager.InvokeBehaviorComplete(_activePatterns[i].verbPast);
+			EventManager.InvokeBehaviorComplete(sub, obj, _activePatterns[i].verbOnCompletion);
+			_activePatterns.RemoveAt(i);
 		}
 
 		foreach(Pattern pattern in newPatterns) {

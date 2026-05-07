@@ -39,8 +39,8 @@ public class EventManager {
 	}
 
 	public static event Action<string> onBehaviorComplete;
-	public static void InvokeBehaviorComplete(string pastTense) {
-		Debug.Log("huh????!!!!!");
+	public static void InvokeBehaviorComplete(NounInstance sub, NounInstance obj, VerbType verb) {
+		Debug.Log($"The {sub.name} {verb.Conjugate(VerbTense.PAST)} the {obj.name}");
 	}
 
     public static void Testing() {
