@@ -94,7 +94,7 @@ public class Pattern {
 		if(!MeetsCondition(sub, obj, verb, _continueConditions[0])) { return false; }
 
 		_continueConditions.RemoveAt(0);
-		if(_cancelConditions.Count > 0) { _cancelConditions.RemoveAt(0); }
+		if(_cancelConditions.Count > 0 && _conditionCounter > 0) { _cancelConditions.RemoveAt(0); }
 		_conditionCounter++;
 
 		return true;
@@ -102,6 +102,7 @@ public class Pattern {
 
 	public bool TryCancel(NounInstance sub, NounInstance obj, VerbInstance verb) {
 		if(_cancelConditions.Count < 1) { return false; }
+		if(_conditionCounter < 1) { return false; }
 
 		if(!MeetsCondition(sub, obj, verb, _cancelConditions[0])) { return false; }
 
