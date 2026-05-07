@@ -27,7 +27,6 @@ public class EventManager {
 	public static event Action<NounInstance, NounInstance, VerbInstance> onBehavior;
 	public static void InvokeItemGrabbed(NounInstance sub, NounInstance obj) {
 		onBehavior?.Invoke(sub, obj, new(VerbType.GRABS, new()));
-		Debug.Log("who up emitting");
 	}
 
 	public static void InvokeItemDropped(NounInstance sub, NounInstance obj) {
