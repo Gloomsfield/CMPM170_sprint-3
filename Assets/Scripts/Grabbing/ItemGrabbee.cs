@@ -6,6 +6,7 @@ using UnityEngine;
  */
 
 [RequireComponent(typeof(ItemNounWrapper))]
+[RequireComponent(typeof(Rigidbody))]
 public class ItemGrabbee : MonoBehaviour {
     [SerializeField] float breakForce = 400f;
 
@@ -18,9 +19,17 @@ public class ItemGrabbee : MonoBehaviour {
 	private event Action onGrab;
 	private event Action onDrop;
 
+	private Vector3 _lastPosition;
+	private float _lastDeltaTime;
+
 	void Start() {
 		onGrab += GetComponent<ItemNounWrapper>().OnGrab;
 		onDrop += GetComponent<ItemNounWrapper>().OnDrop;
+	}
+
+	void Update() {
+		_lastDeltaTime = Time.deltaTime;
+		_lastPosition = transform.position;
 	}
 
     public void Grab(Rigidbody grabberRb)
@@ -44,6 +53,8 @@ public class ItemGrabbee : MonoBehaviour {
             Destroy(grabJoint);
             grabJoint = null;
         }
+
+		GetComponent<Rigidbody>().linearVelocity = (transform.position - _lastPosition) / (_lastDeltaTime * 2.5f);
 
 		onDrop.Invoke();
     }

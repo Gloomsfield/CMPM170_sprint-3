@@ -9,10 +9,15 @@ public class EventManager {
      * suscribers only need to know about this event manager */
 
     // Triggered when an item is grabbed
-    public static event Action grabToggled;
-    public static void invokeGrabToggled() {
-        grabToggled?.Invoke();
+    public static event Action grabStart;
+    public static void InvokeGrabStart() {
+        grabStart?.Invoke();
     }
+
+	public static event Action grabEnd;
+	public static void InvokeGrabEnd() {
+		grabEnd?.Invoke();
+	}
 
     // Triggered when an item collides with something
     public static event Action<AudioClip, GameObject> itemCollided;

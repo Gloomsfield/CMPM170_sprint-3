@@ -14,12 +14,15 @@ public class PlayerGrabber : MonoBehaviour {
     //Its just faster this way then a big if statement if we need to reuse this
     private bool isHoldingItem => currentItem != null && currentItem.isGrabbed;
 
+	private bool _justStartedGrabbing = false;
+
     void Start() {
         // Select the game layer we can grab things from
         grabbableMask = LayerMask.GetMask("Grabbable");
 
         // Suscribe TryGrab to the grabToggled event
-        EventManager.grabToggled += TryGrab;
+        EventManager.grabStart += TryGrabStart;
+		EventManager.grabEnd += TryGrabEnd;
 
         // We attach the object to the camera that acts as the player's head
         headRb = playerCam.GetComponent<Rigidbody>();
@@ -27,14 +30,13 @@ public class PlayerGrabber : MonoBehaviour {
 
     /* Sends a raycast from the camera to grabRange on mouse click, calling ToggleGrab()
      * on the hit object. IMPORTANT: grabbable objects be in the grabbable layer */
-    void TryGrab() {
-        if (isHoldingItem)
-        {
-            currentItem.Drop();
-            currentItem = null;
+    void TryGrabStart() {
+        if (isHoldingItem) {
             return;
-
         }
+
+		_justStartedGrabbing = true;
+
         currentItem = null;
 
         Ray ray = new Ray(playerCam.transform.position, playerCam.transform.forward);
@@ -55,10 +57,24 @@ public class PlayerGrabber : MonoBehaviour {
         }
     }
 
+	void TryGrabEnd() {
+		if(!isHoldingItem) { return; }
+		Debug.Log("????");
+
+		if(_justStartedGrabbing) {
+			_justStartedGrabbing = false;
+			return;
+		}
+
+		currentItem.Drop();
+		currentItem = null;
+	}
+
     /* Before an item is destroyed, it must unsuscribe to all
      * events it is subscribed to. Otherwise, the event will try
      * to call functions that no longer exist */
     void OnDestroy() {
-        EventManager.grabToggled -= TryGrab; 
+        EventManager.grabStart -= TryGrabStart; 
+        EventManager.grabEnd -= TryGrabEnd; 
     }
 }

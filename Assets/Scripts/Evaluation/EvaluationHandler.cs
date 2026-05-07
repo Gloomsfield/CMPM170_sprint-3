@@ -1,6 +1,11 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
+
+/// <summary>
+/// The singleton class <c>EvaluationHandler</c> handles classifying game-world events
+/// by validating behaviors with ongoing <see cref="Pattern">Patterns</see>.
+/// </summary>
 public class EvaluationHandler {
 	
 	private static EvaluationHandler _instance;
