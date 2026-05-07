@@ -1,12 +1,9 @@
 {
-    "name": "Player",
+    "name": "ItemProperties",
     "rootNamespace": "",
     "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:4307f53044263cf4b835bd812fc161a4",
-        "GUID:c8ec85fc672b444e1b87e8e287a0e302",
-        "GUID:34d2ad85c44c748bfbe4840b96bdde1a",
-        "GUID:270ebcf2a19a687ea93347c3ea666396"
+        "GUID:823ee465c1514f120a9318f6f9a4a67d",
+        "GUID:34d2ad85c44c748bfbe4840b96bdde1a"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

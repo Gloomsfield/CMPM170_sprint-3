@@ -10,6 +10,9 @@ public class EvaluationHandler {
 	public static EvaluationHandler Instance {
 		get {
 			_instance ??= new EvaluationHandler();
+
+			EventManager.onBehavior += _instance.HandleEvent;
+
 			return _instance;
 		}
 	}
@@ -21,7 +24,7 @@ public class EvaluationHandler {
 		_unstartedPatterns = JsonConvert.DeserializeObject<List<Pattern>>(json);
 	}
 
-	private void HandleEvent(NounInstance sub, NounInstance obj, VerbInstance verb) {
+	public void HandleEvent(NounInstance sub, NounInstance obj, VerbInstance verb) {
 		List<Pattern> newPatterns = new();
 
 		for(int i = _unstartedPatterns.Count - 1; i >= 0; i--) {
@@ -40,7 +43,9 @@ public class EvaluationHandler {
 
 			if(!_activePatterns[i].TryContinue(sub, obj, verb)) { continue; }
 
-			// TODO - check for pattern completion
+			if(_activePatterns[i].continueConditionCount != 0) { continue; }
+
+			EventManager.InvokeBehaviorComplete(_activePatterns[i].verbPast);
 		}
 
 		foreach(Pattern pattern in newPatterns) {

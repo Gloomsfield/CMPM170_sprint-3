@@ -16,7 +16,7 @@ public class VerbInstance {
 	private readonly VerbType _type;
 	private readonly Dictionary<string, float> _parameters;
 
-	VerbInstance(VerbType type, (string, float)[] parameters) {
+	public VerbInstance(VerbType type, List<(string, float)> parameters) {
 		_type = type;
 
 		foreach((string name, float value) in parameters) {

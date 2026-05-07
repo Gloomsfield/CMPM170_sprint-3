@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EventManager {
@@ -18,6 +19,25 @@ public class EventManager {
     public static void invokeItemCollided(AudioClip clip, GameObject obj) {
         itemCollided?.Invoke(clip, obj);
     }
+
+	public static void InvokeTestEvent() {
+		Debug.Log("drool");
+	}
+
+	public static event Action<NounInstance, NounInstance, VerbInstance> onBehavior;
+	public static void InvokeItemGrabbed(NounInstance sub, NounInstance obj) {
+		onBehavior?.Invoke(sub, obj, new(VerbType.DROPS, new()));
+		Debug.Log("who up emitting");
+	}
+
+	public static void InvokeItemDropped(NounInstance sub, NounInstance obj) {
+		onBehavior.Invoke(sub, obj, new VerbInstance(VerbType.DROPS, new()));
+	}
+
+	public static event Action<string> onBehaviorComplete;
+	public static void InvokeBehaviorComplete(string pastTense) {
+		Debug.Log(pastTense);
+	}
 
     public static void Testing() {
         Debug.Log("Suscribers: " + itemCollided);

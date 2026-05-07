@@ -36,6 +36,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void Awake()
     {
+		EvaluationHandler.Instance.MakePatternsFromJson(Resources.Load<TextAsset>("patterns").text);
         // Find the action map by name from the input action asset
         InputActionMap mapReference = playerControls.FindActionMap(actionMapName);
 

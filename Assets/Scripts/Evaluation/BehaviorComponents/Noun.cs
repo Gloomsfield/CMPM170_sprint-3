@@ -3,8 +3,12 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 public enum NounTag {
+	PLAYER,
 	DIRT,
 	CORPSE,
+	COOKABLE,
+	FIRE,
+	ANY,
 }
 
 public class NounInstance {
@@ -16,7 +20,7 @@ public class NounInstance {
 	}
 
 	public bool IsSubsetOf(HashSet<NounTag> tagSuperset) {
-		return _tags.IsSubsetOf(tagSuperset);
+		return tagSuperset.Contains(NounTag.ANY) || _tags.IsSubsetOf(tagSuperset);
 	}
 
 }

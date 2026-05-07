@@ -50,6 +50,9 @@ public class Pattern {
 	private List<List<Condition>> _continueConditions = new();
 	private List<List<Condition>> _cancelConditions = new();
 
+	public uint continueConditionCount => (uint)_continueConditions.Count;
+	public uint cancelConditionCount => (uint)_cancelConditions.Count;
+
 	private uint _conditionCounter = 0;
 
 	public Pattern(
