@@ -37,9 +37,7 @@ public class ConditionBlueprint {
 
 public class Pattern {
 
-	public readonly string verbPast;
-	public readonly string verbPresent;
-	public readonly string verbFuture;
+	public readonly VerbType verbOnCompletion;
 
 	public readonly PatternBlueprint blueprint;
 
@@ -55,12 +53,8 @@ public class Pattern {
 
 	private uint _conditionCounter = 0;
 
-	public Pattern(
-		string verbPast, string verbPresent, string verbFuture, PatternBlueprint blueprint
-	) {
-		this.verbPast = verbPast;
-		this.verbPresent = verbPresent;
-		this.verbFuture = verbFuture;
+	public Pattern(VerbType verbOnCompletion, PatternBlueprint blueprint) {
+		this.verbOnCompletion = verbOnCompletion;
 
 		this.blueprint = blueprint;
 	}
@@ -148,12 +142,8 @@ public class Pattern {
 
 public class PatternBlueprint {
 	
-	[JsonProperty("verbPast")]
-	private readonly string _verbPast;
-	[JsonProperty("verbPresent")]
-	private readonly string _verbPresent;
-	[JsonProperty("verbFuture")]
-	private readonly string _verbFuture;
+	[JsonProperty("verbOnCompletion")]
+	public VerbType verbOnCompletion;
 
 	[JsonProperty("nounRestrictions")]
 	private List<NounRestrictionBlueprint> _nounRestrictionBlueprints;
@@ -164,7 +154,7 @@ public class PatternBlueprint {
 	private List<List<ConditionBlueprint>> _cancelConditionBlueprints;
 
 	public Pattern Build() {
-		Pattern res = new(_verbPast, _verbPresent, _verbFuture, this);
+		Pattern res = new(verbOnCompletion, this);
 
 		foreach(NounRestrictionBlueprint restrictionBlueprint in _nounRestrictionBlueprints) {
 			res.AddNounDeclaration(restrictionBlueprint.identifier, restrictionBlueprint.Build());
