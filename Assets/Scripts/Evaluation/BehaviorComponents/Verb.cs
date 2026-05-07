@@ -35,6 +35,8 @@ public class VerbTensesAttribute : Attribute {
 
 [JsonConverter(typeof(StringEnumConverter))]
 public enum VerbType {
+
+	// atomic verbs
 	[VerbTenses("grabbed", "grabbing", "grab")]
 	GRABS,
 
@@ -49,6 +51,11 @@ public enum VerbType {
 
 	[VerbTenses("exited", "exiting", "exit")]
 	EXITS_VOLUME,
+
+	// compound verbs
+	[VerbTenses("ate", "eating", "eat")]
+	EATS,
+
 }
 
 public static class VerbTypeExtensions {
