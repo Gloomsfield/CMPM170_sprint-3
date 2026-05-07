@@ -51,6 +51,18 @@ public enum VerbType {
 	EXITS_VOLUME,
 }
 
+public static class VerbTypeExtensions {
+
+	public static string Conjugate(this VerbType verbType, VerbTense tense) {
+		VerbTensesAttribute attribute = typeof(VerbType).GetTypeInfo()
+			.GetField(verbType.ToString())
+			.GetCustomAttribute(typeof(VerbTensesAttribute))
+			as VerbTensesAttribute;
+		return attribute.Conjugate(tense);
+	}
+
+}
+
 public class VerbInstance {
     
 	private readonly VerbType _type;
@@ -74,14 +86,6 @@ public class VerbInstance {
 		if(!_parameters.TryGetValue(name, out float value)) { return false;	}
 
 		return (min < value) && (value < max);
-	}
-
-	public string Conjugate(VerbTense tense) {
-		VerbTensesAttribute attribute = typeof(VerbType).GetTypeInfo()
-			.GetField(_type.ToString())
-			.GetCustomAttribute(typeof(VerbTensesAttribute))
-			as VerbTensesAttribute;
-		return attribute.Conjugate(tense);
 	}
 
 }
