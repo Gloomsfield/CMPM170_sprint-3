@@ -1,4 +1,3 @@
-using Unity.Cinemachine;
 using UnityEngine;
 
 /* This class is responsible for defining how an object should behave when it is
@@ -14,17 +13,8 @@ public class ItemGrabbee : MonoBehaviour {
     //A public bool so that PlayerGrabber can ref this.
     public bool isGrabbed => grabbed;
 
-
-    /*
-     * I split up the toggle script into 2 functions 
-     * */
     public void Grab(Rigidbody grabberRb)
     {
-        if (grabbed)
-        {
-            return;
-        }
-
         grabbed = true;
 
         grabJoint = gameObject.AddComponent<FixedJoint>();
@@ -35,11 +25,6 @@ public class ItemGrabbee : MonoBehaviour {
 
     public void Drop()
     {
-        if (!grabbed)
-        {
-            return;
-        }
-
         grabbed = false;
 
         if (grabJoint != null)

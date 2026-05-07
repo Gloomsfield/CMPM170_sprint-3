@@ -1,16 +1,13 @@
-using System;
 using Unity.Cinemachine;
-using UnityEngine.InputSystem;
 using UnityEngine;
 
 public class PlayerGrabber : MonoBehaviour {
 
     private LayerMask grabbableMask;
-   // private bool grabbing = false;
     private ItemGrabbee currentItem;
     private Rigidbody headRb;
 
-    [SerializeField] float grabRange =3f;
+    [SerializeField] float grabRange = 3f;
     [SerializeField] CinemachineCamera playerCam;
 
     //This means isHolding item is true if we have an item and that item is currently grabbed.
@@ -31,7 +28,6 @@ public class PlayerGrabber : MonoBehaviour {
     /* Sends a raycast from the camera to grabRange on mouse click, calling ToggleGrab()
      * on the hit object. IMPORTANT: grabbable objects be in the grabbable layer */
     void TryGrab() {
-        //This was changed from old system so it just calls the Drop function. (feel free to delete this comment)
         if (isHoldingItem)
         {
             currentItem.Drop();
