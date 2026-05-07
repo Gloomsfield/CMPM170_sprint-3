@@ -16,7 +16,10 @@ public class NounInstance {
     
 	private readonly HashSet<NounTag> _tags;
 
-	public NounInstance(List<NounTag> tags) {
+	public string name;
+
+	public NounInstance(string name, List<NounTag> tags) {
+		this.name = name;
 		_tags = new(tags);
 	}
 

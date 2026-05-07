@@ -4,6 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class ItemNounWrapper : MonoBehaviour {
 
+	public string nounInstanceName;
+
 	public List<NounTag> nounTags;
 	public NounInstance noun;
 
@@ -12,7 +14,7 @@ public class ItemNounWrapper : MonoBehaviour {
     void Start() {
         nounRigidbody = GetComponent<Rigidbody>();
 
-		noun = new(nounTags);
+		noun = new(nounInstanceName, nounTags);
     }
 
     void Update() {
