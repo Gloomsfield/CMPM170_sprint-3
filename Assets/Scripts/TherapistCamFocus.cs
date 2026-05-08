@@ -1,26 +1,48 @@
+using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class TherapistCamFocus : MonoBehaviour
 {
     [SerializeField] CinemachineCamera playercam;
     [SerializeField] CinemachineCamera therapistCam;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         therapistCam.enabled = false;
+        EventManager.therapyStarted += FocusCamOnTherapist;
+        EventManager.therapyEnded += FocusCamOnPlayer;
+        StartCoroutine(waitForTherapy());
     }
 
-    public void FocusCamOnTherapist()
+    IEnumerator waitForTherapy() {
+        // TODO make dynamic???
+        yield return new WaitForSeconds(5);
+        EventManager.invokeTherapyStarted();
+    }
+
+    IEnumerator stuckInTherapy() {
+        // TODO make dynamic???
+        yield return new WaitForSeconds(5);
+        EventManager.invokeTherapyEnded();
+    }
+
+    void FocusCamOnTherapist()
     {
         playercam.enabled = false;
         therapistCam.enabled = true;
+        StartCoroutine(stuckInTherapy());
     }
+
 
     public void FocusCamOnPlayer()
     {
         playercam.enabled = true;
         therapistCam.enabled = false;
+        StartCoroutine(waitForTherapy());
+    }
+
+    void OnDestroy() {
+        EventManager.therapyStarted -= FocusCamOnTherapist;
     }
 }
