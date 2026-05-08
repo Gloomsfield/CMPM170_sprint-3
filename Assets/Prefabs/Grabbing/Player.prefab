@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
   Priority:
-    Enabled: 0
-    m_Value: 1
+    Enabled: 1
+    m_Value: 99
   OutputChannel: 1
   StandbyUpdate: 2
   m_StreamingVersion: 20241001
@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 7035936092976061075}
   - component: {fileID: 871012318103228950}
   - component: {fileID: 9035420015696790571}
+  - component: {fileID: 6686079877902684235}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -223,6 +224,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Grabbing::PlayerGrabber
   grabRange: 2
   playerCam: {fileID: 2848173545718053475}
+--- !u!114 &6686079877902684235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6660847347498070337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8275a4b7a28ffad4ca7858cbac32e874, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Player::PlayerNoises
+  footStepSFX: {fileID: 8300000, guid: 3e534662dab6f944696bfdc64b440f87, type: 3}
+  jumpSFX:
+  - {fileID: 8300000, guid: 6e6d028dff24a0245a46e6c183ca8bf6, type: 3}
+  - {fileID: 8300000, guid: cb21bf80c38a3d04c908fd3230a824cd, type: 3}
+  - {fileID: 8300000, guid: 523a2ac3a10f9ab4a936e485cd08bdf7, type: 3}
 --- !u!1 &7186852325856951930
 GameObject:
   m_ObjectHideFlags: 0
