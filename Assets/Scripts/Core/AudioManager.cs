@@ -103,5 +103,10 @@ public class AudioManager : MonoBehaviour
     void OnDestroy() {
         EventManager.itemCollided -= PlaySoundOnObject; 
     }
+
+    public float getSFXVolume()
+    {
+        return sfxVolume;
+    }
 }
 
