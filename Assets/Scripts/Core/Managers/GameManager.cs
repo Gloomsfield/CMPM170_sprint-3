@@ -15,7 +15,7 @@ public class GameManager {
     private GameManager() {
         /* EX This is how you suscribe a function to an event. You can use -= to unsuscribe.
          * Now, LogTherapyStartTime will get called whenever the therapyStarted event is triggered*/
-        TherapyManager.therapyStarted += LogTherapyStartTime;
+       
     }
 
     public static GameManager Instance { get
