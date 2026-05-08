@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
+/// <summary>
+/// The <c>VerbTense</c> enum defines the potential tenses
+/// for conjugating a <see cref="VerbType"/>.
+/// </summary>
 public enum VerbTense {
 	PAST,
 	PRESENT,
@@ -23,6 +27,13 @@ public class VerbTensesAttribute : Attribute {
 		this.future = future;
 	}
 
+	/// <summary>
+	/// Conjugates a <see cref="VerbType"/>.
+	/// </summary>
+	/// <returns>
+	/// A string representing the conjugated form of this
+	/// <see cref="VerbType"/>.
+	/// </returns>
 	public string Conjugate(VerbTense tense) {
 		if(tense == VerbTense.PAST) { return past; }
 		if(tense == VerbTense.PRESENT) { return present; }
@@ -33,6 +44,16 @@ public class VerbTensesAttribute : Attribute {
 
 }
 
+/// <summary>
+/// Possible verbs should be defined here as <c>VerbTypes</c>.
+/// This should be done according to the following structure:
+/// <code>
+/// [VerbTenses("{past tense 2nd person}", "{present tense 2nd person}", "{future tense 2nd person}")]
+/// {PRESENT TENSE 3rd PERSON},
+/// </code>
+/// where anything between curly braces should be replaced by
+/// the indicated verb.
+/// </summary>
 [JsonConverter(typeof(StringEnumConverter))]
 public enum VerbType {
 
@@ -60,6 +81,13 @@ public enum VerbType {
 
 public static class VerbTypeExtensions {
 
+	/// <summary>
+	/// The <see cref="VerbType"/> extension conjugation method.
+	/// </summary>
+	/// <returns>
+	/// A string representing the conjugated form of this
+	/// <see cref="VerbType"/>.
+	/// </returns>
 	public static string Conjugate(this VerbType verbType, VerbTense tense) {
 		VerbTensesAttribute attribute = typeof(VerbType).GetTypeInfo()
 			.GetField(verbType.ToString())
@@ -70,11 +98,19 @@ public static class VerbTypeExtensions {
 
 }
 
+/// <summary>
+/// The <c>VerbInstance</c> class represents the verb in
+/// an action that has just occurred.
+/// </summary>
 public class VerbInstance {
     
 	private readonly VerbType _type;
 	private readonly Dictionary<string, float> _parameters;
 
+	/// <param name="type">The <see cref="VerbType"/> that describes this
+	/// instance.</param>
+	/// <param name="parameters">Any parameters associated with this
+	/// instance.</param>
 	public VerbInstance(VerbType type, List<(string, float)> parameters) {
 		_type = type;
 
@@ -87,8 +123,13 @@ public class VerbInstance {
 		}
 	}
 
+	/// <param name="type"> The <see cref="VerbType"/> with which
+	/// to compare this <c>VerbInstance</c>.
 	public bool CompareType(VerbType type) { return _type == type; }
 
+	/// <param name="name">The name of the parameter to be checked.</param>
+	/// <param name="min">The minimum accepted value for this parameter.</param>
+	/// <param name="max">The maximum accepted value for this parameter.</param>
 	public bool CheckParameterValidity(string name, float min, float max) {
 		if(!_parameters.TryGetValue(name, out float value)) { return false;	}
 
