@@ -14,9 +14,9 @@ public class EventManager {
     }
 
     // Triggered when an item collides with something
-    public static event Action<AudioClip, GameObject> itemCollided;
-    public static void invokeItemCollided(AudioClip clip, GameObject obj) {
-        itemCollided?.Invoke(clip, obj);
+    public static event Action<AudioClip, GameObject,AudioSourceConfig> itemCollided;
+    public static void invokeItemCollided(AudioClip clip, GameObject obj, AudioSourceConfig config) {
+        itemCollided?.Invoke(clip, obj,config);
     }
 
     public static void Testing() {

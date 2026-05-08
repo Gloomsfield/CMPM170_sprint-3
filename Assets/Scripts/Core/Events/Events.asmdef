@@ -1,9 +1,8 @@
 {
-    "name": "Items",
+    "name": "Events",
     "rootNamespace": "",
     "references": [
-        "Events",
-        "Config"
+        "GUID:d0b995dd7afc7534cb4402570d4b73a3"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
