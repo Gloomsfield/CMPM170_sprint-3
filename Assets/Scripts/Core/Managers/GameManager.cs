@@ -1,5 +1,12 @@
 using UnityEngine;
 public class GameManager {
+
+    public enum GameState
+    {
+        PREGAME,
+        GAME,
+        THERAPY
+    }
     private static GameManager theInstance;
     
     // TO REMOVE For testing purposes
