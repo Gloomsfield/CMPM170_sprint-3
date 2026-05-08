@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Unity.Cinemachine;
 
@@ -21,6 +22,10 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private float crouchSpeed = 10.0f;
     float camOffset = 0.4f;
     bool isCrouching = false;
+    bool canMove = true;
+
+    Action enableMovement;
+    Action disableMovement;
 
     [Header("References")]
     [SerializeField] private CharacterController characterController;   // Handling collision and movement
@@ -44,11 +49,19 @@ public class FirstPersonController : MonoBehaviour
         characterController.center = new Vector3(0, standHeight / 2f, 0);
 
         playerCam.transform.localPosition = new Vector3(0, (standHeight / 2f) + camOffset, 0);
+
+        /* Create lambdas for disabling an enabling movement +
+        * suscribe them to therapy events */
+        enableMovement = () => canMove = true;
+        disableMovement = () => canMove = false;
+        EventManager.therapyStarted += disableMovement;
+        EventManager.therapyEnded += enableMovement; 
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!canMove) return;
         HandleMovement(); 
         HandleRotation();
     }
@@ -104,6 +117,7 @@ public class FirstPersonController : MonoBehaviour
 
         // Move the player using CharacterController
         characterController.Move(currentMovement * Time.deltaTime);
+        
     }
 
     // This controls the players left/right movement direction
@@ -191,5 +205,10 @@ public class FirstPersonController : MonoBehaviour
 
         // Move the camera independently for a smoother motion
         playerCam.transform.localPosition = new Vector3(0, (characterController.height / 2) + camOffset, 0);
+    }
+
+    void OnDestroy() {
+        EventManager.therapyStarted -= enableMovement;
+        EventManager.therapyEnded -= disableMovement;
     }
 }
