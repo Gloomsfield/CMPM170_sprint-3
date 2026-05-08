@@ -394,7 +394,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3545626575081340955}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7625068602630038967}
+        m_TargetAssemblyTypeName: UI.ButtonTriggers, Assembly-CSharp
+        m_MethodName: StartCreditsScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4297068255000755019
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,7 +664,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5658622027229693640}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7625068602630038967}
+        m_TargetAssemblyTypeName: UI.ButtonTriggers, Assembly-CSharp
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6828458790142398017
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,13 +935,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7425420720045597072}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 7625068602630038967}
+        m_TargetAssemblyTypeName: UI.ButtonTriggers, Assembly-CSharp
+        m_MethodName: StartPlayScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -935,6 +959,7 @@ GameObject:
   - component: {fileID: 7678046379450688281}
   - component: {fileID: 7284002441970061749}
   - component: {fileID: 8469107910372641862}
+  - component: {fileID: 7625068602630038967}
   m_Layer: 5
   m_Name: TitleCanvas
   m_TagString: Untagged
@@ -1028,3 +1053,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &7625068602630038967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9084835395304039966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e49ec94f6f114932904cbcb6c33ec486, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.ButtonTriggers
+  titleSceneIndex: 0
+  playSceneIndex: 1
+  creditsSceneIndex: 0
