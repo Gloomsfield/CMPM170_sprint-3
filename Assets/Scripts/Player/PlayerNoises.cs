@@ -1,9 +1,10 @@
 using UnityEngine;
 
-public class PlayerFootSteps : MonoBehaviour
+public class PlayerNoises : MonoBehaviour
 {
     FirstPersonController playerController;
     [SerializeField] AudioClip footStepSFX;
+    [SerializeField] AudioClip[] jumpSFX;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,5 +20,10 @@ public class PlayerFootSteps : MonoBehaviour
     void StopWalkingSFX()
     {
         AudioManager.Instance.StopPlayerSFX();
+    }
+
+    void PlayJumpSFX()
+    {
+        AudioManager.Instance.PlayPlayerSFX(jumpSFX[Random.Range(0,3)],false);
     }
 }
