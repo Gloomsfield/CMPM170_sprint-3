@@ -12,6 +12,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource musicSource;
 
     [SerializeField] private AudioSource uiSource;
+    [SerializeField] private AudioSource playerSource;
     [SerializeField] private float musicVolume;
     [SerializeField] private float uiVolume;
     [SerializeField] private float sfxVolume;
@@ -118,6 +119,21 @@ public class AudioManager : MonoBehaviour
     public float getSFXVolume()
     {
         return sfxVolume;
+    }
+
+    public void PlayPlayerSFX(AudioClip clip, bool isLooping = false) {
+        if (clip == null)
+        {
+            return;
+        }
+        playerSource.clip = clip;
+        playerSource.loop = isLooping;
+        playerSource.volume = sfxVolume;
+        playerSource.Play();
+    }
+    public void StopPlayerSFX()
+    {
+        playerSource.Stop();
     }
 }
 

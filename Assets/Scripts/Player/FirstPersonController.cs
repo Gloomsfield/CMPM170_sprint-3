@@ -117,6 +117,7 @@ public class FirstPersonController : MonoBehaviour
 
         // Move the player using CharacterController
         characterController.Move(currentMovement * Time.deltaTime);
+        
     }
 
     // This controls the players left/right movement direction
