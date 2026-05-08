@@ -56,8 +56,11 @@ public class AudioManager : MonoBehaviour
     // This doesnt take loop parameter because we would never want a UI sound to behave that way.
     public void PlayUISound(AudioClip clip)
     {
-        if (clip == null) return;
-        uiSource.PlayOneShot(clip);
+        if (clip == null)
+        {
+         return;
+        }
+            uiSource.PlayOneShot(clip);
     }
 
     //Just stops the music. (10x moment)
@@ -80,9 +83,15 @@ public class AudioManager : MonoBehaviour
         uiSource.volume = volume;
     }
 
+    private AudioSourceConfig NewSourceConfig() {
+        return new AudioSourceConfig(1.0f);
+    }
+
     //Parameters: Sound - the soundclip that will play, item - the gameobject the source will get added to.
-    public void PlaySoundOnObject(AudioClip sound, GameObject item)
+    public void PlaySoundOnObject(AudioClip sound, GameObject item,AudioSourceConfig config)
     {
+        config ??= NewSourceConfig();
+        
         if (sound == null)
         {
             return;
@@ -90,9 +99,11 @@ public class AudioManager : MonoBehaviour
         //Might be a better way to pack all this up, as there are even more audioSource variables we might want to tune.
         AudioSource itemSource = item.AddComponent<AudioSource>();
         itemSource.clip = sound;
-        itemSource.spatialBlend = 1;
-        itemSource.maxDistance = 100;
-        itemSource.volume = sfxVolume;
+        itemSource.spatialBlend = config.spatialBlend;
+        itemSource.minDistance = config.minDistance;
+        itemSource.maxDistance = config.maxDistance;
+        itemSource.pitch = config.pitch;
+        itemSource.volume = config.volume;
         itemSource.Play();
         Destroy(itemSource, sound.length);
     }
@@ -102,6 +113,11 @@ public class AudioManager : MonoBehaviour
      * to call functions that no longer exist */
     void OnDestroy() {
         EventManager.itemCollided -= PlaySoundOnObject; 
+    }
+
+    public float getSFXVolume()
+    {
+        return sfxVolume;
     }
 }
 
