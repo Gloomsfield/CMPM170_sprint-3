@@ -261,6 +261,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "UI",
+            "id": "bae5bd4a-2321-4f44-afca-907769641ece",
+            "actions": [
+                {
+                    "name": "Continue",
+                    "type": "Button",
+                    "id": "5dd758c2-f809-4a75-ab89-760e5815438c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a3129099-8e44-42d8-90de-f1ed202ed727",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Continue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
