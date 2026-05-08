@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 public class ItemNounWrapper : MonoBehaviour {
 
 	public string nounInstanceName;
@@ -9,11 +8,7 @@ public class ItemNounWrapper : MonoBehaviour {
 	public List<NounTag> nounTags;
 	public NounInstance noun;
 
-	private Rigidbody nounRigidbody;
-
     void Start() {
-        nounRigidbody = GetComponent<Rigidbody>();
-
 		noun = new(nounInstanceName, nounTags);
     }
 
