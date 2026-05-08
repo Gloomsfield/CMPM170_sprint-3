@@ -1066,5 +1066,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.ButtonTriggers
   titleSceneIndex: 0
-  playSceneIndex: 1
-  creditsSceneIndex: 0
+  playSceneIndex: 2
+  creditsSceneIndex: 1
