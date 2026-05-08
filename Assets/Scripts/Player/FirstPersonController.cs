@@ -79,7 +79,7 @@ public class FirstPersonController : MonoBehaviour
         }
         else
         {
-            currentMovement.y += Physics.gravity.y * gravityMultiplier * Time.deltaTime;    
+            currentMovement.y += Physics.gravity.y * gravityMultiplier * Time.deltaTime;
         }
     }
 
@@ -88,8 +88,7 @@ public class FirstPersonController : MonoBehaviour
         Vector3 worldDirection = CalculateWorldDirection();
         currentMovement.x = worldDirection.x * CurrentSpeed;
         currentMovement.z = worldDirection.z * CurrentSpeed;
-
-        if(playerInputHandler.CrouchTriggered)
+        if(playerInputHandler.CrouchTriggered && characterController.isGrounded)
         {
             HandleCrouch();
         } 
