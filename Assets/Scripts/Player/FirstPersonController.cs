@@ -49,8 +49,10 @@ public class FirstPersonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HandleMovement(); 
-        HandleRotation();
+        if (GameManager.Instance.gameState == GameManager.GameState.GAME) {
+            HandleMovement(); 
+            HandleRotation();
+        }
     }
 
     /*
