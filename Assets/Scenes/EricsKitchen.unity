@@ -814,6 +814,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5704044151214641427, guid: f44b1562a4d2d4cad96b0996fd5fa037, type: 3}
+      propertyPath: seconds
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7735797364632213824, guid: f44b1562a4d2d4cad96b0996fd5fa037, type: 3}
       propertyPath: m_Name
       value: PlaytestTimer
