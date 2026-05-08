@@ -59,7 +59,6 @@ public class PlayerGrabber : MonoBehaviour {
 
 	void TryGrabEnd() {
 		if(!isHoldingItem) { return; }
-		Debug.Log("????");
 
 		if(_justStartedGrabbing) {
 			_justStartedGrabbing = false;
