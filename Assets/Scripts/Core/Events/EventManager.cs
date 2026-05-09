@@ -19,7 +19,18 @@ public class EventManager {
         itemCollided?.Invoke(clip, obj,config);
     }
 
+    // TODO
     public static void Testing() {
         Debug.Log("Suscribers: " + itemCollided);
+    }
+
+    public static event Action therapyStarted;
+    public static void invokeTherapyStarted() {
+        therapyStarted?.Invoke();
+    }
+
+    public static event Action therapyEnded;
+    public static void invokeTherapyEnded() {
+        therapyEnded?.Invoke();
     }
 }
