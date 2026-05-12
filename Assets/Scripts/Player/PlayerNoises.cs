@@ -5,25 +5,34 @@ public class PlayerNoises : MonoBehaviour
     FirstPersonController playerController;
     [SerializeField] AudioClip footStepSFX;
     [SerializeField] AudioClip[] jumpSFX;
+
+    bool isPlaying = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         playerController = GetComponent<FirstPersonController>();
     }
 
-    void StartWalkingSFX()
+    public void StartWalkingSFX()
     {
-        AudioManager.Instance.PlayPlayerSFX(footStepSFX, true);
+        if (!isPlaying)
+        {
+            Debug.Log("Walking audio called");
+            AudioManager.Instance.PlayPlayerSFX(footStepSFX, true);
+            isPlaying = true;
+        }
     }
 
     //This might cause issues because it just calls to the StopPlayerSFX
-    void StopWalkingSFX()
+    public void StopWalkingSFX()
     {
         AudioManager.Instance.StopPlayerSFX();
+        isPlaying = false;
     }
 
-    void PlayJumpSFX()
+    public void PlayJumpSFX()
     {
         AudioManager.Instance.PlayPlayerSFX(jumpSFX[Random.Range(0,3)],false);
+        isPlaying = false;
     }
 }

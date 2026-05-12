@@ -4,6 +4,7 @@ public class GameManager {
 
     private static GameManager theInstance;
     private GameState state = GameState.GAME;
+    public string playtestResultMessage { get; set; } = "EEEVIL";
 
     // TODO remove?
     public enum GameState

@@ -4,6 +4,8 @@ using System.Collections;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI displaytext;
+    [SerializeField] TextMeshProUGUI pressSpace;
+    string pressSpaceText = "Press Space To Continue...";
     [SerializeField] float typingSpeed = 0.5f; // Smaller = Faster
     [SerializeField] DialogueInputHandler uiInput; // Link to inputhandler for space
 
@@ -35,6 +37,7 @@ public class UIManager : MonoBehaviour
     {
 
             displaytext.gameObject.SetActive(true);
+            pressSpace.gameObject.SetActive(true);
 
             if (typingCoroutine != null)
             {
@@ -45,14 +48,22 @@ public class UIManager : MonoBehaviour
 
     }
 
-        IEnumerator TypeText(string textToType)
+    IEnumerator TypeText(string textToType)
     {
+
         isTyping = true;
         displaytext.text = "";
+        pressSpace.text = "";
 
         foreach (char letter in textToType.ToCharArray())
         {
             displaytext.text += letter;
+            yield return new WaitForSeconds(typingSpeed);
+        }
+
+        foreach (char letter in pressSpaceText.ToCharArray())
+        {
+            pressSpace.text += letter;
             yield return new WaitForSeconds(typingSpeed);
         }
 
@@ -65,6 +76,7 @@ public class UIManager : MonoBehaviour
     {
         setText("");
         displaytext.gameObject.SetActive(false);
+        pressSpace.gameObject.SetActive(false);
     }
 
     void Start()

@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class AudioSourceConfig
 {
    public int spatialBlend = 1;

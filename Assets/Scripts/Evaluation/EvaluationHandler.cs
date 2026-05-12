@@ -1,0 +1,109 @@
+using System.Collections.Generic;
+using Newtonsoft.Json;
+
+
+/// <summary>
+/// The singleton class <c>EvaluationHandler</c> handles classifying game-world events
+/// by validating behaviors with ongoing <see cref="Pattern">Patterns</see>.
+/// </summary>
+public class EvaluationHandler {
+	
+	private static EvaluationHandler _instance;
+
+	private EvaluationHandler() { }
+
+	public static EvaluationHandler Instance {
+		get {
+			_instance ??= new EvaluationHandler();
+
+			EventManager.onBehavior += _instance.HandleEvent;
+
+			return _instance;
+		}
+	}
+
+	// _unstartedPatterns contains Patterns that have been declared in
+	// patterns.json but have not progressed beyond their initial state.
+	private List<Pattern> _unstartedPatterns = new();
+
+	// _activePatterns contains Patterns that have progressed beyond
+	// their initial state at least once. patterns are removed from
+	// this list once they are completed. any Pattern moved to this
+	// list from _unstartedPatterns should instantiate a new version
+	// of itself via its blueprint to be added once again to
+	// _unstartedPatterns.
+	private List<Pattern> _activePatterns = new();
+
+	/// <summary>
+	/// The member function MakePatternsFromJson populates a list of
+	/// Patterns based on the <paramref name="json">passed json
+	/// string<paramref/>.
+	/// </summary>
+	/// <param name="json">the json string from which to build the
+	/// <see cref="Pattern">Patterns</see> that will be recognized
+	/// by this system.</param>
+	public void MakePatternsFromJson(string json) {
+		List<PatternBlueprint> patternBlueprints = JsonConvert.DeserializeObject<List<PatternBlueprint>>(json);
+
+		foreach(PatternBlueprint blueprint in patternBlueprints) {
+			_unstartedPatterns.Add(blueprint.Build());
+		}
+	}
+
+	/// <summary>
+	/// The member function HandleEvent determines how to process
+	/// an incoming event using that event's <param name="sub">subject</param>,
+	/// <param name="obj">object</param>, and <param name="verb"/>.
+	/// </summary>
+	/// <param name="sub">The subject associated with this event;
+	/// what is performing the action.</param>
+	/// <param name="obj">The object associated with this event;
+	/// what is being acted upon.</param>
+	/// <param name="verb">The verb associated with this event;
+	/// the action being performed.</param>
+	public void HandleEvent(NounInstance sub, NounInstance obj, VerbInstance verb) {
+		List<Pattern> newPatterns = new();
+
+		// TODO flip order of _unstartedPatterns checks and _activePatterns checks
+		// to prevent needing the newPatterns list
+
+		for(int i = _unstartedPatterns.Count - 1; i >= 0; i--) {
+			if(!_unstartedPatterns[i].TryContinue(sub, obj, verb)) { continue; }
+
+			if(_unstartedPatterns[i].continueConditionCount == 0) {
+				EventManager.InvokeBehaviorComplete(sub, obj, _unstartedPatterns[i].verbOnCompletion);
+
+				_unstartedPatterns.Add(_unstartedPatterns[i].blueprint.Build());
+				_unstartedPatterns.RemoveAt(i);
+
+				continue;
+			}
+
+			newPatterns.Add(_unstartedPatterns[i]);
+
+			_unstartedPatterns.Add(_unstartedPatterns[i].blueprint.Build());
+			_unstartedPatterns.RemoveAt(i);
+		}
+
+		for(int i = _activePatterns.Count - 1; i >= 0; i--) {
+			if(_activePatterns[i].TryCancel(sub, obj, verb)) {
+				_activePatterns.RemoveAt(i);
+
+				continue;
+			}
+
+			if(!_activePatterns[i].TryContinue(sub, obj, verb)) { continue; }
+
+			if(_activePatterns[i].continueConditionCount != 0) { continue; }
+
+			EventManager.InvokeBehaviorComplete(sub, obj, _activePatterns[i].verbOnCompletion);
+			_activePatterns.RemoveAt(i);
+		}
+
+		foreach(Pattern pattern in newPatterns) {
+			_activePatterns.Add(pattern);
+		}
+	}
+
+}
+
