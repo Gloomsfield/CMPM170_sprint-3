@@ -20,8 +20,8 @@ public class EventManager {
 	}
 
     // Triggered when an item collides with something
-    public static event Action<AudioClip, GameObject,AudioSourceConfig> itemCollided;
-    public static void invokeItemCollided(AudioClip clip, GameObject obj, AudioSourceConfig config) {
+    public static event Action<AudioClip, GameObject, AudioSourceConfig> itemCollided;
+    public static void InvokeItemCollided(AudioClip clip, GameObject obj, AudioSourceConfig config) {
         itemCollided?.Invoke(clip, obj,config);
     }
 
@@ -53,12 +53,12 @@ public class EventManager {
     }
 
     public static event Action therapyStarted;
-    public static void invokeTherapyStarted() {
+    public static void InvokeTherapyStarted() {
         therapyStarted?.Invoke();
     }
 
     public static event Action therapyEnded;
-    public static void invokeTherapyEnded() {
+    public static void InvokeTherapyEnded() {
         therapyEnded?.Invoke();
     }
 }
