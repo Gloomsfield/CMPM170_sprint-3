@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca6cf1410738a4bdcb3da001dd5cc211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Managers::Core.Managers.PlaytestTimer
-  seconds: 10
+  seconds: 300
   nextScene: 3
