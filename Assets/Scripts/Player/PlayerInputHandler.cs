@@ -36,6 +36,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void Awake()
     {
+		EvaluationHandler.Instance.MakePatternsFromJson(Resources.Load<TextAsset>("patterns").text);
         // Find the action map by name from the input action asset
         InputActionMap mapReference = playerControls.FindActionMap(actionMapName);
 
@@ -79,7 +80,8 @@ public class PlayerInputHandler : MonoBehaviour
         sprintAction.canceled += inputInfo => SprintTriggered = false;
 
         // Grab is toggled when left mouse button is pressed
-        grabAction.performed += inputInfo => EventManager.invokeGrabToggled();
+        grabAction.performed += inputInfo => EventManager.InvokeGrabStart();
+        grabAction.canceled += inputInfo => EventManager.InvokeGrabEnd();
         // Crouch becomes true when crouch is held
         crouchAction.performed += inputInfo => CrouchTriggered = true;
         // Crouch becomes false when crouch is released
