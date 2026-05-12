@@ -27,7 +27,7 @@ public class TherapyManager : MonoBehaviour {
 
     IEnumerator WaitForTherapy() {
         // TODO make dynamic???
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(100);
         EventManager.invokeTherapyStarted();
     }
 

@@ -37,6 +37,9 @@ public class FirstPersonController : MonoBehaviour
     // Calculates current movement speed with sprinting active or not
     private float CurrentSpeed => walkSpeed * (playerInputHandler.SprintTriggered ? sprintMultiplier : 1);
 
+    [SerializeField] PlayerNoises PN;
+    Vector3 lastLocation;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -64,6 +67,17 @@ public class FirstPersonController : MonoBehaviour
         if (!canMove) return;
         HandleMovement(); 
         HandleRotation();
+
+        if(transform.position != lastLocation && characterController.isGrounded)
+        {
+            PN.StartWalkingSFX();
+        }
+        else if (characterController.isGrounded)
+        {
+            PN.StopWalkingSFX();
+        }
+
+        lastLocation = transform.position;
     }
 
     /*
@@ -83,11 +97,13 @@ public class FirstPersonController : MonoBehaviour
     {
         if (characterController.isGrounded)
         {
+
             currentMovement.y = -0.5f; // Small downward gravity force to keep player grounded
 
             if (playerInputHandler.JumpTriggered)
             {
                 currentMovement.y = jumpForce;
+                PN.PlayJumpSFX();
             }
         }
         else
