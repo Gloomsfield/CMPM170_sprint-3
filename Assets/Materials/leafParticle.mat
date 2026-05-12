@@ -8,21 +8,27 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: leafParticle
-  m_Shader: {fileID: 211, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 71a090e9b5b488349913abe716bb7bc6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _ALPHATEST_ON
-  m_InvalidKeywords: []
+  - _DITHERMODE_SCREEN
+  - _FILTERMODE_POINT
+  - _LIGHTMODE_TEXELLIT
+  - _RECEIVESHADOWSMODE_ON
+  - _SNAPMODE_VIEW
+  - _WRAPMODE_REPEAT
+  m_InvalidKeywords:
+  - _USE_VERTEX_COLORS_OFF
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2450
+  m_CustomRenderQueue: 3000
   stringTagMap:
-    RenderType: TransparentCutout
+    RenderType: Transparent
   disabledShaderPasses:
   - MOTIONVECTORS
-  - GRABPASS
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -96,19 +102,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints:
-    - _ColorBitDepth: 64
+    - _ColorBitDepth: 61
     - _DitherMode: 0
     - _FilterMode: 1
     - _LightMode: 1
     - _ReceiveShadowsMode: 0
-    - _ResolutionLimit: 64
+    - _ResolutionLimit: 10
     - _SnapMode: 2
-    - _SnapsPerUnit: 64
+    - _SnapsPerUnit: 31
     - _WrapMode: 1
     m_Floats:
     - _AddPrecomputedVelocity: 0
     - _AffineTextureStrength: 1
-    - _AlphaClip: 0
+    - _AlphaClip: 1
     - _AlphaToMask: 0
     - _Alpha_Clip_Threshold: 0.5
     - _AmbientLight: 0.02
@@ -136,7 +142,7 @@ Material:
     - _DistortionEnabled: 0
     - _DistortionStrength: 1
     - _DistortionStrengthScaled: 0
-    - _DstBlend: 0
+    - _DstBlend: 10
     - _DstBlendAlpha: 0
     - _EmissionEnabled: 0
     - _EnvironmentReflections: 1
@@ -161,9 +167,9 @@ Material:
     - _SoftParticlesFarFadeDistance: 1
     - _SoftParticlesNearFadeDistance: 0
     - _SpecularHighlights: 1
-    - _SrcBlend: 1
+    - _SrcBlend: 5
     - _SrcBlendAlpha: 1
-    - _Surface: 0
+    - _Surface: 1
     - _USE_AMBIENT_OVERRIDE: 0
     - _USE_FLAT_SHADING: 0
     - _USE_REFLECTION_CUBEMAP: 0
@@ -172,10 +178,10 @@ Material:
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
     - _ZTest: 4
-    - _ZWrite: 1
+    - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 1, g: 0.2545177, b: 0, a: 1}
     - _Base_Color: {r: 1, g: 1, b: 1, a: 1}
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
