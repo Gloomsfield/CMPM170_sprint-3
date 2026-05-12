@@ -13,6 +13,7 @@ namespace Core.Managers
         IEnumerator Start()
         {
             yield return new WaitForSeconds(seconds);
+            EventManager.invokePlaytestEnded(); // Fire this event so that listeners can replace message in GameManager.playtestResultMessage
             SceneManager.LoadScene(nextScene);
         }
 

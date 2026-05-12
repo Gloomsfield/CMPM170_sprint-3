@@ -33,4 +33,9 @@ public class EventManager {
     public static void invokeTherapyEnded() {
         therapyEnded?.Invoke();
     }
+
+    public static event Action playtestEnded;
+    public static void invokePlaytestEnded() {
+        playtestEnded?.Invoke();
+    }
 }
