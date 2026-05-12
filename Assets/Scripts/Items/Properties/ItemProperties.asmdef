@@ -1,9 +1,9 @@
 {
-    "name": "Events",
+    "name": "ItemProperties",
     "rootNamespace": "",
     "references": [
-        "GUID:d0b995dd7afc7534cb4402570d4b73a3",
-        "GUID:823ee465c1514f120a9318f6f9a4a67d"
+        "GUID:823ee465c1514f120a9318f6f9a4a67d",
+        "GUID:34d2ad85c44c748bfbe4840b96bdde1a"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
