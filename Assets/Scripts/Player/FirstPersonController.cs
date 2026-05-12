@@ -73,11 +73,11 @@ public class FirstPersonController : MonoBehaviour
 
         if(transform.position != lastLocation && characterController.isGrounded)
         {
-            PN.StartWalkingSFX();
+            //PN.StartWalkingSFX();
         }
         else if (characterController.isGrounded)
         {
-            PN.StopWalkingSFX();
+            //PN.StopWalkingSFX();
         }
 
         lastLocation = transform.position;
