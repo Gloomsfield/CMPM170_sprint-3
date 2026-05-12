@@ -64,7 +64,10 @@ public class FirstPersonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!canMove) return;
+        if (!canMove) {
+            PN.StopWalkingSFX();
+            return;
+        }
         HandleMovement(); 
         HandleRotation();
 
