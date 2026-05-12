@@ -3,11 +3,21 @@ using UnityEngine;
 public class KillBox : MonoBehaviour
 {
     [SerializeField] Transform spawnPoint;
-    private void OnCollisionEnter(Collision collision)
+    
+
+    
+
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.transform.tag == "Player")
+        Debug.Log(other.gameObject.name);
+        CharacterController controller = other.GetComponent<CharacterController>();
+
+        if (controller == null)
         {
-            collision.gameObject.transform.position = spawnPoint.position;
+            return;
         }
+        controller.enabled = false;
+        other.transform.position = spawnPoint.position;
+        controller.enabled = true;
     }
 }
