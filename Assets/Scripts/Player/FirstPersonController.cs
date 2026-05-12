@@ -64,17 +64,20 @@ public class FirstPersonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!canMove) return;
+        if (!canMove) {
+            PN.StopWalkingSFX();
+            return;
+        }
         HandleMovement(); 
         HandleRotation();
 
         if(transform.position != lastLocation && characterController.isGrounded)
         {
-            PN.StartWalkingSFX();
+            //PN.StartWalkingSFX();
         }
         else if (characterController.isGrounded)
         {
-            PN.StopWalkingSFX();
+            //PN.StopWalkingSFX();
         }
 
         lastLocation = transform.position;
