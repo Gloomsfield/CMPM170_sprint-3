@@ -1,7 +1,10 @@
 {
     "name": "Items",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "Events",
+        "Config"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

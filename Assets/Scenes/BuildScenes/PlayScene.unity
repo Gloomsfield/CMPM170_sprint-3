@@ -398,7 +398,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e9c0c981f041542845a94df21e9139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectAudio
-  dropSFX: {fileID: 8300000, guid: e359be4c8aae97946b6ad55887094791, type: 3}
 --- !u!54 &498070647
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -667,6 +666,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4044539217444702977, guid: 2b8bff505a36c4248be67610d65a52a8, type: 3}
+      propertyPath: m_MinMoveDistance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6660847347498070337, guid: 2b8bff505a36c4248be67610d65a52a8, type: 3}
       propertyPath: m_Name
       value: Player
