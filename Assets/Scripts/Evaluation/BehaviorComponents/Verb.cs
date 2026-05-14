@@ -136,6 +136,10 @@ public class VerbInstance {
 		return (min < value) && (value < max);
 	}
 
+	public string Conjugate(VerbTense tense) {
+		return _type.Conjugate(tense);
+	}
+
 }
 
 public class VerbRestriction {
