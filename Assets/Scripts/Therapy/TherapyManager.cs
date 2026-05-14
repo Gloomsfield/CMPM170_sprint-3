@@ -28,13 +28,13 @@ public class TherapyManager : MonoBehaviour {
     IEnumerator WaitForTherapy() {
         // TODO make dynamic???
         yield return new WaitForSeconds(5);
-        EventManager.invokeTherapyStarted();
+        EventManager.InvokeTherapyStarted();
     }
 
     IEnumerator StuckInTherapy() {
         // TODO make dynamic???
         yield return new WaitForSeconds(5);
-        EventManager.invokeTherapyEnded();
+        EventManager.InvokeTherapyEnded();
     }
 
     void StartWaitingForTherapyTimer() {

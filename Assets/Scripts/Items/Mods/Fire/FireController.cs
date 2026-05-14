@@ -12,6 +12,8 @@ public class FireController : MonoBehaviour, Iflammable {
         if (onFire) return;
         onFire = true;
         fireVfx.SetActive(true);
+        // Add a FireMod component to this object so that it can spread fire
+        gameObject.AddComponent<FireMod>();
         StartCoroutine(Burn(duration));
     }
 
