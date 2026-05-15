@@ -52,6 +52,7 @@ public class FirstPersonController : MonoBehaviour
         characterController.center = new Vector3(0, standHeight / 2f, 0);
 
         playerCam.transform.localPosition = new Vector3(0, (standHeight / 2f) + camOffset, 0);
+        PN = GetComponent<PlayerNoises>();
 
         /* Create lambdas for disabling an enabling movement +
         * suscribe them to therapy events */
