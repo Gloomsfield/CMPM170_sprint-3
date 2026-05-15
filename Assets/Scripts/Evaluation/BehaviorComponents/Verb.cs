@@ -8,23 +8,47 @@ using Newtonsoft.Json.Converters;
 /// The <c>VerbTense</c> enum defines the potential tenses
 /// for conjugating a <see cref="VerbType"/>.
 /// </summary>
-public enum VerbTense {
-	PAST,
-	PRESENT,
-	FUTURE
+public enum VerbTenseType {
+	SIMPLE_PAST,
+	SIMPLE_PRESENT,
+	SIMPLE_FUTURE,
+	CONTINUOUS_PAST,
+	CONTINUOUS_PRESENT,
+	CONTINUOUS_FUTURE,
+	PERFECT_PAST,
+	PERFECT_PRESENT,
+	PERFECT_FUTURE,
+}
+
+public class VerbTense {
+
+	public string simple;
+	public string continuous;
+	public string perfect;
+
+	public VerbTense(string simple, string continuous, string perfect) {
+		this.simple = simple;
+		this.continuous = continuous;
+		this.perfect = perfect;
+	}
+
 }
 
 [AttributeUsage(AttributeTargets.Field)]
 public class VerbTensesAttribute : Attribute {
 	
-	public string past;
-	public string present;
-	public string future;
+	public VerbTense past;
+	public VerbTense present;
+	public VerbTense future;
 
-	public VerbTensesAttribute(string past, string present, string future) {
-		this.past = past;
-		this.present = present;
-		this.future = future;
+	public VerbTensesAttribute(
+		string simplePast, string continuousPast, string perfectPast,
+		string simplePresent, string continuousPresent, string perfectPresent,
+		string simpleFuture, string continuousFuture, string perfectFuture
+	) {
+		past = new(simplePast, continuousPast, perfectPast);
+		present = new(simplePresent, continuousPresent, perfectPresent);
+		future = new(simpleFuture, continuousFuture, perfectFuture);
 	}
 
 	/// <summary>
@@ -34,10 +58,16 @@ public class VerbTensesAttribute : Attribute {
 	/// A string representing the conjugated form of this
 	/// <see cref="VerbType"/>.
 	/// </returns>
-	public string Conjugate(VerbTense tense) {
-		if(tense == VerbTense.PAST) { return past; }
-		if(tense == VerbTense.PRESENT) { return present; }
-		if(tense == VerbTense.FUTURE) { return future; }
+	public string Conjugate(VerbTenseType tense) {
+		if(tense == VerbTenseType.SIMPLE_PAST) { return past.simple; }
+		if(tense == VerbTenseType.SIMPLE_PRESENT) { return present.simple; }
+		if(tense == VerbTenseType.SIMPLE_FUTURE) { return future.simple; }
+		if(tense == VerbTenseType.CONTINUOUS_PAST) { return past.continuous; }
+		if(tense == VerbTenseType.CONTINUOUS_PRESENT) { return present.continuous; }
+		if(tense == VerbTenseType.CONTINUOUS_FUTURE) { return future.continuous; }
+		if(tense == VerbTenseType.PERFECT_PAST) { return past.perfect; }
+		if(tense == VerbTenseType.PERFECT_PRESENT) { return present.perfect; }
+		if(tense == VerbTenseType.PERFECT_FUTURE) { return future.perfect; }
 
 		return "<VERB COULD NOT BE CONJUGATED>";
 	}
@@ -58,23 +88,47 @@ public class VerbTensesAttribute : Attribute {
 public enum VerbType {
 
 	// atomic verbs
-	[VerbTenses("grabbed", "grabbing", "grab")]
+	[VerbTenses(
+		"grabbed", "grabbing", "grabbed",
+		"grab", "grabbing", "grabbed",
+		"grab", "grabbing", "grabbed"
+	)]
 	GRABS,
 
-	[VerbTenses("dropped", "dropping", "drop")]
+	[VerbTenses(
+		"dropped", "dropping", "dropped",
+		"drop", "dropping", "dropped",
+		"drop", "dropping", "dropped"
+	)]
 	DROPS,
 
-	[VerbTenses("threw", "throwing", "throw")]
+	[VerbTenses(
+		"threw", "throwing", "thrown",
+		"throw", "throwing", "thrown",
+		"throw", "throwing", "thrown"
+	)]
 	THROWS,
 
-	[VerbTenses("entered", "entering", "enter")]
+	[VerbTenses(
+		"entered", "entering", "entered",
+		"enter", "entering", "entered",
+		"enter", "entering", "entered"
+	)]
 	ENTERS_VOLUME,
 
-	[VerbTenses("exited", "exiting", "exit")]
+	[VerbTenses(
+		"exited", "exiting", "exited",
+		"exit", "exiting", "exited",
+		"exit", "exiting", "exited"
+	)]
 	EXITS_VOLUME,
 
 	// compound verbs
-	[VerbTenses("ate", "eating", "eat")]
+	[VerbTenses(
+		"ate", "eating", "eaten",
+		"eat", "eating", "eaten",
+		"eat", "eating", "eaten"
+	)]
 	EATS,
 
 }
@@ -88,7 +142,7 @@ public static class VerbTypeExtensions {
 	/// A string representing the conjugated form of this
 	/// <see cref="VerbType"/>.
 	/// </returns>
-	public static string Conjugate(this VerbType verbType, VerbTense tense) {
+	public static string Conjugate(this VerbType verbType, VerbTenseType tense) {
 		VerbTensesAttribute attribute = typeof(VerbType).GetTypeInfo()
 			.GetField(verbType.ToString())
 			.GetCustomAttribute(typeof(VerbTensesAttribute))
@@ -136,7 +190,7 @@ public class VerbInstance {
 		return (min < value) && (value < max);
 	}
 
-	public string Conjugate(VerbTense tense) {
+	public string Conjugate(VerbTenseType tense) {
 		return _type.Conjugate(tense);
 	}
 
