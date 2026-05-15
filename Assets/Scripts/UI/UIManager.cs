@@ -1,10 +1,12 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI displaytext;
     [SerializeField] TextMeshProUGUI pressSpace;
+    [SerializeField] Image textBackground;
     string pressSpaceText = "Press Space To Continue...";
     [SerializeField] float typingSpeed = 0.5f; // Smaller = Faster
     [SerializeField] DialogueInputHandler uiInput; // Link to inputhandler for space
@@ -39,6 +41,7 @@ public class UIManager : MonoBehaviour
 
             displaytext.gameObject.SetActive(true);
             pressSpace.gameObject.SetActive(true);
+            textBackground.gameObject.SetActive(true);
 
             if (typingCoroutine != null)
             {
@@ -82,6 +85,7 @@ public class UIManager : MonoBehaviour
         setText("");
         displaytext.gameObject.SetActive(false);
         pressSpace.gameObject.SetActive(false);
+        textBackground.gameObject.SetActive(false);
     }
 
     void Start()
