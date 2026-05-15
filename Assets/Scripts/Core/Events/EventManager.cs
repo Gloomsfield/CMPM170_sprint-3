@@ -62,6 +62,11 @@ public class EventManager {
         therapyEnded?.Invoke();
     }
 
+    public static event Action IntroSceneStarted;
+    public static void InvokeIntroSceneStarted() {
+        IntroSceneStarted?.Invoke();
+    }
+
     public static event Action IntroSceneComplete;
     public static void InvokeIntroSceneComplete() {
         IntroSceneComplete?.Invoke();
@@ -71,4 +76,11 @@ public class EventManager {
     public static void invokePlaytestEnded() {
         playtestEnded?.Invoke();
     }
+
+    // Special action is reserved for any action that uses the right MB
+    public static event Action specialAction;
+    public static void InvokeSpecialAction() {
+        specialAction?.Invoke();
+    }
+
 }
