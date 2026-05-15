@@ -1,0 +1,17 @@
+{
+    "name": "BehaviorLogging",
+    "rootNamespace": "",
+    "references": [
+        "GUID:333aa9e09ed98501eb68a8eb7cf84002",
+        "GUID:823ee465c1514f120a9318f6f9a4a67d"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
