@@ -8,6 +8,9 @@ public class TherapyManager : MonoBehaviour {
 
     [SerializeField] CinemachineCamera playerCam;
     [SerializeField] CinemachineCamera therapyCam;
+    [SerializeField] int playTime = 25;
+    [SerializeField] int therapyTime = 10;
+
 
     private TherapistCamFocus camController;
 
@@ -36,15 +39,14 @@ public class TherapyManager : MonoBehaviour {
 
     IEnumerator WaitForTherapy() {
         // TODO make dynamic???
-
-        yield return new WaitForSeconds(50); //needs to become an export var for time waiting.
+        yield return new WaitForSeconds(playTime); //needs to become an export var for time waiting.
         EventManager.InvokeTherapyStarted();
 
     }
 
     IEnumerator StuckInTherapy() {
         // TODO make dynamic???
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(therapyTime);
         EventManager.InvokeTherapyEnded();
     }
 

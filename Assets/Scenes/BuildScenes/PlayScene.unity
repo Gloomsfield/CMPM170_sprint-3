@@ -1040,6 +1040,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5704044151214641427, guid: f44b1562a4d2d4cad96b0996fd5fa037, type: 3}
+      propertyPath: seconds
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 7735797364632213824, guid: f44b1562a4d2d4cad96b0996fd5fa037, type: 3}
       propertyPath: m_Name
       value: PlaytestTimer
@@ -1221,6 +1225,10 @@ PrefabInstance:
       propertyPath: sfxVolume
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 3087820902813751502, guid: d635af34bbd76460b992a16c4ae98f18, type: 3}
+      propertyPath: therapistBleep
+      value: 
+      objectReference: {fileID: 8300000, guid: 1b94e02c198a4c344b8c5fa0e0b19999, type: 3}
     - target: {fileID: 6224892976180608355, guid: d635af34bbd76460b992a16c4ae98f18, type: 3}
       propertyPath: m_LocalPosition.x
       value: 181.03883
@@ -2334,6 +2342,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aef7f8f49ff7a0a4f886aad751dbbc74, type: 3}
+--- !u!114 &421782444 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2848173545718053475, guid: 2b8bff505a36c4248be67610d65a52a8, type: 3}
+  m_PrefabInstance: {fileID: 1311366883}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
 --- !u!1001 &427257794
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3485,7 +3504,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &652690898
 Transform:
   m_ObjectHideFlags: 0
@@ -3495,7 +3514,7 @@ Transform:
   m_GameObject: {fileID: 652690897}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0000000096512345, y: -0.000000014291982, z: 0.000000012885183, w: 1}
-  m_LocalPosition: {x: 0.6528289, y: 1.76, z: -12.890545}
+  m_LocalPosition: {x: 18.17, y: 11.08, z: 3.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3865,8 +3884,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dc613b34e47fea1b85a295116db3e78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TherapyManager
-  playerCam: {fileID: 0}
-  therapyCam: {fileID: 0}
+  playerCam: {fileID: 421782444}
+  therapyCam: {fileID: 652690901}
 --- !u!64 &803225164
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5464,6 +5483,51 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 995495043}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1033477223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1033477225}
+  - component: {fileID: 1033477224}
+  m_Layer: 0
+  m_Name: EvilDataSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1033477224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033477223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f887c931b86964041847c712e2006304, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EvilAmount
+  evilAmount: 0
+--- !u!4 &1033477225
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033477223}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.59245, y: 6.87005, z: 34.58937}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1110340447
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6422,6 +6486,10 @@ PrefabInstance:
       propertyPath: PN
       value: 
       objectReference: {fileID: 1311366884}
+    - target: {fileID: 3049464766300049934, guid: 2b8bff505a36c4248be67610d65a52a8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6660847347498070337, guid: 2b8bff505a36c4248be67610d65a52a8, type: 3}
       propertyPath: m_Name
       value: Player
@@ -8443,6 +8511,50 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1809740549}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1822382381
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1822382383}
+  - component: {fileID: 1822382382}
+  m_Layer: 0
+  m_Name: DataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1822382382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822382381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1c675bc776c44765b351b3a34984cfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Managers::DataManager
+--- !u!4 &1822382383
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822382381}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.59245, y: 6.87005, z: 34.58937}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1838193829
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9431,3 +9543,5 @@ SceneRoots:
   - {fileID: 1252218475}
   - {fileID: 404142002}
   - {fileID: 1606545452}
+  - {fileID: 1033477225}
+  - {fileID: 1822382383}

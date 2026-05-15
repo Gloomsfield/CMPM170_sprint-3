@@ -16,6 +16,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private float musicVolume;
     [SerializeField] private float uiVolume;
     [SerializeField] private float sfxVolume;
+    [SerializeField] private AudioClip[] therapistBleep;
 
 
     private void Awake()
@@ -134,6 +135,12 @@ public class AudioManager : MonoBehaviour
     public void StopPlayerSFX()
     {
         playerSource.Stop();
+    }
+    public void PlayTherapistLetter(float pitch)
+    {
+        uiSource.pitch = pitch;
+        uiSource.PlayOneShot(therapistBleep[Random.Range(0,therapistBleep.Length)]);
+        
     }
 }
 
