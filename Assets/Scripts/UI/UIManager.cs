@@ -7,6 +7,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI displaytext;
     [SerializeField] TextMeshProUGUI pressSpace;
     [SerializeField] Image textBackground;
+    [SerializeField] Image mouthdisplay;
+    [SerializeField] Image mouthdisplayBG;
     [SerializeField] Animator therapistAnimator;
     string pressSpaceText = "Press Space To Continue...";
     [SerializeField] float typingSpeed = 0.5f; // Smaller = Faster
@@ -53,6 +55,8 @@ public class UIManager : MonoBehaviour
 
 		displaytext.gameObject.SetActive(true);
 		pressSpace.gameObject.SetActive(true);
+		mouthdisplay.gameObject.SetActive(true);
+		mouthdisplay.gameObject.SetActive(true);
 		
 		displaytext.gameObject.SetActive(true);
 		pressSpace.gameObject.SetActive(true);
@@ -102,8 +106,10 @@ public class UIManager : MonoBehaviour
         therapistAnimator.SetBool("Talking", false);
         displaytext.gameObject.SetActive(false);
         pressSpace.gameObject.SetActive(false);
+        mouthdisplay.gameObject.SetActive(false);
+        mouthdisplay.gameObject.SetActive(false);
 
-		EventManager.InvokeTherapyEnded();
+        EventManager.InvokeTherapyEnded();
 
         textBackground.gameObject.SetActive(false);
     }
