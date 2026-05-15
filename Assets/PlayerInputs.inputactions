@@ -247,8 +247,8 @@
                 },
                 {
                     "name": "",
-                    "id": "c85575a3-43c8-49ac-9b35-8c8bc82c07a0",
-                    "path": "<Gamepad>/leftStickPress",
+                    "id": "4d06f04e-2d92-411f-b116-cae55f848be4",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
