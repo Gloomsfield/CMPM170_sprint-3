@@ -1625,8 +1625,8 @@ MonoBehaviour:
       Rotation:
         value:
           x: -0.25445157
-          y: -0.5372547
-          z: -0.17007132
+          y: -0.53725475
+          z: -0.17007127
           w: 0.78593105
     - Position:
         x: -21.451279
@@ -1678,7 +1678,7 @@ MonoBehaviour:
         z: 2.4388762
       Rotation:
         value:
-          x: 0.017578226
+          x: 0.017578218
           y: 0.90588117
           z: -0.3708856
           w: 0.20375004
@@ -2135,6 +2135,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4431780714554768595, guid: 4468e61845d17cb42812426e319fc8e6, type: 3}
   m_PrefabInstance: {fileID: 325242161}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &327303554 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5749350352423059217, guid: b76f0ab1fe5e6254585c08262ddf6664, type: 3}
+  m_PrefabInstance: {fileID: 1794397102}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &334500542
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3698,6 +3709,17 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &629443586 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5670673766050895574, guid: b76f0ab1fe5e6254585c08262ddf6664, type: 3}
+  m_PrefabInstance: {fileID: 1794397102}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32791414da6d69f4d96dbe72b312e5ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueInputHandler
 --- !u!1001 &645598471
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3813,7 +3835,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 652690897}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f38bda98361e1de48a4ca2bd86ea3c17, type: 3}
   m_Name: 
@@ -3867,8 +3889,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
   Priority:
-    Enabled: 0
-    m_Value: 0
+    Enabled: 1
+    m_Value: 21
   OutputChannel: 1
   StandbyUpdate: 2
   m_StreamingVersion: 20241001
@@ -3897,6 +3919,55 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
+--- !u!1 &656831722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 656831724}
+  - component: {fileID: 656831723}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &656831723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656831722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29b7974f208bd47f191f47bf035f536c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIManager
+  displaytext: {fileID: 1749880173}
+  pressSpace: {fileID: 327303554}
+  textBackground: {fileID: 2061093230}
+  typingSpeed: 0.5
+  uiInput: {fileID: 629443586}
+--- !u!4 &656831724
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656831722}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.39524, y: 0, z: 11.0339}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &692986899
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6773,6 +6844,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9035420015696790571, guid: 2b8bff505a36c4248be67610d65a52a8, type: 3}
+      propertyPath: playerCrossHair
+      value: 
+      objectReference: {fileID: 2038888456}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7841,6 +7916,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7027147569898441771, guid: f6eeca630fd84144582f80c020f5dc90, type: 3}
+      propertyPath: playerCam
+      value: 
+      objectReference: {fileID: 421782444}
+    - target: {fileID: 7027147569898441771, guid: f6eeca630fd84144582f80c020f5dc90, type: 3}
+      propertyPath: therapyCam
+      value: 
+      objectReference: {fileID: 652690901}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8484,6 +8567,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6219952016778149106, guid: 859ded3244e2758499869458c307908a, type: 3}
   m_PrefabInstance: {fileID: 1731288002}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1749880173 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8020895363502378816, guid: b76f0ab1fe5e6254585c08262ddf6664, type: 3}
+  m_PrefabInstance: {fileID: 1794397102}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &1775019237
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9851,6 +9945,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6219952016778149106, guid: 859ded3244e2758499869458c307908a, type: 3}
   m_PrefabInstance: {fileID: 2002429751}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2038888456 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 509852663073791212, guid: b76f0ab1fe5e6254585c08262ddf6664, type: 3}
+  m_PrefabInstance: {fileID: 1794397102}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!114 &2061093230 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5274650846288006305, guid: b76f0ab1fe5e6254585c08262ddf6664, type: 3}
+  m_PrefabInstance: {fileID: 1794397102}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &2072270508
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10238,3 +10354,5 @@ SceneRoots:
   - {fileID: 1251369601}
   - {fileID: 1873197830}
   - {fileID: 1718486523}
+  - {fileID: 1572919086}
+  - {fileID: 656831724}

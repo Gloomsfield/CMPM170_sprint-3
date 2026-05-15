@@ -30,18 +30,6 @@ public class EventManager {
 	}
 
 	public static event Action<Behavior> onBehavior;
-	public static void InvokeItemGrabbed(NounInstance sub, NounInstance obj) {
-		onBehavior?.Invoke(new(sub, obj, new(VerbType.GRABS, new())));
-	}
-
-	public static void InvokeItemDropped(NounInstance sub, NounInstance obj) {
-		onBehavior.Invoke(new(sub, obj, new VerbInstance(VerbType.DROPS, new())));
-	}
-
-	public static void InvokeItemThrown(NounInstance sub, NounInstance obj) {
-		onBehavior.Invoke(new(sub, obj, new VerbInstance(VerbType.THROWS, new())));
-	}
-
 	public static void InvokeBehavior(Behavior behavior) {
 		onBehavior?.Invoke(behavior);
 	}

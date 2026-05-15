@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
     string pressSpaceText = "Press Space To Continue...";
     [SerializeField] float typingSpeed = 0.5f; // Smaller = Faster
     [SerializeField] DialogueInputHandler uiInput; // Link to inputhandler for space
-    private int letterGap = 4;  //this is to delay for the therapist talking. It skips that many letters before saying a noise again.
+    private int letterGap = 2;  //this is to delay for the therapist talking. It skips that many letters before saying a noise again.
 
     string currentFullText;
     bool isTyping = false;
@@ -77,7 +77,7 @@ public class UIManager : MonoBehaviour
             displaytext.text += letter;
             if (displaytext.text.Length % letterGap == 0)
             {
-                // AudioManager.Instance.PlayTherapistLetter(Random.Range(0.9f, 1.1f));
+                AudioManager.Instance.PlayTherapistLetter(Random.Range(0.9f, 1.1f));
             }
             yield return new WaitForSeconds(typingSpeed);
         }
