@@ -1,0 +1,14 @@
+[
+	{
+		"format": "NOW WHY WOULD YOU {verb.present.simple} THE {object}?"
+	},
+	{
+		"format": "INTERESTING... {verb.past.continuous} THE {object}..."
+	},
+	{
+		"format": "WHAT DO YOU THINK IT MEANS, THE {object}?"
+	},
+	{
+		"format": "{verb.present.continuous}..."
+	}
+]

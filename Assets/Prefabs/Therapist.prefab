@@ -764,6 +764,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4995766571967644684}
   - component: {fileID: 5353677829907227520}
+  - component: {fileID: 7027147569898441771}
   m_Layer: 0
   m_Name: Therapist
   m_TagString: Untagged
@@ -819,6 +820,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7027147569898441771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4256448991700823523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dc613b34e47fea1b85a295116db3e78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TherapyManager
+  playerCam: {fileID: 0}
+  therapyCam: {fileID: 0}
 --- !u!1 &4581846381469927692
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -7,51 +8,73 @@ public class TherapyManager : MonoBehaviour {
 
     [SerializeField] CinemachineCamera playerCam;
     [SerializeField] CinemachineCamera therapyCam;
-    [SerializeField] int playTime = 25;
-    [SerializeField] int therapyTime = 10;
-
 
     private TherapistCamFocus camController;
+
+	private TherapistState _state = new();
+	private ResponseGenerator _responseGenerator;
+
+	private string _currentJudgement;
+
+	private List<VerbType> _notableVerbs = new(){
+		VerbType.THROWS,
+	};
 
     void Awake() {
         if (Instance == null) {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-        } else
+        } else {
             Destroy(gameObject);
+			return;
+		}
 
         camController = new TherapistCamFocus(playerCam, therapyCam);
-         
-        EventManager.therapyStarted += StartStuckInTherapyTimer;
-        EventManager.therapyEnded += StartWaitingForTherapyTimer;
 
-        StartWaitingForTherapyTimer();
+		EventManager.onBehavior += JudgeBehavior;
     }
 
-    IEnumerator WaitForTherapy() {
-        // TODO make dynamic???
-        yield return new WaitForSeconds(playTime); //needs to become an export var for time waiting.
-        EventManager.InvokeTherapyStarted();
+	void Start() {
+		_responseGenerator = new(Resources.Load<TextAsset>("responses").text);
+	}
 
-    }
+	void JudgeBehavior(Behavior behavior) {
+		Debug.Log("1");
+		if(_state.recentBehavior != null) { return; }
+		Debug.Log("2");
+		
+		bool notable = false;
 
-    IEnumerator StuckInTherapy() {
-        // TODO make dynamic???
-        yield return new WaitForSeconds(therapyTime);
-        EventManager.InvokeTherapyEnded();
-    }
+		foreach(VerbType notableVerb in _notableVerbs) {
+			if(!behavior.verb.CompareType(notableVerb)) {
+				continue;
+			}
+			
+			notable = true;
+			break;
+		}
 
-    void StartWaitingForTherapyTimer() {
-        StartCoroutine(WaitForTherapy());
-    }
+		Debug.Log("2");
+		if(!notable) { return; }
 
-    void StartStuckInTherapyTimer() {
-        StartCoroutine(StuckInTherapy());
-    }
+		Debug.Log("3");
+		_state.recentBehavior = behavior;
+
+		_currentJudgement = _responseGenerator.Generate(null, _state);
+
+		EventManager.InvokeTherapyStarted();
+	}
+
+	public void DisplayJudgement() {
+		UIManager.Instance.setText(_currentJudgement);
+
+		UIManager.Instance.DisplayTherapyText();
+
+		_state.recentBehavior = null;
+		_currentJudgement = "";
+	}
 
     void OnDestroy() {
         camController.Unsuscribe();
-        EventManager.therapyStarted -= StartStuckInTherapyTimer;
-        EventManager.therapyEnded -= StartWaitingForTherapyTimer;
     }
 }
