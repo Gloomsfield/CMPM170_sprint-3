@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -10,7 +11,11 @@ public class TherapyManager : MonoBehaviour {
 
     private TherapistCamFocus camController;
 
-	private TherapistState state;
+	private TherapistState _state;
+
+	private List<VerbType> _notableVerbs = new(){
+		VerbType.THROWS,
+	};
 
     void Awake() {
         if (Instance == null) {
@@ -50,6 +55,25 @@ public class TherapyManager : MonoBehaviour {
     void StartStuckInTherapyTimer() {
         StartCoroutine(StuckInTherapy());
     }
+
+	void JudgeBehavior(Behavior behavior) {
+		bool notable = false;
+
+		foreach(VerbType notableVerb in _notableVerbs) {
+			if(!behavior.verb.CompareType(notableVerb)) {
+				continue;
+			}
+			
+			notable = true;
+			break;
+		}
+
+		if(!notable) { return; }
+
+		_state.recentBehavior = behavior;
+
+		ResponseGenerator.Generate(null, _state);
+	}
 
     void OnDestroy() {
         camController.Unsuscribe();
