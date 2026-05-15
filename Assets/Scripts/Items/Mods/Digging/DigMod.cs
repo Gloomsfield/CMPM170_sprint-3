@@ -4,7 +4,7 @@ using UnityEngine;
 public class DigMod : MonoBehaviour {
     private LayerMask diggableMask;
     private CinemachineCamera holderHead;
-    private bool isHeld = false;
+    private bool canDig = true;
 
     [SerializeField] float digRange = 3f;
 
@@ -12,10 +12,12 @@ public class DigMod : MonoBehaviour {
         diggableMask = LayerMask.GetMask("Diggable");
 
         EventManager.specialAction += TryDig;
+        EventManager.therapyStarted += DisableDig;
+        EventManager.therapyEnded += EnableDig;
     }
 
     void TryDig() {
-        if (!CheckIfHeld()) return;
+        if (!CheckIfHeld() || !canDig) return;
         Ray ray = new Ray(transform.position, holderHead.transform.forward);
 
         Debug.DrawLine(ray.origin, ray.origin + ray.direction * digRange,Color.green, 2f);
@@ -36,7 +38,12 @@ public class DigMod : MonoBehaviour {
         Debug.Log(tData);
     }
 
+    void DisableDig() { canDig = false; }
+    void EnableDig() { canDig = true; }
+
     void OnDestroy() {
         EventManager.specialAction -= TryDig;
+        EventManager.therapyStarted -= DisableDig;
+        EventManager.therapyEnded -= EnableDig;
     }
 }
