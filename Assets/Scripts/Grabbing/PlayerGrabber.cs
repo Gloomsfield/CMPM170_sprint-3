@@ -1,6 +1,6 @@
 using Unity.Cinemachine;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class PlayerGrabber : MonoBehaviour {
 
     private LayerMask grabbableMask;
@@ -9,6 +9,7 @@ public class PlayerGrabber : MonoBehaviour {
 
     [SerializeField] float grabRange = 3f;
     [SerializeField] CinemachineCamera playerCam;
+    [SerializeField] Image playerCrossHair;
 
     //This means isHolding item is true if we have an item and that item is currently grabbed.
     //Its just faster this way then a big if statement if we need to reuse this
@@ -19,6 +20,7 @@ public class PlayerGrabber : MonoBehaviour {
     void Start() {
         // Select the game layer we can grab things from
         grabbableMask = LayerMask.GetMask("Grabbable");
+        playerCrossHair.enabled = false;
 
         // Suscribe TryGrab to the grabToggled event
         EventManager.grabStart += TryGrabStart;
@@ -27,7 +29,7 @@ public class PlayerGrabber : MonoBehaviour {
         // We attach the object to the camera that acts as the player's head
         headRb = playerCam.GetComponent<Rigidbody>();
     }
-
+   
     /* Sends a raycast from the camera to grabRange on mouse click, calling ToggleGrab()
      * on the hit object. IMPORTANT: grabbable objects be in the grabbable layer */
     void TryGrabStart() {
