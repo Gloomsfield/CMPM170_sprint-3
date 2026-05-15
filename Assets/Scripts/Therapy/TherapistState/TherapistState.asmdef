@@ -1,3 +1,16 @@
 {
-	"name": "TherapistState"
+    "name": "TherapistState",
+    "rootNamespace": "",
+    "references": [
+        "GUID:333aa9e09ed98501eb68a8eb7cf84002"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

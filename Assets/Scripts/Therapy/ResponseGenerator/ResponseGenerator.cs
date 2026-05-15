@@ -18,9 +18,12 @@ public class ResponseFormat {
 
 public class ResponseGenerator {
 
-	// TODO
+	private static List<ResponseFormat> _formats;
+
 	public static string Generate(BehaviorLog log, TherapistState state) {
-		return "";
+		int index = new System.Random().Next(_formats.Count);
+
+		return _formats[index].Format(state.recentBehavior);
 	}
 
 }
