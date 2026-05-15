@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI displaytext;
     [SerializeField] TextMeshProUGUI pressSpace;
     [SerializeField] Image textBackground;
+    [SerializeField] Animator therapistAnimator;
     string pressSpaceText = "Press Space To Continue...";
     [SerializeField] float typingSpeed = 0.5f; // Smaller = Faster
     [SerializeField] DialogueInputHandler uiInput; // Link to inputhandler for space
@@ -56,8 +57,9 @@ public class UIManager : MonoBehaviour
 		displaytext.gameObject.SetActive(true);
 		pressSpace.gameObject.SetActive(true);
 		textBackground.gameObject.SetActive(true);
-		
-		if (typingCoroutine != null)
+        therapistAnimator.SetBool("Talking", true);
+
+        if (typingCoroutine != null)
 		{
 		    StopCoroutine(typingCoroutine);
 		}
@@ -67,7 +69,7 @@ public class UIManager : MonoBehaviour
 
     IEnumerator TypeText(string textToType)
     {
-
+        
         isTyping = true;
         displaytext.text = "";
         pressSpace.text = "";
@@ -95,7 +97,9 @@ public class UIManager : MonoBehaviour
     // Clears text and hides the UI. Also changes the gamestate back
     void EndConversation()
     {
+        
         setText("");
+        therapistAnimator.SetBool("Talking", false);
         displaytext.gameObject.SetActive(false);
         pressSpace.gameObject.SetActive(false);
 
