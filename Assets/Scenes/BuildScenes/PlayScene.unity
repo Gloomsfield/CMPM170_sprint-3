@@ -1221,6 +1221,10 @@ PrefabInstance:
       propertyPath: sfxVolume
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 3087820902813751502, guid: d635af34bbd76460b992a16c4ae98f18, type: 3}
+      propertyPath: therapistBleep
+      value: 
+      objectReference: {fileID: 8300000, guid: 1b94e02c198a4c344b8c5fa0e0b19999, type: 3}
     - target: {fileID: 6224892976180608355, guid: d635af34bbd76460b992a16c4ae98f18, type: 3}
       propertyPath: m_LocalPosition.x
       value: 181.03883
