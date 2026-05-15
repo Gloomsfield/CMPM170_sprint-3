@@ -62,6 +62,11 @@ public class EventManager {
         therapyEnded?.Invoke();
     }
 
+    public static event Action IntroSceneStarted;
+    public static void InvokeIntroSceneStarted() {
+        IntroSceneStarted?.Invoke();
+    }
+
     public static event Action IntroSceneComplete;
     public static void InvokeIntroSceneComplete() {
         IntroSceneComplete?.Invoke();
