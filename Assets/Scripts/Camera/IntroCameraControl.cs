@@ -20,6 +20,7 @@ public class IntroCameraControl : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        EventManager.InvokeIntroSceneStarted();
         StartCoroutine(PlayIntro());
     }
 

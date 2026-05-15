@@ -60,6 +60,7 @@ public class FirstPersonController : MonoBehaviour
         disableMovement = () => canMove = false;
         EventManager.therapyStarted += disableMovement;
         EventManager.therapyEnded += enableMovement;
+        EventManager.IntroSceneStarted += disableMovement;
         EventManager.IntroSceneComplete += enableMovement;
     }
 
