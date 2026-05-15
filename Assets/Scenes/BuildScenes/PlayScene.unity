@@ -1595,10 +1595,10 @@ MonoBehaviour:
         z: 2.620766
       Rotation:
         value:
-          x: -0.115737475
-          y: 0.9209632
-          z: -0.32665032
-          w: -0.17813246
+          x: -0.11573747
+          y: 0.92096317
+          z: -0.32665038
+          w: -0.17813249
     - Position:
         x: -25.111118
         y: -13.719257
@@ -2574,6 +2574,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aef7f8f49ff7a0a4f886aad751dbbc74, type: 3}
+--- !u!114 &414370449 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5946831018919079231, guid: b76f0ab1fe5e6254585c08262ddf6664, type: 3}
+  m_PrefabInstance: {fileID: 1794397102}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!114 &421782444 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2848173545718053475, guid: 2b8bff505a36c4248be67610d65a52a8, type: 3}
@@ -7758,6 +7769,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7432413329330141432, guid: 8d2131b0b450897408c50d5204e0bd24, type: 3}
   m_PrefabInstance: {fileID: 1537478908}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1546420380 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 740452893194644587, guid: b76f0ab1fe5e6254585c08262ddf6664, type: 3}
+  m_PrefabInstance: {fileID: 1794397102}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &1572919086
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8629,6 +8651,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1009803456985712064, guid: b76f0ab1fe5e6254585c08262ddf6664, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3658973772763907654, guid: b76f0ab1fe5e6254585c08262ddf6664, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3967418369737199848, guid: b76f0ab1fe5e6254585c08262ddf6664, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532429458958936727, guid: b76f0ab1fe5e6254585c08262ddf6664, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5229202984069289594, guid: b76f0ab1fe5e6254585c08262ddf6664, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -8707,6 +8745,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5229202984069289594, guid: b76f0ab1fe5e6254585c08262ddf6664, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7841889269031069003, guid: b76f0ab1fe5e6254585c08262ddf6664, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -10296,6 +10338,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1749880173}
     - target: {fileID: 2004711576241097192, guid: a2fa524305b86a146a410bd65d51d7ca, type: 3}
+      propertyPath: typingSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2004711576241097192, guid: a2fa524305b86a146a410bd65d51d7ca, type: 3}
+      propertyPath: mouthdisplay
+      value: 
+      objectReference: {fileID: 1546420380}
+    - target: {fileID: 2004711576241097192, guid: a2fa524305b86a146a410bd65d51d7ca, type: 3}
+      propertyPath: mouthdisplayBG
+      value: 
+      objectReference: {fileID: 414370449}
+    - target: {fileID: 2004711576241097192, guid: a2fa524305b86a146a410bd65d51d7ca, type: 3}
       propertyPath: textBackground
       value: 
       objectReference: {fileID: 2061093230}
@@ -10306,6 +10360,10 @@ PrefabInstance:
     - target: {fileID: 4307992364317046113, guid: a2fa524305b86a146a410bd65d51d7ca, type: 3}
       propertyPath: m_Name
       value: UIManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4307992364317046113, guid: a2fa524305b86a146a410bd65d51d7ca, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
