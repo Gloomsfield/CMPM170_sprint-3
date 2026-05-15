@@ -14,7 +14,14 @@ namespace Core.Managers
         {
             yield return new WaitForSeconds(seconds);
             EventManager.invokePlaytestEnded(); // Fire this event so that listeners can replace message in GameManager.playtestResultMessage
+            UnlockCursor();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        
+        private void UnlockCursor()
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true; 
         }
 
     }
