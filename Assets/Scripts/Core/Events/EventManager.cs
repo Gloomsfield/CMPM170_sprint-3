@@ -42,9 +42,9 @@ public class EventManager {
 		Debug.Log(d);
 	}
 
-	public static event Action<string> onBehaviorComplete;
+	public static event Action<Behavior> onBehaviorComplete;
 	public static void InvokeBehaviorComplete(Behavior behavior) {
-		Debug.Log($"The {behavior.sub.name} {behavior.verb.Conjugate(VerbTense.PAST)} the {behavior.obj.name}");
+		onBehaviorComplete.Invoke(behavior);
 	}
 
     // TODO
