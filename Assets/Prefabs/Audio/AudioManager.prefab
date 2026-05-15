@@ -439,4 +439,11 @@ MonoBehaviour:
   playerSource: {fileID: 5451012712530436638}
   musicVolume: 0.1
   uiVolume: 0.1
-  sfxVolume: 0.1
+  sfxVolume: 0.4
+  therapistBleep:
+  - {fileID: 8300000, guid: e9789c7c42861e74a9ccfe265a3b4b02, type: 3}
+  - {fileID: 8300000, guid: 18f72463cd3201145bb4fd17e546ecf6, type: 3}
+  - {fileID: 8300000, guid: 4a3da0e97352f214985cdae0a38094c0, type: 3}
+  - {fileID: 8300000, guid: 587d7b32d1221b645a1a424cdf3ba651, type: 3}
+  - {fileID: 8300000, guid: b396e8a0061c725449de3d6783aabda3, type: 3}
+  - {fileID: 8300000, guid: b15afd44bf354234fba6a75ccc428557, type: 3}

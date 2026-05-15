@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2832479792260433464}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -47,15 +47,21 @@ MonoBehaviour:
   minBounds: {x: -5, y: -1, z: -5}
   maxBounds: {x: 5, y: 1, z: 5}
   categoryGroups:
-  - category: 0
-    weight: 1
-    prefabs:
-    - {fileID: 7372285923208925779, guid: c0dd1ff56cda3b84992a4d5dce75d626, type: 3}
-  - category: 1
-    weight: 1
-    prefabs:
-    - {fileID: 6840671286975987398, guid: 148e03ce4da06c941ba6a74a8416ba1c, type: 3}
   - category: 2
     weight: 1
     prefabs:
-    - {fileID: 1877922244525915381, guid: 86805c776c7274946b1c8599571c290b, type: 3}
+    - {fileID: 8680668180540048092, guid: 780203101c559c04bb1d6b10236ca1cb, type: 3}
+    - {fileID: 6965752201831017084, guid: 5d14d8d1426eaf048ac944bdab310a47, type: 3}
+    - {fileID: 8107555715903994748, guid: f9ba189866b0c37468b681725ea4c343, type: 3}
+  - category: 1
+    weight: 1
+    prefabs:
+    - {fileID: 7823554085422531625, guid: 9c60c03b0e2c4624c97af4d46339a18c, type: 3}
+    - {fileID: 6426924977398657479, guid: f8215390d9650484ab3c94db2be87006, type: 3}
+  - category: 0
+    weight: 1
+    prefabs:
+    - {fileID: 1281053876687307834, guid: 6aecf1b256a6e4f43aea4f9d4529fbf1, type: 3}
+    - {fileID: 8836803988759888558, guid: 20d4d48516a54ae47878e2a09b66a09e, type: 3}
+    - {fileID: 313852534856266260, guid: 6a0aa95de6b21644b86524abf378fbef, type: 3}
+    - {fileID: 5859963450118085687, guid: 55a3ee11a2acb51469d3bfb0318858df, type: 3}
