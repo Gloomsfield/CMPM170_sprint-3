@@ -7,11 +7,12 @@ namespace Player
 {
     public class PauseController : MonoBehaviour
     {
-        [Header("Name of scene to load when pausing the game")]
-        [SerializeField] private string pauseSceneName = "PauseSceneOverlay";
+        // Name of scene to load when pausing the game
+        private const string playSceneName = "PlayScene";
+        private const string pauseSceneName = "PauseSceneOverlay";
         
-        private bool asyncActive;
-        private bool paused;
+        private static bool asyncActive;
+        private static bool paused;
         
         private void OnPause(InputValue value)
         {
@@ -20,7 +21,7 @@ namespace Player
 
         private IEnumerator TriggerPause()
         {
-            if (asyncActive) // Debounce, since loading a scene is async. This avoids race conditions
+            if (asyncActive) // Debounce, since loading a scene is async. This avoids race conditions, effectively an atomic lock
                 yield break;
             
             if (paused)
@@ -31,43 +32,67 @@ namespace Player
 
         private IEnumerator DoUnpause()
         {
+            if (asyncActive)
+                yield break;
+
             asyncActive = true;
 
-            var sceneAsync = SceneManager.UnloadSceneAsync(pauseSceneName);
+            SceneManager.UnloadSceneAsync(pauseSceneName);
 
-            yield return new WaitUntil(() => sceneAsync?.isDone ?? true);
-            
-            asyncActive = false;
-            paused = false;
+            // yield return new WaitUntil(() => sceneAsync?.isDone ?? true);
+
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(playSceneName));
+
+            paused = false;
+            asyncActive = false;
         }
 
         private IEnumerator DoPause()
         {
+            if (asyncActive)
+                yield break;
+
             asyncActive = true;
-            
+
             var sceneAsync = SceneManager.LoadSceneAsync(pauseSceneName, LoadSceneMode.Additive);
 
             yield return new WaitUntil(() => sceneAsync?.isDone ?? true);
-            
-            asyncActive = false;
 
-            if (sceneAsync == null)
-                yield break;
-            
-            // TODO set time for currently active scene to zero to stop physics
-            
-            var newScene = SceneManager.GetSceneByName(pauseSceneName);
-            if (newScene.IsValid())
+            if (sceneAsync != null)
             {
-                paused = true;
+                var newScene = SceneManager.GetSceneByName(pauseSceneName);
+                if (newScene.IsValid())
+                {
+                    // TODO set time for currently active scene to zero to stop physics
 
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
+                    paused = true;
 
-                SceneManager.SetActiveScene(newScene);
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
+
+                    SceneManager.SetActiveScene(newScene);
+                }
             }
+
+            asyncActive = false;
+        }
+
+        public void Resume()
+        {
+            StartCoroutine(nameof(DoUnpause));
+        }
+
+        public void StartTitleScene()
+        {
+            Resume();
+
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            
+            SceneManager.LoadScene(0);
         }
     }
 }
