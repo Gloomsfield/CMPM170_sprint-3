@@ -64,6 +64,8 @@ public class TherapyManager : MonoBehaviour {
     }
 
 	void JudgeBehavior(Behavior behavior) {
+		if(_state.recentBehavior != null) { return; }
+		
 		bool notable = false;
 
 		foreach(VerbType notableVerb in _notableVerbs) {
@@ -78,6 +80,8 @@ public class TherapyManager : MonoBehaviour {
 		if(!notable) { return; }
 
 		_state.recentBehavior = behavior;
+
+		
 
 		Debug.Log(_responseGenerator.Generate(null, _state));
 	}
