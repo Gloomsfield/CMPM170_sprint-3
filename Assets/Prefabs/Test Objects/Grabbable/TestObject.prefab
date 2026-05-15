@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 479130932530929645}
   - component: {fileID: 412162954375706745}
   - component: {fileID: 4283329461149842455}
+  - component: {fileID: 2959397643367382810}
   m_Layer: 3
   m_Name: TestObject
   m_TagString: Untagged
@@ -183,3 +184,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: ItemProperties::ItemNounWrapper
   nounInstanceName: block
   nounTags: 
+--- !u!114 &2959397643367382810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8177590495805763049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65fbfa756cd1a40d0b58da2d29d53d68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Digging::DigMod
+  digRange: 3

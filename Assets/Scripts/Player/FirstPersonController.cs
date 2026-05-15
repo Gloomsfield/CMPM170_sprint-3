@@ -22,7 +22,7 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private float crouchSpeed = 10.0f;
     float camOffset = 0.4f;
     bool isCrouching = false;
-    bool canMove = false;
+    bool canMove = true;
 
     Action enableMovement;
     Action disableMovement;
@@ -60,6 +60,7 @@ public class FirstPersonController : MonoBehaviour
         disableMovement = () => canMove = false;
         EventManager.therapyStarted += disableMovement;
         EventManager.therapyEnded += enableMovement;
+        EventManager.IntroSceneStarted += disableMovement;
         EventManager.IntroSceneComplete += enableMovement;
     }
 
