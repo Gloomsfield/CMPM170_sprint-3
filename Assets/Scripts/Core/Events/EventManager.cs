@@ -38,6 +38,10 @@ public class EventManager {
 		onBehavior.Invoke(new(sub, obj, new VerbInstance(VerbType.DROPS, new())));
 	}
 
+	public static void InvokeItemThrown(NounInstance sub, NounInstance obj) {
+		onBehavior.Invoke(new(sub, obj, new VerbInstance(VerbType.THROWS, new())));
+	}
+
 	public static void InvokeDebug(string d) {
 		Debug.Log(d);
 	}
