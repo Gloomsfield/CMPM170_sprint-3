@@ -15,9 +15,17 @@ public class TherapistCamFocus
 
     void FocusCamOnTherapist()
     {
+		CinemachineCore.BlendFinishedEvent.AddListener(DisplayJudgementWrapper);
+
         playerCam.enabled = false;
         therapistCam.enabled = true;
     }
+
+	private void DisplayJudgementWrapper(ICinemachineMixer _1, ICinemachineCamera _2) {
+		TherapyManager.Instance.DisplayJudgement();
+		
+		CinemachineCore.BlendFinishedEvent.RemoveListener(DisplayJudgementWrapper);
+	}
 
     void FocusCamOnPlayer()
     {

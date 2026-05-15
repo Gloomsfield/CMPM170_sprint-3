@@ -8,14 +8,13 @@ public class TherapyManager : MonoBehaviour {
 
     [SerializeField] CinemachineCamera playerCam;
     [SerializeField] CinemachineCamera therapyCam;
-    [SerializeField] int playTime = 25;
-    [SerializeField] int therapyTime = 10;
-
 
     private TherapistCamFocus camController;
 
 	private TherapistState _state = new();
 	private ResponseGenerator _responseGenerator;
+
+	private string _currentJudgement;
 
 	private List<VerbType> _notableVerbs = new(){
 		VerbType.THROWS,
@@ -29,39 +28,13 @@ public class TherapyManager : MonoBehaviour {
             Destroy(gameObject);
 
         camController = new TherapistCamFocus(playerCam, therapyCam);
-         
-        EventManager.therapyStarted += StartStuckInTherapyTimer;
-        EventManager.therapyEnded += StartWaitingForTherapyTimer;
 
 		EventManager.onBehavior += JudgeBehavior;
-
-        StartWaitingForTherapyTimer();
     }
 
 	void Start() {
 		_responseGenerator = new(Resources.Load<TextAsset>("responses").text);
 	}
-
-    IEnumerator WaitForTherapy() {
-        // TODO make dynamic???
-        yield return new WaitForSeconds(playTime); //needs to become an export var for time waiting.
-        EventManager.InvokeTherapyStarted();
-
-    }
-
-    IEnumerator StuckInTherapy() {
-        // TODO make dynamic???
-        yield return new WaitForSeconds(therapyTime);
-        EventManager.InvokeTherapyEnded();
-    }
-
-    void StartWaitingForTherapyTimer() {
-        StartCoroutine(WaitForTherapy());
-    }
-
-    void StartStuckInTherapyTimer() {
-        StartCoroutine(StuckInTherapy());
-    }
 
 	void JudgeBehavior(Behavior behavior) {
 		if(_state.recentBehavior != null) { return; }
@@ -81,14 +54,21 @@ public class TherapyManager : MonoBehaviour {
 
 		_state.recentBehavior = behavior;
 
-		
+		_currentJudgement = _responseGenerator.Generate(null, _state);
 
-		Debug.Log(_responseGenerator.Generate(null, _state));
+		EventManager.InvokeTherapyStarted();
+	}
+
+	public void DisplayJudgement() {
+		UIManager.Instance.setText(_currentJudgement);
+
+		UIManager.Instance.DisplayTherapyText();
+
+		_state.recentBehavior = null;
+		_currentJudgement = "";
 	}
 
     void OnDestroy() {
         camController.Unsuscribe();
-        EventManager.therapyStarted -= StartStuckInTherapyTimer;
-        EventManager.therapyEnded -= StartWaitingForTherapyTimer;
     }
 }

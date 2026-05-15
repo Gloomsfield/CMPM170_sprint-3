@@ -14,16 +14,26 @@ public class UIManager : MonoBehaviour
     bool isTyping = false;
     Coroutine typingCoroutine;
 
+	public static UIManager Instance;
+
+	void Awake() {
+		if(Instance != null && Instance != this) {
+			Destroy(gameObject);
+			return;
+		}
+
+		Instance = this;
+		DontDestroyOnLoad(gameObject);
+	}
+
     void OnEnable()
     {
-        //TODO: Subscribe to event
-        //SubscribeToEvent += DisplayTherapyText
+		EventManager.onContinueTriggered += OnContinue;
     }
 
     void OnDisable()
     {
-        //TODO: Unsubcribe to event
-        //SubscribeToEvent -= DisplayTherapyText
+		EventManager.onContinueTriggered -= OnContinue;
     }
 
     // Sets the text for what the Therapist will say
@@ -34,19 +44,19 @@ public class UIManager : MonoBehaviour
     }
 
     // Starts the dialogue with typewritter effect. 
-    void DisplayTherapyText()
+    public void DisplayTherapyText()
     {
+		Debug.Log("display");
 
-            displaytext.gameObject.SetActive(true);
-            pressSpace.gameObject.SetActive(true);
-
-            if (typingCoroutine != null)
-            {
-                StopCoroutine(typingCoroutine);
-            }
-
-            typingCoroutine = StartCoroutine(TypeText(currentFullText));
-
+		displaytext.gameObject.SetActive(true);
+		pressSpace.gameObject.SetActive(true);
+		
+		if (typingCoroutine != null)
+		{
+		    StopCoroutine(typingCoroutine);
+		}
+		
+		typingCoroutine = StartCoroutine(TypeText(currentFullText));
     }
 
     IEnumerator TypeText(string textToType)
@@ -61,7 +71,7 @@ public class UIManager : MonoBehaviour
             displaytext.text += letter;
             if (displaytext.text.Length % letterGap == 0)
             {
-                AudioManager.Instance.PlayTherapistLetter(Random.Range(0.9f, 1.1f));
+                // AudioManager.Instance.PlayTherapistLetter(Random.Range(0.9f, 1.1f));
             }
             yield return new WaitForSeconds(typingSpeed);
         }
@@ -82,6 +92,8 @@ public class UIManager : MonoBehaviour
         setText("");
         displaytext.gameObject.SetActive(false);
         pressSpace.gameObject.SetActive(false);
+
+		EventManager.InvokeTherapyEnded();
     }
 
     void Start()
@@ -89,27 +101,23 @@ public class UIManager : MonoBehaviour
         // TOREMOVE: this function will be called with an event
         // This is for testing purposes
         setText("THERAPY HAS STARTED! BURN EVERYTHING THIS TEXT IS FOR TESTING PURPOSES THIS TEXT IS FOR TESTING PURPOSES THIS TEXT IS FOR TESTING PURPOSES THIS TEXT IS FOR TESTING PURPOSES THIS TEXT IS FOR TESTING PURPOSES THIS TEXT IS FOR TESTING PURPOSES THIS TEXT IS FOR TESTING PURPOSES THIS TEXT IS FOR TESTING PURPOSES THIS TEXT IS FOR TESTING PURPOSES");
-        DisplayTherapyText();
 
         //displaytext.text = "";
         //displaytext.gameObject.SetActive(false);
     }
 
-    void Update()
+    void OnContinue()
     {
-        if (uiInput.ContinueTriggered)
-        {
-            if (isTyping)
-            {
-                // If the therapist is still talking and space is pressed, instantly show the full text   
-                StopCoroutine(typingCoroutine);
-                displaytext.text = currentFullText;
-                isTyping = false;
-            }
-            else
-            {
-                EndConversation();
-            }
-        }
-    }
+		if (isTyping)
+		{
+           // If the therapist is still talking and space is pressed, instantly show the full text   
+           StopCoroutine(typingCoroutine);
+           displaytext.text = currentFullText;
+           isTyping = false;
+       }
+       else
+       {
+           EndConversation();
+       }
+	}
 }

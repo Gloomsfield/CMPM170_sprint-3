@@ -46,6 +46,11 @@ public class EventManager {
 		onBehavior?.Invoke(behavior);
 	}
 
+	public static event Action onContinueTriggered;
+	public static void InvokeContinueTriggered() {
+		onContinueTriggered?.Invoke();
+	}
+
 	public static void InvokeDebug(string d) {
 		Debug.Log(d);
 	}
