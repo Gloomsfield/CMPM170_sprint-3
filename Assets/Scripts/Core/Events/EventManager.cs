@@ -71,4 +71,11 @@ public class EventManager {
     public static void invokePlaytestEnded() {
         playtestEnded?.Invoke();
     }
+
+    // Special action is reserved for any action that uses the right MB
+    public static event Action specialAction;
+    public static void InvokeSpecialAction() {
+        specialAction?.Invoke();
+    }
+
 }

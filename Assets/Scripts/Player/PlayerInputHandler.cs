@@ -18,6 +18,7 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField] private string sprint = "Sprint";
     [SerializeField] private string grab = "Grab";
     [SerializeField] private string crouch = "Crouch"; 
+    [SerializeField] private string dig = "Dig"; 
 
     // Interal references to the actual InputAction objects retrieved from the asset
     private InputAction movementAction;
@@ -26,6 +27,7 @@ public class PlayerInputHandler : MonoBehaviour
     private InputAction sprintAction;
     private InputAction grabAction;
     private InputAction crouchAction;
+    private InputAction digAction;
 
     // Public read only so FirstPersonController can read them but not change them
     public Vector2 MovementInput { get; private set; }
@@ -47,6 +49,7 @@ public class PlayerInputHandler : MonoBehaviour
         sprintAction = mapReference.FindAction(sprint);
         grabAction = mapReference.FindAction(grab);
         crouchAction = mapReference.FindAction(crouch);
+        digAction = mapReference.FindAction(dig);
 
         SubscribeActionValuesToInputEvents();
     }
@@ -86,6 +89,8 @@ public class PlayerInputHandler : MonoBehaviour
         crouchAction.performed += inputInfo => CrouchTriggered = true;
         // Crouch becomes false when crouch is released
         crouchAction.canceled += inputInfo => CrouchTriggered = false;
+
+        digAction.performed += inputInfo => EventManager.InvokeSpecialAction();
 
     }
 
