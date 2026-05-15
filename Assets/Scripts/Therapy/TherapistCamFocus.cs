@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class TherapistCamFocus
 {
-    [SerializeField] CinemachineCamera playerCam;
-    [SerializeField] CinemachineCamera therapistCam;
+    CinemachineCamera playerCam;
+    CinemachineCamera therapistCam;
 
     public TherapistCamFocus(CinemachineCamera playerCam, CinemachineCamera therapistCam) {
         this.playerCam = playerCam;

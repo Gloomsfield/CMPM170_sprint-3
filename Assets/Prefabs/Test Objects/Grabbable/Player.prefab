@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 871012318103228950}
   - component: {fileID: 9035420015696790571}
   - component: {fileID: 6686079877902684235}
+  - component: {fileID: 3988114274799190684}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -210,6 +211,7 @@ MonoBehaviour:
   characterController: {fileID: 4044539217444702977}
   playerCam: {fileID: 2848173545718053475}
   playerInputHandler: {fileID: 7035936092976061075}
+  PN: {fileID: 0}
 --- !u!114 &9035420015696790571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +243,20 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6e6d028dff24a0245a46e6c183ca8bf6, type: 3}
   - {fileID: 8300000, guid: cb21bf80c38a3d04c908fd3230a824cd, type: 3}
   - {fileID: 8300000, guid: 523a2ac3a10f9ab4a936e485cd08bdf7, type: 3}
+--- !u!114 &3988114274799190684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6660847347498070337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7261c66a1419a3809fb8e01015ce56f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ItemProperties::ItemNounWrapper
+  nounInstanceName: Player
+  nounTags: 
 --- !u!1 &7186852325856951930
 GameObject:
   m_ObjectHideFlags: 0
