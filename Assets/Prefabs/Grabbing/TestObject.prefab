@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a2336b7b29266cb695a5969e11f51b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemCollisionManager
-  dropSFX: {fileID: 8300000, guid: e359be4c8aae97946b6ad55887094791, type: 3}
+  dropSFX: {fileID: 8300000, guid: 3bc2c06f86cef374e84917c5af4bc9d2, type: 3}
 --- !u!114 &4283329461149842455
 MonoBehaviour:
   m_ObjectHideFlags: 0
