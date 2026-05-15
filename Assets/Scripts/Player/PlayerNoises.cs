@@ -17,7 +17,6 @@ public class PlayerNoises : MonoBehaviour
     {
         if (!isPlaying)
         {
-            Debug.Log("Walking audio called");
             AudioManager.Instance.PlayPlayerSFX(footStepSFX, true);
             isPlaying = true;
         }
