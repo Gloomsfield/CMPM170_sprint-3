@@ -10,6 +10,8 @@ public class TherapyManager : MonoBehaviour {
 
     private TherapistCamFocus camController;
 
+	private TherapistState state;
+
     void Awake() {
         if (Instance == null) {
             Instance = this;
@@ -21,6 +23,8 @@ public class TherapyManager : MonoBehaviour {
          
         EventManager.therapyStarted += StartStuckInTherapyTimer;
         EventManager.therapyEnded += StartWaitingForTherapyTimer;
+
+		EventManager.onBehaviorComplete += JudgeBehavior;
 
         StartWaitingForTherapyTimer();
     }
