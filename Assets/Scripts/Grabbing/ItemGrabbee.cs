@@ -18,6 +18,7 @@ public class ItemGrabbee : MonoBehaviour {
 
 	private event Action onGrab;
 	private event Action onDrop;
+	private event Action onThrow;
 
 	private Vector3 _lastPosition;
 	private float _lastDeltaTime;
@@ -25,6 +26,7 @@ public class ItemGrabbee : MonoBehaviour {
 	void Start() {
 		onGrab += GetComponent<ItemNounWrapper>().OnGrab;
 		onDrop += GetComponent<ItemNounWrapper>().OnDrop;
+		onThrow += GetComponent<ItemNounWrapper>().OnThrow;
 	}
 
 	void Update() {
@@ -54,7 +56,14 @@ public class ItemGrabbee : MonoBehaviour {
             grabJoint = null;
         }
 
-		GetComponent<Rigidbody>().linearVelocity = (transform.position - _lastPosition) / (_lastDeltaTime * 2.5f);
+		Vector3 throwVelocity = (transform.position - _lastPosition) / (_lastDeltaTime * 2.5f);
+
+		GetComponent<Rigidbody>().linearVelocity = throwVelocity;
+
+		if(throwVelocity.sqrMagnitude > 10.0f) {
+			onThrow.Invoke();
+			return;
+		}
 
 		onDrop.Invoke();
     }

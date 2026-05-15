@@ -14,7 +14,8 @@ public class TherapyManager : MonoBehaviour {
 
     private TherapistCamFocus camController;
 
-	private TherapistState _state;
+	private TherapistState _state = new();
+	private ResponseGenerator _responseGenerator;
 
 	private List<VerbType> _notableVerbs = new(){
 		VerbType.THROWS,
@@ -36,6 +37,10 @@ public class TherapyManager : MonoBehaviour {
 
         StartWaitingForTherapyTimer();
     }
+
+	void Start() {
+		_responseGenerator = new(Resources.Load<TextAsset>("responses").text);
+	}
 
     IEnumerator WaitForTherapy() {
         // TODO make dynamic???
@@ -74,7 +79,7 @@ public class TherapyManager : MonoBehaviour {
 
 		_state.recentBehavior = behavior;
 
-		ResponseGenerator.Generate(null, _state);
+		Debug.Log(_responseGenerator.Generate(null, _state));
 	}
 
     void OnDestroy() {
