@@ -29,13 +29,13 @@ public class EventManager {
 		Debug.Log(p);
 	}
 
-	public static event Action<NounInstance, NounInstance, VerbInstance> onBehavior;
+	public static event Action<Behavior> onBehavior;
 	public static void InvokeItemGrabbed(NounInstance sub, NounInstance obj) {
-		onBehavior?.Invoke(sub, obj, new(VerbType.GRABS, new()));
+		onBehavior?.Invoke(new(sub, obj, new(VerbType.GRABS, new())));
 	}
 
 	public static void InvokeItemDropped(NounInstance sub, NounInstance obj) {
-		onBehavior.Invoke(sub, obj, new VerbInstance(VerbType.DROPS, new()));
+		onBehavior.Invoke(new(sub, obj, new VerbInstance(VerbType.DROPS, new())));
 	}
 
 	public static void InvokeDebug(string d) {
@@ -43,8 +43,8 @@ public class EventManager {
 	}
 
 	public static event Action<string> onBehaviorComplete;
-	public static void InvokeBehaviorComplete(NounInstance sub, NounInstance obj, VerbType verb) {
-		Debug.Log($"The {sub.name} {verb.Conjugate(VerbTense.PAST)} the {obj.name}");
+	public static void InvokeBehaviorComplete(Behavior behavior) {
+		Debug.Log($"The {behavior.sub.name} {behavior.verb.Conjugate(VerbTense.PAST)} the {behavior.obj.name}");
 	}
 
     // TODO

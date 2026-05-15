@@ -88,10 +88,10 @@ public class Pattern {
 		return true;
 	}
 
-	public bool TryContinue(NounInstance sub, NounInstance obj, VerbInstance verb) {
+	public bool TryContinue(Behavior behavior) {
 		if(_continueConditions.Count < 1) { return false; }
 
-		if(!MeetsCondition(sub, obj, verb, _continueConditions[0])) { return false; }
+		if(!MeetsCondition(behavior, _continueConditions[0])) { return false; }
 
 		_continueConditions.RemoveAt(0);
 		if(_cancelConditions.Count > 0 && _conditionCounter > 0) { _cancelConditions.RemoveAt(0); }
@@ -100,23 +100,21 @@ public class Pattern {
 		return true;
 	}
 
-	public bool TryCancel(NounInstance sub, NounInstance obj, VerbInstance verb) {
+	public bool TryCancel(Behavior behavior) {
 		if(_cancelConditions.Count < 1) { return false; }
 		if(_conditionCounter < 1) { return false; }
 
-		if(!MeetsCondition(sub, obj, verb, _cancelConditions[0])) { return false; }
+		if(!MeetsCondition(behavior, _cancelConditions[0])) { return false; }
 
 		return true;
 	}
 
 	private bool MeetsCondition(
-		NounInstance sub,
-		NounInstance obj,
-		VerbInstance verb,
+		Behavior behavior,
 		List<Condition> conditions
 	) {
-		bool subRegistered = _inverseNounDefinitions.TryGetValue(sub, out string subIdentifier);
-		bool objRegistered = _inverseNounDefinitions.TryGetValue(obj, out string objIdentifier);
+		bool subRegistered = _inverseNounDefinitions.TryGetValue(behavior.sub, out string subIdentifier);
+		bool objRegistered = _inverseNounDefinitions.TryGetValue(behavior.obj, out string objIdentifier);
 
 		foreach(Condition condition in conditions) {
 			if(subRegistered && condition.subIdentifier != subIdentifier) { continue; }
@@ -128,14 +126,14 @@ public class Pattern {
 			if(!_nounDeclarations.TryGetValue(condition.subIdentifier, out NounRestriction subRestriction)) { continue; }
 			if(!_nounDeclarations.TryGetValue(condition.objIdentifier, out NounRestriction objRestriction)) { continue; }
 
-			bool subConforms = subRestriction.CheckConformity(sub);
-			bool objConforms = objRestriction.CheckConformity(obj);
-			bool verbConforms = condition.verbRestriction.CheckConformity(verb);
+			bool subConforms = subRestriction.CheckConformity(behavior.sub);
+			bool objConforms = objRestriction.CheckConformity(behavior.obj);
+			bool verbConforms = condition.verbRestriction.CheckConformity(behavior.verb);
 
 			if(!subConforms || !objConforms || !verbConforms) { continue; }
 
-			if(!subRegistered) { TryDefineNoun(condition.subIdentifier, sub); }
-			if(!objRegistered) { TryDefineNoun(condition.objIdentifier, obj); }
+			if(!subRegistered) { TryDefineNoun(condition.subIdentifier, behavior.sub); }
+			if(!objRegistered) { TryDefineNoun(condition.objIdentifier, behavior.obj); }
 
 			return true;
 		}

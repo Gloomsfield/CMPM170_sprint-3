@@ -1,10 +1,8 @@
 {
-    "name": "Events",
+    "name": "Behavior",
     "rootNamespace": "",
     "references": [
-        "GUID:d0b995dd7afc7534cb4402570d4b73a3",
-        "GUID:823ee465c1514f120a9318f6f9a4a67d",
-        "GUID:333aa9e09ed98501eb68a8eb7cf84002"
+        "GUID:823ee465c1514f120a9318f6f9a4a67d"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
