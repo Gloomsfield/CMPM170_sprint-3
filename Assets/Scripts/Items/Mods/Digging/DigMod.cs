@@ -4,17 +4,18 @@ using UnityEngine;
 public class DigMod : MonoBehaviour {
     private LayerMask diggableMask;
     private CinemachineCamera holderHead;
+    private bool isHeld = false;
 
     [SerializeField] float digRange = 3f;
 
     void Start() {
         diggableMask = LayerMask.GetMask("Diggable");
-        // Get the head of the whoever is grabbing this obj
-        ItemGrabbee holder = GetComponent<ItemGrabbee>();
-        holderHead = holder.gameObject.GetComponent<PlayerGrabber>().GetHead();
+
+        EventManager.specialAction += TryDig;
     }
 
     void TryDig() {
+        if (!CheckIfHeld()) return;
         Ray ray = new Ray(transform.position, holderHead.transform.forward);
 
         Debug.DrawLine(ray.origin, ray.origin + ray.direction * digRange,Color.green, 2f);
@@ -25,8 +26,17 @@ public class DigMod : MonoBehaviour {
         }
     }
 
+    bool CheckIfHeld() {
+        holderHead = GetComponent<ItemGrabbee>().GetHolderHead();
+        return holderHead != null;
+    }
+
     void DigAt(Terrain terrain) {
         TerrainData tData = terrain.terrainData;
         Debug.Log(tData);
+    }
+
+    void OnDestroy() {
+        EventManager.specialAction -= TryDig;
     }
 }

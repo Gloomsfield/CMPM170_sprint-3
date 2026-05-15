@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Unity.Cinemachine;
 
 /* This class is responsible for defining how an object should behave when it is
  * grabbed.
@@ -11,7 +12,7 @@ public class ItemGrabbee : MonoBehaviour {
     [SerializeField] float breakForce = 400f;
 
     private bool grabbed = false;
-    private GameObject holder;
+    private CinemachineCamera holderHead;
     private FixedJoint grabJoint;
 
     //A public bool so that PlayerGrabber can ref this.
@@ -38,7 +39,7 @@ public class ItemGrabbee : MonoBehaviour {
         grabbed = true;
 
         grabJoint = gameObject.AddComponent<FixedJoint>();
-        holder = grabberRb.gameObject;
+        holderHead = grabberRb.gameObject.GetComponent<CinemachineCamera>();
         grabJoint.connectedBody = grabberRb;
         grabJoint.breakForce = breakForce;
         grabJoint.breakTorque = breakForce;
@@ -54,7 +55,7 @@ public class ItemGrabbee : MonoBehaviour {
         {
             Destroy(grabJoint);
             grabJoint = null;
-            holder = null;
+            holderHead = null;
         }
 
 		GetComponent<Rigidbody>().linearVelocity = (transform.position - _lastPosition) / (_lastDeltaTime * 2.5f);
@@ -68,5 +69,5 @@ public class ItemGrabbee : MonoBehaviour {
         grabJoint = null;
     }
 
-    public GameObject GetHolder() { return holder; }
+    public CinemachineCamera GetHolderHead() { return holderHead; }
 }
