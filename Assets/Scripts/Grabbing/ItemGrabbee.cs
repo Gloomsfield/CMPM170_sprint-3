@@ -11,6 +11,7 @@ public class ItemGrabbee : MonoBehaviour {
     [SerializeField] float breakForce = 400f;
 
     private bool grabbed = false;
+    private GameObject holder;
     private FixedJoint grabJoint;
 
     //A public bool so that PlayerGrabber can ref this.
@@ -37,6 +38,7 @@ public class ItemGrabbee : MonoBehaviour {
         grabbed = true;
 
         grabJoint = gameObject.AddComponent<FixedJoint>();
+        holder = grabberRb.gameObject;
         grabJoint.connectedBody = grabberRb;
         grabJoint.breakForce = breakForce;
         grabJoint.breakTorque = breakForce;
@@ -52,6 +54,7 @@ public class ItemGrabbee : MonoBehaviour {
         {
             Destroy(grabJoint);
             grabJoint = null;
+            holder = null;
         }
 
 		GetComponent<Rigidbody>().linearVelocity = (transform.position - _lastPosition) / (_lastDeltaTime * 2.5f);
@@ -64,4 +67,6 @@ public class ItemGrabbee : MonoBehaviour {
         grabbed = false;
         grabJoint = null;
     }
+
+    public GameObject GetHolder() { return holder; }
 }
