@@ -16,7 +16,7 @@ public class EvaluationHandler {
 		get {
 			_instance ??= new EvaluationHandler();
 
-			EventManager.onBehavior += _instance.HandleEvent;
+			EventManager.onBehavior += _instance.HandleBehavior;
 
 			return _instance;
 		}
@@ -52,26 +52,23 @@ public class EvaluationHandler {
 
 	/// <summary>
 	/// The member function HandleEvent determines how to process
-	/// an incoming event using that event's <param name="sub">subject</param>,
-	/// <param name="obj">object</param>, and <param name="verb"/>.
+	/// an incoming event using that event's <param name="behavior"/>.
 	/// </summary>
-	/// <param name="sub">The subject associated with this event;
-	/// what is performing the action.</param>
-	/// <param name="obj">The object associated with this event;
-	/// what is being acted upon.</param>
-	/// <param name="verb">The verb associated with this event;
-	/// the action being performed.</param>
-	public void HandleEvent(NounInstance sub, NounInstance obj, VerbInstance verb) {
+	/// <param name="behavior">The behavior to handle.</param>
+	public void HandleBehavior(Behavior behavior) {
 		List<Pattern> newPatterns = new();
 
 		// TODO flip order of _unstartedPatterns checks and _activePatterns checks
 		// to prevent needing the newPatterns list
 
 		for(int i = _unstartedPatterns.Count - 1; i >= 0; i--) {
-			if(!_unstartedPatterns[i].TryContinue(sub, obj, verb)) { continue; }
+			if(!_unstartedPatterns[i].TryContinue(behavior)) { continue; }
 
 			if(_unstartedPatterns[i].continueConditionCount == 0) {
-				EventManager.InvokeBehaviorComplete(sub, obj, _unstartedPatterns[i].verbOnCompletion);
+				EventManager.InvokeBehaviorComplete(new(
+					behavior.sub, behavior.obj,
+					new(_unstartedPatterns[i].verbOnCompletion, new())
+				));
 
 				_unstartedPatterns.Add(_unstartedPatterns[i].blueprint.Build());
 				_unstartedPatterns.RemoveAt(i);
@@ -86,17 +83,17 @@ public class EvaluationHandler {
 		}
 
 		for(int i = _activePatterns.Count - 1; i >= 0; i--) {
-			if(_activePatterns[i].TryCancel(sub, obj, verb)) {
+			if(_activePatterns[i].TryCancel(behavior)) {
 				_activePatterns.RemoveAt(i);
 
 				continue;
 			}
 
-			if(!_activePatterns[i].TryContinue(sub, obj, verb)) { continue; }
+			if(!_activePatterns[i].TryContinue(behavior)) { continue; }
 
 			if(_activePatterns[i].continueConditionCount != 0) { continue; }
 
-			EventManager.InvokeBehaviorComplete(sub, obj, _activePatterns[i].verbOnCompletion);
+			EventManager.InvokeBehaviorComplete(new(behavior.sub, behavior.obj, new(_activePatterns[i].verbOnCompletion, new())));
 			_activePatterns.RemoveAt(i);
 		}
 
