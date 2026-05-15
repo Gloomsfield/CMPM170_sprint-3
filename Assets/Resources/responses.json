@@ -1,6 +1,6 @@
 [
 	{
-		"format": "NOW WHY WOULD YOU {verb.past.simple} THE {object}?"
+		"format": "NOW WHY WOULD YOU {verb.present.simple} THE {object}?"
 	},
 	{
 		"format": "INTERESTING... {verb.past.continuous} THE {object}..."
