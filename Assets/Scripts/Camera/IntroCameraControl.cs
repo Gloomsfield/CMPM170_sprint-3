@@ -9,6 +9,7 @@ public class IntroCameraControl : MonoBehaviour
     [SerializeField] CinemachineCamera skyCamera;
     [SerializeField] CinemachineCamera dollyCamera;
     [SerializeField] CinemachineCamera playerCamera;
+    [SerializeField] GameObject gnomeChillin;
 
     [Header("Timing")]
     [SerializeField] float skyViewTime = 2f;
@@ -35,6 +36,7 @@ public class IntroCameraControl : MonoBehaviour
 
         yield return new WaitForSeconds((float)dollyTimeLine.duration);
 
+        gnomeChillin.SetActive(false);
         SetCamera(playerCamera);
 
         yield return new WaitForSeconds(playerCamTime);
