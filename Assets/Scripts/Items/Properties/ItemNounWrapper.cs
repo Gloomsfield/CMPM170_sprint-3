@@ -18,17 +18,17 @@ public class ItemNounWrapper : MonoBehaviour {
 
 	public void OnGrab() {
 		NounInstance playerNoun = GameObject.FindWithTag("Player").GetComponent<ItemNounWrapper>().noun;
-		EventManager.InvokeItemGrabbed(playerNoun, noun);
+		EventManager.InvokeBehavior(new(playerNoun, noun, new VerbInstance(VerbType.GRABS, new())));
 	}
 
 	public void OnDrop() {
 		NounInstance playerNoun = GameObject.FindWithTag("Player").GetComponent<ItemNounWrapper>().noun;
-		EventManager.InvokeItemDropped(playerNoun, noun);
+		EventManager.InvokeBehavior(new(playerNoun, noun, new VerbInstance(VerbType.DROPS, new())));
 	}
 	
 	public void OnThrow() {
 		NounInstance playerNoun = GameObject.FindWithTag("Player").GetComponent<ItemNounWrapper>().noun;
-		EventManager.InvokeItemThrown(playerNoun, noun);
+		EventManager.InvokeBehavior(new(playerNoun, noun, new VerbInstance(VerbType.THROWS, new())));
 	}
 
 }

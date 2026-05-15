@@ -29,7 +29,7 @@ public class TherapyManager : MonoBehaviour {
         EventManager.therapyStarted += StartStuckInTherapyTimer;
         EventManager.therapyEnded += StartWaitingForTherapyTimer;
 
-		EventManager.onBehaviorComplete += JudgeBehavior;
+		EventManager.onBehavior += JudgeBehavior;
 
         StartWaitingForTherapyTimer();
     }

@@ -42,13 +42,12 @@ public class EventManager {
 		onBehavior.Invoke(new(sub, obj, new VerbInstance(VerbType.THROWS, new())));
 	}
 
-	public static void InvokeDebug(string d) {
-		Debug.Log(d);
+	public static void InvokeBehavior(Behavior behavior) {
+		onBehavior?.Invoke(behavior);
 	}
 
-	public static event Action<Behavior> onBehaviorComplete;
-	public static void InvokeBehaviorComplete(Behavior behavior) {
-		onBehaviorComplete.Invoke(behavior);
+	public static void InvokeDebug(string d) {
+		Debug.Log(d);
 	}
 
     // TODO

@@ -65,7 +65,7 @@ public class EvaluationHandler {
 			if(!_unstartedPatterns[i].TryContinue(behavior)) { continue; }
 
 			if(_unstartedPatterns[i].continueConditionCount == 0) {
-				EventManager.InvokeBehaviorComplete(new(
+				EventManager.InvokeBehavior(new(
 					behavior.sub, behavior.obj,
 					new(_unstartedPatterns[i].verbOnCompletion, new())
 				));
@@ -93,7 +93,7 @@ public class EvaluationHandler {
 
 			if(_activePatterns[i].continueConditionCount != 0) { continue; }
 
-			EventManager.InvokeBehaviorComplete(new(behavior.sub, behavior.obj, new(_activePatterns[i].verbOnCompletion, new())));
+			EventManager.InvokeBehavior(new(behavior.sub, behavior.obj, new(_activePatterns[i].verbOnCompletion, new())));
 			_activePatterns.RemoveAt(i);
 		}
 
