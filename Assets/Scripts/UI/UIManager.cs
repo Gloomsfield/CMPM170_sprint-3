@@ -58,6 +58,7 @@ public class UIManager : MonoBehaviour
         foreach (char letter in textToType.ToCharArray())
         {
             displaytext.text += letter;
+            AudioManager.Instance.PlayTherapistLetter(Random.Range(0.9f,1.1f));
             yield return new WaitForSeconds(typingSpeed);
         }
 
