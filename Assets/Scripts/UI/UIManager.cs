@@ -56,7 +56,7 @@ public class UIManager : MonoBehaviour
 		displaytext.gameObject.SetActive(true);
 		pressSpace.gameObject.SetActive(true);
 		mouthdisplay.gameObject.SetActive(true);
-		mouthdisplay.gameObject.SetActive(true);
+		mouthdisplayBG.gameObject.SetActive(true);
 		
 		displaytext.gameObject.SetActive(true);
 		pressSpace.gameObject.SetActive(true);
@@ -107,7 +107,7 @@ public class UIManager : MonoBehaviour
         displaytext.gameObject.SetActive(false);
         pressSpace.gameObject.SetActive(false);
         mouthdisplay.gameObject.SetActive(false);
-        mouthdisplay.gameObject.SetActive(false);
+        mouthdisplayBG.gameObject.SetActive(false);
 
         EventManager.InvokeTherapyEnded();
 
