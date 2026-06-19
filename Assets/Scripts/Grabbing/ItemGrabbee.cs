@@ -31,7 +31,7 @@ public class ItemGrabbee : MonoBehaviour {
     // Keep a queue of last positions, prepend currents frames position, delete
     // anything past ten frames, always pull from the last item in the list to
     // create a sort of "wolf timer" for throwing
-    
+     
     private Queue<Vector3> _lastPositions;
 
 	void Start() {

@@ -3,7 +3,8 @@
     "rootNamespace": "",
     "references": [
         "Events",
-        "Config"
+        "Config",
+        "ItemProperties"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -88,6 +88,14 @@ public class VerbTensesAttribute : Attribute {
 public enum VerbType {
 
 	// atomic verbs
+
+	[VerbTenses(
+		"burned", "burning", "burned",
+		"burn", "burning", "burned",
+		"burn", "burning", "burned"
+	)]
+    BURNS,
+
 	[VerbTenses(
 		"grabbed", "grabbing", "grabbed",
 		"grab", "grabbing", "grabbed",
