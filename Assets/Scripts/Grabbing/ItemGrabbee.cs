@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Unity.Cinemachine;
+using System.Collections.Generic;
 
 /* This class is responsible for defining how an object should behave when it is
  * grabbed.
@@ -10,6 +11,7 @@ using Unity.Cinemachine;
 [RequireComponent(typeof(Rigidbody))]
 public class ItemGrabbee : MonoBehaviour {
     [SerializeField] float breakForce = 400f;
+    private const int throwingVelocityFrameOffest = 3;
 
     private bool grabbed = false;
     private CinemachineCamera holderHead;
@@ -25,7 +27,16 @@ public class ItemGrabbee : MonoBehaviour {
 	private Vector3 _lastPosition;
 	private float _lastDeltaTime;
 
+
+    // Keep a queue of last positions, prepend currents frames position, delete
+    // anything past ten frames, always pull from the last item in the list to
+    // create a sort of "wolf timer" for throwing
+    
+    private Queue<Vector3> _lastPositions;
+
 	void Start() {
+        _lastPositions = new();
+
 		onGrab += GetComponent<ItemNounWrapper>().OnGrab;
 		onDrop += GetComponent<ItemNounWrapper>().OnDrop;
 		onThrow += GetComponent<ItemNounWrapper>().OnThrow;
@@ -33,7 +44,12 @@ public class ItemGrabbee : MonoBehaviour {
 
 	void Update() {
 		_lastDeltaTime = Time.deltaTime;
-		_lastPosition = transform.position;
+        _lastPositions.Enqueue(transform.position);
+        if (_lastPositions.Count > throwingVelocityFrameOffest) {
+            _lastPositions.Dequeue();
+        }
+        _lastPosition = _lastPositions.Peek();
+		//_lastPosition = transform.position;
 	}
 
     public void Grab(Rigidbody grabberRb)
@@ -60,7 +76,7 @@ public class ItemGrabbee : MonoBehaviour {
             holderHead = null;
         }
 
-		Vector3 throwVelocity = (transform.position - _lastPosition) / (_lastDeltaTime * 2.5f);
+		Vector3 throwVelocity = (transform.position - _lastPosition) / (_lastDeltaTime);
 
 		GetComponent<Rigidbody>().linearVelocity = throwVelocity;
 
