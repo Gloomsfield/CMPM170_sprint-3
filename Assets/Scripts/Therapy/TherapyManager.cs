@@ -18,6 +18,7 @@ public class TherapyManager : MonoBehaviour {
 
 	private List<VerbType> _notableVerbs = new(){
 		VerbType.THROWS,
+        VerbType.BURNS,
 	};
 
     void Awake() {
