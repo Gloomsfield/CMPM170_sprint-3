@@ -49,7 +49,6 @@ public class ItemGrabbee : MonoBehaviour {
             _lastPositions.Dequeue();
         }
         _lastPosition = _lastPositions.Peek();
-		//_lastPosition = transform.position;
 	}
 
     public void Grab(Rigidbody grabberRb)
