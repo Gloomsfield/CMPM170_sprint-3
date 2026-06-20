@@ -76,7 +76,7 @@ public class ItemGrabbee : MonoBehaviour {
             holderHead = null;
         }
 
-		Vector3 throwVelocity = (transform.position - _lastPosition) / (_lastDeltaTime);
+		Vector3 throwVelocity = (transform.position - _lastPosition) / (_lastDeltaTime * 2.5f);
 
 		GetComponent<Rigidbody>().linearVelocity = throwVelocity;
 

@@ -10,6 +10,7 @@ public class IntroCameraControl : MonoBehaviour
     [SerializeField] CinemachineCamera dollyCamera;
     [SerializeField] CinemachineCamera playerCamera;
     [SerializeField] GameObject gnomeChillin;
+    [SerializeField] GameObject crosshair;
 
     [Header("Timing")]
     [SerializeField] float skyViewTime = 2f;
@@ -41,6 +42,7 @@ public class IntroCameraControl : MonoBehaviour
 
         yield return new WaitForSeconds(playerCamTime);
         EventManager.InvokeIntroSceneComplete();
+        crosshair.SetActive(true);
     }
 
     void SetCamera(CinemachineCamera activeCamera)
