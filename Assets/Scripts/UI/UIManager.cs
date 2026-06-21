@@ -2,6 +2,8 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
+
 public class UIManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI displaytext;
@@ -10,6 +12,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image mouthdisplay;
     [SerializeField] Image mouthdisplayBG;
     [SerializeField] Animator therapistAnimator;
+    [SerializeField] GameObject activePatternUI;
     string pressSpaceText = "Press Space To Continue...";
     [SerializeField] float typingSpeed = 0.5f; // Smaller = Faster
     [SerializeField] DialogueInputHandler uiInput; // Link to inputhandler for space
@@ -67,6 +70,14 @@ public class UIManager : MonoBehaviour
 		}
 		
 		typingCoroutine = StartCoroutine(TypeText(currentFullText));
+    }
+
+    public void UpdateActivePatternDisplay() {
+    }
+
+    public void ToggleActivePatternDisplay() {
+        bool active = activePatternUI.activeInHierarchy;
+        activePatternUI.SetActive(!active);
     }
 
     IEnumerator TypeText(string textToType)
@@ -136,4 +147,10 @@ public class UIManager : MonoBehaviour
            EndConversation();
        }
 	}
+
+    void Update() {
+        if (Keyboard.current.tabKey.wasPressedThisFrame) {
+            ToggleActivePatternDisplay();
+        }
+    }
 }
