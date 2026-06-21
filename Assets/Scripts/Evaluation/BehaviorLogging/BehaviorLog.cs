@@ -18,7 +18,7 @@ public class BehaviorLog {
 
     // MAX KINET'S ADDITIONS ---------------------------------------------------
     public void Log(Behavior behavior) {
-        behavior.ToString();
+        Debug.Log(behavior.ToString());
     }
 
     // END MAX KINET'S ADDITIONS

@@ -13,6 +13,7 @@ public class TherapyManager : MonoBehaviour {
 
 	private TherapistState _state = new();
 	private ResponseGenerator _responseGenerator;
+    private BehaviorLog _behaviorLog;
 
 	private string _currentJudgement;
 
@@ -31,6 +32,7 @@ public class TherapyManager : MonoBehaviour {
 		}
 
         camController = new TherapistCamFocus(playerCam, therapyCam);
+        _behaviorLog = new();
 
 		EventManager.onBehavior += JudgeBehavior;
     }
@@ -40,9 +42,7 @@ public class TherapyManager : MonoBehaviour {
 	}
 
 	void JudgeBehavior(Behavior behavior) {
-		Debug.Log("1");
 		if(_state.recentBehavior != null) { return; }
-		Debug.Log("2");
 		
 		bool notable = false;
 
@@ -55,10 +55,8 @@ public class TherapyManager : MonoBehaviour {
 			break;
 		}
 
-		Debug.Log("2");
 		if(!notable) { return; }
 
-		Debug.Log("3");
 		_state.recentBehavior = behavior;
 
 		_currentJudgement = _responseGenerator.Generate(null, _state);

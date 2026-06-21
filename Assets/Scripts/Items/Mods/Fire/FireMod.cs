@@ -10,7 +10,7 @@ public class FireMod : MonoBehaviour {
          * gets a ref to the first script attached to other which implements Iflammable*/
         Iflammable flammable = other.gameObject.GetComponent<Iflammable>();
         if (flammable == null) return;
-        other.gameObject.GetComponent<ItemNounWrapper>()?.OnIgnite(); 
+        other.gameObject.GetComponent<ItemNounWrapper>()?.OnIgnite(gameObject); 
         flammable.StartFire(duration);
     }
 }
