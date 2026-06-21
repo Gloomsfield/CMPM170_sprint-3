@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: ItemProperties::ItemNounWrapper
   nounInstanceName: arm
-  nounTags: 02000000
+  nounTags: 0200000006000000
 --- !u!114 &-3750863037806396455
 MonoBehaviour:
   m_ObjectHideFlags: 0

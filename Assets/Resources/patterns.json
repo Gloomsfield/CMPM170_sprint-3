@@ -85,8 +85,8 @@
 		"verbOnCompletion": "BURNS",
 		"nounRestrictions": [
 			{ "identifier": "player", "validTags": [ "PLAYER" ] },
-			{ "identifier": "n1", "validTags": [ "ANY" ] },
-			{ "identifier": "n2", "validTags": [ "ANY" ] },
+			{ "identifier": "n1", "validTags": [ "COOKABLE", "FLAMMABLE" ] },
+			{ "identifier": "n2", "validTags": [ "FIRE" ] },
 			{ "identifier": "n3", "validTags": [ "GROUND" ] }
 		],
 		"continueConditions": [

@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: ItemProperties::ItemNounWrapper
   nounInstanceName: head
-  nounTags: 02000000
+  nounTags: 0200000006000000
 --- !u!54 &5685784267029657078
 Rigidbody:
   m_ObjectHideFlags: 0

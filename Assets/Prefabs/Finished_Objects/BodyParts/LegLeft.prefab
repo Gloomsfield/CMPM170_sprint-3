@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: ItemProperties::ItemNounWrapper
   nounInstanceName: leg
-  nounTags: 02000000
+  nounTags: 0200000006000000
 --- !u!114 &5591340080106863748
 MonoBehaviour:
   m_ObjectHideFlags: 0

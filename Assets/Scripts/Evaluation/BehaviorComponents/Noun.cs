@@ -14,6 +14,7 @@ public enum NounTag {
 	COOKABLE,
 	FIRE,
     GROUND,
+    FLAMMABLE,
 	ANY,
 }
 
