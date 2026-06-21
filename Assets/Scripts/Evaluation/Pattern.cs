@@ -140,6 +140,15 @@ public class Pattern {
 
 		return false;
 	}
+
+    override public string ToString() {
+        string s = "";
+        foreach (var nounInstance in _nounDefinitions) {
+            s += $" {nounInstance.Value.name} |";
+        }
+        return $"{verbOnCompletion}:{s}";
+        
+    }
 }
 
 public class PatternBlueprint {

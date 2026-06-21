@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using UnityEngine;
 
 
 /// <summary>
@@ -33,6 +34,8 @@ public class EvaluationHandler {
 	// of itself via its blueprint to be added once again to
 	// _unstartedPatterns.
 	private List<Pattern> _activePatterns = new();
+
+    private ActivePatternDisplay _patternDisplayer = new();
 
 	/// <summary>
 	/// The member function MakePatternsFromJson populates a list of
@@ -100,6 +103,7 @@ public class EvaluationHandler {
 		foreach(Pattern pattern in newPatterns) {
 			_activePatterns.Add(pattern);
 		}
+        _patternDisplayer.UpdateDisplay(_activePatterns);
 	}
 
 }

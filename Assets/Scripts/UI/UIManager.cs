@@ -51,8 +51,6 @@ public class UIManager : MonoBehaviour
     // Starts the dialogue with typewritter effect. 
     public void DisplayTherapyText()
     {
-		Debug.Log("display");
-
 		displaytext.gameObject.SetActive(true);
 		pressSpace.gameObject.SetActive(true);
 		mouthdisplay.gameObject.SetActive(true);

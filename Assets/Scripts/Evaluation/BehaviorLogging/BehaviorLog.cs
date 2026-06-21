@@ -7,7 +7,6 @@ public class BehaviorLog {
 
 	// TODO
 	public BehaviorLog() {
-        // <Max Kinet>
         EventManager.onBehavior += Log;
     }
 
@@ -16,12 +15,10 @@ public class BehaviorLog {
 		return null;
 	}
 
-    // MAX KINET'S ADDITIONS ---------------------------------------------------
     public void Log(Behavior behavior) {
-        Debug.Log(behavior.ToString());
+        return;
+        string s = behavior.ToString();
+        Debug.Log(s);
     }
-
-    // END MAX KINET'S ADDITIONS
-
 }
 
