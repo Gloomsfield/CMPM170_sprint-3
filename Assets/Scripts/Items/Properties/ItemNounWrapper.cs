@@ -16,6 +16,12 @@ public class ItemNounWrapper : MonoBehaviour {
         
     }
 
+    // <Max Kinet> ---------------------------------------------------------
+    private void OnCollisionEnter(Collision other) {
+        other.gameObject.GetComponent<ItemNounWrapper>()?.OnTouch(gameObject); 
+    }
+    // <End Max Kinet> ------------------------------------------------------
+
 	public void OnGrab() {
 		NounInstance playerNoun = GameObject.FindWithTag("Player").GetComponent<ItemNounWrapper>().noun;
 		EventManager.InvokeBehavior(new(playerNoun, noun, new VerbInstance(VerbType.GRABS, new())));
@@ -26,6 +32,10 @@ public class ItemNounWrapper : MonoBehaviour {
 		EventManager.InvokeBehavior(new(noun, this.noun, new VerbInstance(VerbType.IGNITES, new())));
     }
 
+    public void OnTouch(GameObject obj) {
+		NounInstance noun = obj.GetComponent<ItemNounWrapper>().noun;
+		EventManager.InvokeBehavior(new(this.noun, noun, new VerbInstance(VerbType.TOUCHES, new())));
+    }
 	public void OnDrop() {
 		NounInstance playerNoun = GameObject.FindWithTag("Player").GetComponent<ItemNounWrapper>().noun;
 		EventManager.InvokeBehavior(new(playerNoun, noun, new VerbInstance(VerbType.DROPS, new())));

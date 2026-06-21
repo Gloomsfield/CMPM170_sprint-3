@@ -146,6 +146,13 @@ public enum VerbType {
 	)]
 	IGNITES,
 
+	[VerbTenses(
+		"touched", "touching", "touched",
+        "touch", "touching", "touched",
+        "touch", "touching", "touched"
+	)]
+	TOUCHES,
+
 }
 
 public static class VerbTypeExtensions {

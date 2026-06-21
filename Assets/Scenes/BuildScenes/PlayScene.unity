@@ -1618,10 +1618,10 @@ MonoBehaviour:
         z: 2.620766
       Rotation:
         value:
-          x: -0.115737446
-          y: 0.92096317
-          z: -0.32665038
-          w: -0.17813252
+          x: -0.115737475
+          y: 0.9209632
+          z: -0.32665032
+          w: -0.17813246
     - Position:
         x: -25.111118
         y: -13.719257
@@ -3883,6 +3883,7 @@ GameObject:
   - component: {fileID: 620442524}
   - component: {fileID: 620442526}
   - component: {fileID: 620442525}
+  - component: {fileID: 620442527}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
@@ -3965,6 +3966,20 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!114 &620442527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620442523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7261c66a1419a3809fb8e01015ce56f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ItemProperties::ItemNounWrapper
+  nounInstanceName: ground
+  nounTags: 05000000
 --- !u!114 &629443586 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5670673766050895574, guid: b76f0ab1fe5e6254585c08262ddf6664, type: 3}

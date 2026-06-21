@@ -51,7 +51,8 @@
 		"nounRestrictions": [
 			{ "identifier": "player", "validTags": [ "PLAYER" ] },
 			{ "identifier": "n1", "validTags": [ "FIRE" ] },
-			{ "identifier": "n2", "validTags": [ "ANY" ] }
+			{ "identifier": "n2", "validTags": [ "ANY" ] },
+			{ "identifier": "n3", "validTags": [ "GROUND" ] }
 		],
 		"continueConditions": [
 			[
@@ -72,10 +73,9 @@
         "cancelConditions": [
             [
                 {
-                    "subject": "player",
-                    "object": "n1",
-                    "verbRestriction": { "verb": "DROPS" }
-
+                    "subject": "n1",
+                    "object": "n3",
+                    "verbRestriction": { "verb": "TOUCHES" }
                 }
             ]
         ]
@@ -86,7 +86,8 @@
 		"nounRestrictions": [
 			{ "identifier": "player", "validTags": [ "PLAYER" ] },
 			{ "identifier": "n1", "validTags": [ "ANY" ] },
-			{ "identifier": "n2", "validTags": [ "ANY" ] }
+			{ "identifier": "n2", "validTags": [ "ANY" ] },
+			{ "identifier": "n3", "validTags": [ "GROUND" ] }
 		],
 		"continueConditions": [
 			[
@@ -107,14 +108,9 @@
         "cancelConditions": [
             [
                 {
-                    "subject": "player",
-                    "object": "n1",
-                    "verbRestriction": { "verb": "DROPS" }
-                },
-                {
-                    "subject": "player",
-                    "object": "n1",
-                    "verbRestriction": { "verb": "THROWS" }
+                    "subject": "n1",
+                    "object": "n3",
+                    "verbRestriction": { "verb": "TOUCHES" }
                 }
             ]
         ]

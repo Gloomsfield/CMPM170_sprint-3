@@ -13,6 +13,7 @@ public enum NounTag {
 	CORPSE,
 	COOKABLE,
 	FIRE,
+    GROUND,
 	ANY,
 }
 
