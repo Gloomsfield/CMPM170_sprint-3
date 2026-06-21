@@ -3,9 +3,11 @@ using System.Collections.Generic;
 
 public class ActivePatternDisplay {
     private List<Pattern> _prevActivePatterns;
-    public void UpdateDisplay(List<Pattern> activePatterns) {
+    public string GetActivePatternText(List<Pattern> activePatterns) {
+        string s = "";
         foreach (var pattern in activePatterns) {
-            Debug.Log(pattern.ToString());
+            s += $"{pattern.ToString()}\n";
         }
+        return s;
     }
 }

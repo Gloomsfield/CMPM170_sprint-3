@@ -32,6 +32,8 @@ public class UIManager : MonoBehaviour
 
 		Instance = this;
 		DontDestroyOnLoad(gameObject);
+        
+        EventManager.onBehaviorProcessed += UpdateActivePatternDisplay;
 	}
 
     void OnEnable()
@@ -73,6 +75,8 @@ public class UIManager : MonoBehaviour
     }
 
     public void UpdateActivePatternDisplay() {
+        //Debug.Log(EvaluationHandler.Instance.GetActivePatternsText());
+        //Debug.Log(EvaluationHandler.Instance.ActivePatternsString);
     }
 
     public void ToggleActivePatternDisplay() {

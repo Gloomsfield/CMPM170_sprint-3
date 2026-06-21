@@ -103,8 +103,16 @@ public class EvaluationHandler {
 		foreach(Pattern pattern in newPatterns) {
 			_activePatterns.Add(pattern);
 		}
-        _patternDisplayer.UpdateDisplay(_activePatterns);
+
+        ActivePatternsString = _patternDisplayer.GetActivePatternText(_activePatterns);
+        EventManager.InvokeBehaviorProcessed();
+        Debug.Log(ActivePatternsString);
 	}
 
+    public string GetActivePatternsText() {
+        return _patternDisplayer.GetActivePatternText(_activePatterns);
+    }
+
+    public string ActivePatternsString { get; private set; }
 }
 
