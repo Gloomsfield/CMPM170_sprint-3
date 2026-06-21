@@ -21,10 +21,9 @@ public class ItemNounWrapper : MonoBehaviour {
 		EventManager.InvokeBehavior(new(playerNoun, noun, new VerbInstance(VerbType.GRABS, new())));
 	}
 
-    public void OnArson() {
-        Debug.Log("ONARSON CALLED");
+    public void OnIgnite() {
 		NounInstance playerNoun = GameObject.FindWithTag("Player").GetComponent<ItemNounWrapper>().noun;
-		EventManager.InvokeBehavior(new(playerNoun, noun, new VerbInstance(VerbType.BURNS, new())));
+		EventManager.InvokeBehavior(new(playerNoun, noun, new VerbInstance(VerbType.IGNITES, new())));
     }
 
 	public void OnDrop() {

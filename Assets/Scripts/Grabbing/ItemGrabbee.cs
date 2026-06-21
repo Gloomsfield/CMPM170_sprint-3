@@ -11,7 +11,8 @@ using System.Collections.Generic;
 [RequireComponent(typeof(Rigidbody))]
 public class ItemGrabbee : MonoBehaviour {
     [SerializeField] float breakForce = 400f;
-    private const int throwingVelocityFrameOffest = 3;
+    private const int _throwingVelocityFrameOffest = 3;
+    private const float _throwScaler = 0.2f;
 
     private bool grabbed = false;
     private CinemachineCamera holderHead;
@@ -45,7 +46,7 @@ public class ItemGrabbee : MonoBehaviour {
 	void Update() {
 		_lastDeltaTime = Time.deltaTime;
         _lastPositions.Enqueue(transform.position);
-        if (_lastPositions.Count > throwingVelocityFrameOffest) {
+        if (_lastPositions.Count > _throwingVelocityFrameOffest) {
             _lastPositions.Dequeue();
         }
         _lastPosition = _lastPositions.Peek();
@@ -75,7 +76,7 @@ public class ItemGrabbee : MonoBehaviour {
             holderHead = null;
         }
 
-		Vector3 throwVelocity = (transform.position - _lastPosition) / (_lastDeltaTime * 2.5f);
+		Vector3 throwVelocity = (transform.position - _lastPosition) / (_lastDeltaTime) * _throwScaler;
 
 		GetComponent<Rigidbody>().linearVelocity = throwVelocity;
 

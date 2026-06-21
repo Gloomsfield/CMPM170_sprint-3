@@ -139,6 +139,13 @@ public enum VerbType {
 	)]
 	EATS,
 
+	[VerbTenses(
+		"ignited", "igniting", "ignited",
+        "ignite", "igniting", "ignited",
+        "ignite", "igniting", "ignited"
+	)]
+	IGNITES,
+
 }
 
 public static class VerbTypeExtensions {

@@ -11,5 +11,11 @@ public class Behavior {
 		this.verb = verb;
 	}
 
+    // <Max Kinet> ---------------------------
+    override public string ToString() {
+        return $"{sub.name} {verb.Conjugate(VerbTenseType.SIMPLE_PRESENT)} {obj.name}";
+    }
+    // <End Max Kinet> -----------------------
+
 }
 
