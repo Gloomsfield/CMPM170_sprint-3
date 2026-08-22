@@ -1,6 +1,8 @@
 using UnityEngine;
+using System;
 using TMPro;
 using System.Collections;
+
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
@@ -74,9 +76,10 @@ public class UIManager : MonoBehaviour
 		typingCoroutine = StartCoroutine(TypeText(currentFullText));
     }
 
-    public void UpdateActivePatternDisplay() {
-        //Debug.Log(EvaluationHandler.Instance.GetActivePatternsText());
-        //Debug.Log(EvaluationHandler.Instance.ActivePatternsString);
+    public void UpdateActivePatternDisplay(String behavior) {
+        Debug.Log(behavior);
+        // Debug.Log(EvaluationHandler.Instance.GetActivePatternsText());
+        //Debug.Log("UI manager: " + EvaluationHandler.Instance.ActivePatternsString);
     }
 
     public void ToggleActivePatternDisplay() {
@@ -96,7 +99,7 @@ public class UIManager : MonoBehaviour
             displaytext.text += letter;
             if (displaytext.text.Length % letterGap == 0)
             {
-                AudioManager.Instance.PlayTherapistLetter(Random.Range(0.9f, 1.1f));
+                AudioManager.Instance.PlayTherapistLetter(UnityEngine.Random.Range(0.9f, 1.1f));
             }
             yield return new WaitForSeconds(typingSpeed);
         }

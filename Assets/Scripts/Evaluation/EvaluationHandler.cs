@@ -105,12 +105,13 @@ public class EvaluationHandler {
 		}
 
         ActivePatternsString = _patternDisplayer.GetActivePatternText(_activePatterns);
-        EventManager.InvokeBehaviorProcessed();
+        EventManager.InvokeBehaviorProcessed(behavior.ToString());
         Debug.Log(ActivePatternsString);
 	}
 
     public string GetActivePatternsText() {
-        return _patternDisplayer.GetActivePatternText(_activePatterns);
+        //return _patternDisplayer.GetActivePatternText(_activePatterns);
+        return _activePatterns.ToString();
     }
 
     public string ActivePatternsString { get; private set; }
