@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image mouthdisplayBG;
     [SerializeField] Animator therapistAnimator;
     [SerializeField] GameObject activePatternUI;
+    [SerializeField] TextMeshProUGUI activePatternUIText;
     string pressSpaceText = "Press Space To Continue...";
     [SerializeField] float typingSpeed = 0.5f; // Smaller = Faster
     [SerializeField] DialogueInputHandler uiInput; // Link to inputhandler for space
@@ -77,7 +78,7 @@ public class UIManager : MonoBehaviour
     }
 
     public void UpdateActivePatternDisplay(String behavior) {
-        Debug.Log(behavior);
+        activePatternUIText.text = behavior + '\n' +activePatternUIText.text;
         // Debug.Log(EvaluationHandler.Instance.GetActivePatternsText());
         //Debug.Log("UI manager: " + EvaluationHandler.Instance.ActivePatternsString);
     }

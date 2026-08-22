@@ -1583,8 +1583,8 @@ MonoBehaviour:
       Rotation:
         value:
           x: -0.25445157
-          y: -0.5372547
-          z: -0.17007132
+          y: -0.53725475
+          z: -0.17007127
           w: 0.78593105
     - Position:
         x: -21.451279
@@ -1618,10 +1618,10 @@ MonoBehaviour:
         z: 2.620766
       Rotation:
         value:
-          x: -0.115737446
-          y: 0.92096317
-          z: -0.32665038
-          w: -0.17813252
+          x: -0.115737475
+          y: 0.9209632
+          z: -0.32665032
+          w: -0.17813246
     - Position:
         x: -25.111118
         y: -13.719257
@@ -1636,7 +1636,7 @@ MonoBehaviour:
         z: 2.4388762
       Rotation:
         value:
-          x: 0.017578226
+          x: 0.017578218
           y: 0.90588117
           z: -0.3708856
           w: 0.20375004
@@ -9567,7 +9567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2749479456975700260, guid: b76f0ab1fe5e6254585c08262ddf6664, type: 3}
       propertyPath: m_text
-      value: Max
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2749479456975700260, guid: b76f0ab1fe5e6254585c08262ddf6664, type: 3}
       propertyPath: m_fontSize
@@ -9785,6 +9785,22 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6693114594887874034, guid: b76f0ab1fe5e6254585c08262ddf6664, type: 3}
+      propertyPath: m_Color.a
+      value: 0.69411767
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693114594887874034, guid: b76f0ab1fe5e6254585c08262ddf6664, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693114594887874034, guid: b76f0ab1fe5e6254585c08262ddf6664, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693114594887874034, guid: b76f0ab1fe5e6254585c08262ddf6664, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6904307739222812347, guid: b76f0ab1fe5e6254585c08262ddf6664, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -9800,6 +9816,10 @@ PrefabInstance:
     - target: {fileID: 7515003395759474071, guid: b76f0ab1fe5e6254585c08262ddf6664, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7605656504508272213, guid: b76f0ab1fe5e6254585c08262ddf6664, type: 3}
+      propertyPath: m_Name
+      value: PatternDisplayText
       objectReference: {fileID: 0}
     - target: {fileID: 7841889269031069003, guid: b76f0ab1fe5e6254585c08262ddf6664, type: 3}
       propertyPath: m_IsActive
@@ -10507,6 +10527,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3176300666887347758, guid: f73c527247fc8974788d2eadf7b2872d, type: 3}
   m_PrefabInstance: {fileID: 1856234933}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1872933385 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2749479456975700260, guid: b76f0ab1fe5e6254585c08262ddf6664, type: 3}
+  m_PrefabInstance: {fileID: 1794397102}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1873197828
 GameObject:
   m_ObjectHideFlags: 0
@@ -11592,6 +11623,10 @@ PrefabInstance:
       propertyPath: therapistAnimator
       value: 
       objectReference: {fileID: 1572919087}
+    - target: {fileID: 2004711576241097192, guid: a2fa524305b86a146a410bd65d51d7ca, type: 3}
+      propertyPath: activePatternUIText
+      value: 
+      objectReference: {fileID: 1872933385}
     - target: {fileID: 4307992364317046113, guid: a2fa524305b86a146a410bd65d51d7ca, type: 3}
       propertyPath: m_Name
       value: UIManager

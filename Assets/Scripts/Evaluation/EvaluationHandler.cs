@@ -104,8 +104,8 @@ public class EvaluationHandler {
 			_activePatterns.Add(pattern);
 		}
 
-        ActivePatternsString = _patternDisplayer.GetActivePatternText(_activePatterns);
         EventManager.InvokeBehaviorProcessed(behavior.ToString());
+        ActivePatternsString = _patternDisplayer.GetActivePatternText(_activePatterns);
         Debug.Log(ActivePatternsString);
 	}
 
