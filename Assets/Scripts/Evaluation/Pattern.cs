@@ -16,7 +16,12 @@ public class Condition {
 		this.subIdentifier = subIdentifier;
 		this.objIdentifier = objIdentifier;
 		this.verbRestriction = verbRestriction;
-	}
+
+        }
+   
+    override public string ToString() {
+        return $"{this.subIdentifier} | {this.objIdentifier} | {this.verbRestriction}";
+    }
 
 }
 
@@ -142,11 +147,11 @@ public class Pattern {
 	}
 
     override public string ToString() {
-        string s = "";
+        string s = $"verb:{verbOnCompletion}\n\t";
         foreach (var nounInstance in _nounDefinitions) {
-            s += $" {nounInstance.Value.name} |";
+            s += $"{nounInstance.Key}:{nounInstance.Value.name}  ";
         }
-        return $"{verbOnCompletion}:{s}";
+        return s;
         
     }
 }

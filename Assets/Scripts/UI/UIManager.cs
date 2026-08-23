@@ -78,7 +78,9 @@ public class UIManager : MonoBehaviour
     }
 
     public void UpdateActivePatternDisplay(String behavior) {
+        if(behavior != "") {
         activePatternUIText.text = behavior + '\n' +activePatternUIText.text;
+        }
         // Debug.Log(EvaluationHandler.Instance.GetActivePatternsText());
         //Debug.Log("UI manager: " + EvaluationHandler.Instance.ActivePatternsString);
     }
